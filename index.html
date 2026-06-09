@@ -39,6 +39,23 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 .card-title { font-size: 15px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 7px; color: #1a237e; }
 .card-title .icon { font-size: 18px; }
 
+/* ── Reading focus ── */
+.card, .day-body { position: relative; }
+.readable-block { cursor: zoom-in; transition: background-color .2s ease, box-shadow .2s ease; outline: none; }
+.readable-block::after { content: 'A+'; position: absolute; top: 9px; right: 10px; min-width: 25px; padding: 2px 5px; border: 1px solid #c5cae9; border-radius: 5px; background: #f7f8fc; color: #5c6bc0; font-size: 9px; line-height: 1.2; font-weight: 800; text-align: center; opacity: .7; pointer-events: none; }
+.readable-block > .card-title:first-child { padding-right: 34px; }
+.readable-block:focus-visible { box-shadow: 0 0 0 3px rgba(57,73,171,.24), 0 2px 10px rgba(0,0,0,.1); }
+.readable-block.reading-focus { cursor: zoom-out; background: #fffef9; box-shadow: 0 0 0 2px #7986cb, 0 5px 18px rgba(26,35,126,.14); }
+.readable-block.reading-focus::after { content: 'A−'; border-color: #3949ab; background: #3949ab; color: #fff; opacity: 1; }
+.reading-focus .card-title { font-size: 18px; line-height: 1.45; }
+.reading-focus .card-title .icon { font-size: 21px; }
+.reading-focus .info-row, .reading-focus .rem, .reading-focus .hl { font-size: 16px; line-height: 1.7; }
+.reading-focus .t-route, .reading-focus .attr-name { font-size: 17px; line-height: 1.55; }
+.reading-focus .t-detail, .reading-focus .attr-link, .reading-focus .rem-title, .reading-focus .em-row { font-size: 15px; line-height: 1.7; }
+.reading-focus .attr-en, .reading-focus .cl-data { font-size: 13px; }
+.reading-focus .cl-item, .reading-focus .em-title { font-size: 16px; line-height: 1.65; }
+.reading-focus [style*="font-size:13px"] { font-size: 16px !important; line-height: 1.75 !important; }
+
 /* ── Status badges ── */
 .badge { padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 700; }
 .badge-ok  { color: #2e7d32; background: #e8f5e9; }
@@ -715,6 +732,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 
 <script>
 function showTab(id, el) {
+  clearReadingFocus();
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -726,6 +744,40 @@ function toggleDay(hdr) {
   hdr.classList.toggle('open');
   hdr.nextElementSibling.classList.toggle('open');
 }
+
+function clearReadingFocus(except) {
+  document.querySelectorAll('.reading-focus').forEach(block => {
+    if (block !== except) {
+      block.classList.remove('reading-focus');
+      block.setAttribute('aria-pressed', 'false');
+    }
+  });
+}
+
+function toggleReadingFocus(block) {
+  const willFocus = !block.classList.contains('reading-focus');
+  clearReadingFocus(block);
+  block.classList.toggle('reading-focus', willFocus);
+  block.setAttribute('aria-pressed', String(willFocus));
+}
+
+document.querySelectorAll('.card, .day-body').forEach(block => {
+  block.classList.add('readable-block');
+  block.tabIndex = 0;
+  block.setAttribute('aria-label', '點選以切換放大閱讀');
+  block.setAttribute('aria-pressed', 'false');
+
+  block.addEventListener('click', event => {
+    if (event.target.closest('a, button, input, select, textarea')) return;
+    toggleReadingFocus(block);
+  });
+
+  block.addEventListener('keydown', event => {
+    if (event.target !== block || (event.key !== 'Enter' && event.key !== ' ')) return;
+    event.preventDefault();
+    toggleReadingFocus(block);
+  });
+});
 
 // Auto-open today's day based on date
 (function() {
