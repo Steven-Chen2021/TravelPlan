@@ -115,6 +115,19 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 .em-title { font-weight: 800; color: #c62828; font-size: 13px; margin-bottom: 7px; }
 .em-row { font-size: 12px; padding: 3px 0; color: #444; }
 .em-row b { color: #222; }
+
+/* ── Language Toggle ── */
+.lang-btn { border: none; background: rgba(63,81,181,.12); color: #1a237e; border-radius: 20px; padding: 3px 8px; font-size: 12px; font-weight: 700; cursor: pointer; margin-left: auto; flex-shrink: 0; line-height: 1.6; transition: background .2s, color .2s; }
+.lang-btn.active, .lang-btn:hover { background: #1a237e; color: #fff; }
+.day-hdr .lang-btn { background: rgba(255,255,255,.2); color: #fff; margin-left: 0; margin-right: 4px; }
+.day-hdr .lang-btn.active, .day-hdr .lang-btn:hover { background: rgba(255,255,255,.9); color: #1a237e; }
+.local-panel { display: none; margin-top: 10px; background: #f3f6ff; border-radius: 10px; padding: 12px 13px; border: 1.5px solid #c5cae9; }
+.local-panel.show { display: block; }
+.local-header { font-size: 10px; font-weight: 800; color: #5c6bc0; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 6px; }
+.local-dest { font-size: 16px; font-weight: 800; color: #1a237e; line-height: 1.35; margin: 0 0 9px; }
+.local-phrase { font-size: 13px; font-weight: 700; color: #1a1a3e; padding: 4px 0 1px; }
+.local-note { font-size: 10px; color: #888; margin-bottom: 4px; }
+.local-divider { border: none; border-top: 1px dashed #c5cae9; margin: 7px 0; }
 </style>
 </head>
 <body>
@@ -147,7 +160,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 <div class="section active" id="immigration">
 
   <div class="card">
-    <div class="card-title"><span class="icon">✈️</span>航班資訊（入境備用）</div>
+    <div class="card-title"><span class="icon">✈️</span>航班資訊（入境備用）<button class="lang-btn" data-trans="imm-flight" onclick="toggleLang(this,event)">🇩🇪</button></div>
     <div class="info-row"><span class="il">去程航班</span><span class="iv">CI063 · 台北→維也納</span></div>
     <div class="info-row"><span class="il">去程起飛</span><span class="iv">2026/07/01 (三) 23:40 <br>桃園機場 第一航廈</span></div>
     <div class="info-row"><span class="il">去程抵達</span><span class="iv">2026/07/02 (四) 06:35 <br>維也納 Schwechat T3</span></div>
@@ -158,7 +171,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🏨</span>住宿確認（入境備用）</div>
+    <div class="card-title"><span class="icon">🏨</span>住宿確認（入境備用）<button class="lang-btn" data-trans="imm-accomm" onclick="toggleLang(this,event)">🇩🇪🇭🇺</button></div>
     <div class="hl">海關可能要求提示住宿地址，以下資料請備妥</div>
     <div class="info-row"><span class="il">布達佩斯</span><span class="iv">Király utca 19<br>1075 Budapest, Hungary</span></div>
     <div class="info-row"><span class="il">訂房編號</span><span class="iv">6515930123 (Booking.com)</span></div>
@@ -217,7 +230,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🚆</span>Leg 2 · 維也納機場 → Wien Hauptbahnhof</div>
+    <div class="card-title"><span class="icon">🚆</span>Leg 2 · 維也納機場 → Wien Hauptbahnhof<button class="lang-btn" data-trans="leg2" onclick="toggleLang(this,event)">🇩🇪</button></div>
     <div class="transport">
       <div class="t-route">⭐ IC / Railjet（直達推薦）</div>
       <div class="t-detail">
@@ -249,7 +262,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🚄</span>Leg 3 · Wien Hbf → 布達佩斯 <span class="badge badge-ok">✓ 已訂</span></div>
+    <div class="card-title"><span class="icon">🚄</span>Leg 3 · Wien Hbf → 布達佩斯 <span class="badge badge-ok">✓ 已訂</span><button class="lang-btn" data-trans="leg3" onclick="toggleLang(this,event)">🇩🇪</button></div>
     <div class="transport">
       <div class="t-route">RJX 63 · 7/2 出發</div>
       <div class="t-detail">
@@ -265,7 +278,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🏙️</span>Leg 4 · Budapest-Keleti → 公寓</div>
+    <div class="card-title"><span class="icon">🏙️</span>Leg 4 · Budapest-Keleti → 公寓<button class="lang-btn" data-trans="leg4" onclick="toggleLang(this,event)">🇭🇺</button></div>
     <div class="transport">
       <div class="t-route">地鐵 M2 + 步行（建議）</div>
       <div class="t-detail">
@@ -286,7 +299,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🚇</span>布達佩斯市區交通</div>
+    <div class="card-title"><span class="icon">🚇</span>布達佩斯市區交通<button class="lang-btn" data-trans="bpTransit" onclick="toggleLang(this,event)">🇭🇺</button></div>
     <div class="transport">
       <div class="t-route">Budapest 交通 App</div>
       <div class="t-detail">
@@ -304,7 +317,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🚌</span>Leg 5 · 聖安德烈 一日遊</div>
+    <div class="card-title"><span class="icon">🚌</span>Leg 5 · 聖安德烈 一日遊<button class="lang-btn" data-trans="leg5" onclick="toggleLang(this,event)">🇭🇺</button></div>
     <div class="transport">
       <div class="t-route">HÉV 郊區列車 H5線</div>
       <div class="t-detail">
@@ -321,7 +334,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🚄</span>Leg 6 · 布達佩斯 → Wien Hbf <span class="badge badge-ok">✓ 已訂</span></div>
+    <div class="card-title"><span class="icon">🚄</span>Leg 6 · 布達佩斯 → Wien Hbf <span class="badge badge-ok">✓ 已訂</span><button class="lang-btn" data-trans="leg6" onclick="toggleLang(this,event)">🇭🇺</button></div>
     <div class="transport">
       <div class="t-route">RJX 66 · 7/7 出發</div>
       <div class="t-detail">
@@ -335,7 +348,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🏠</span>Leg 7 · Wien Hbf → 維也納公寓</div>
+    <div class="card-title"><span class="icon">🏠</span>Leg 7 · Wien Hbf → 維也納公寓<button class="lang-btn" data-trans="leg7" onclick="toggleLang(this,event)">🇩🇪</button></div>
     <div class="transport">
       <div class="t-route">地鐵 U1 + 電車 40/41</div>
       <div class="t-detail">
@@ -348,7 +361,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🚇</span>維也納市區交通</div>
+    <div class="card-title"><span class="icon">🚇</span>維也納市區交通<button class="lang-btn" data-trans="viennaTransit" onclick="toggleLang(this,event)">🇩🇪</button></div>
     <div class="transport">
       <div class="t-route">72小時交通通票（強烈推薦）</div>
       <div class="t-detail">
@@ -367,7 +380,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🚐</span>Leg 8 · 公寓 → VIE 機場 <span class="badge badge-ok">✓ 已訂</span></div>
+    <div class="card-title"><span class="icon">🚐</span>Leg 8 · 公寓 → VIE 機場 <span class="badge badge-ok">✓ 已訂</span><button class="lang-btn" data-trans="leg8" onclick="toggleLang(this,event)">🇩🇪</button></div>
     <div class="transport">
       <div class="t-route">Elife Transfer · Klook PTM726822</div>
       <div class="t-detail">
@@ -394,6 +407,15 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
       <div><div>Day 0 · 7/1 (三) 台灣出發</div><div class="day-label">桃園機場 → 登機</div></div>
+      <button class="lang-btn" data-trans="day1" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day2" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day3" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day4" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day5" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day6" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day7" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day8" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
@@ -412,6 +434,15 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
       <div><div>Day 1 · 7/2 (四) 抵達 & 移動</div><div class="day-label">維也納機場 → 布達佩斯入住</div></div>
+      <button class="lang-btn" data-trans="day1" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day2" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day3" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day4" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day5" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day6" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day7" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day8" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
@@ -434,6 +465,14 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
       <div><div>Day 2 · 7/3 (五) 布達城堡山</div><div class="day-label">Castle Hill · Fisherman's Bastion · Chain Bridge</div></div>
+      <button class="lang-btn" data-trans="day2" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day3" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day4" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day5" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day6" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day7" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day8" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
@@ -455,6 +494,13 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
       <div><div>Day 3 · 7/4 (六) 聖安德烈一日遊</div><div class="day-label">Szentendre · 小鎮 · 陶瓷博物館</div></div>
+      <button class="lang-btn" data-trans="day3" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day4" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day5" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day6" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day7" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day8" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
@@ -475,6 +521,12 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
       <div><div>Day 4 · 7/5 (日) Szimpla 市集＋城市公園</div><div class="day-label">Farmers Market · Széchenyi Bath · Vajdahunyad</div></div>
+      <button class="lang-btn" data-trans="day4" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day5" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day6" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day7" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day8" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
@@ -496,6 +548,11 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
       <div><div>Day 5 · 7/6 (一) 中央市場＋多瑙河遊船</div><div class="day-label">Great Market Hall · Danube Cruise 20:45 ✓</div></div>
+      <button class="lang-btn" data-trans="day5" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day6" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day7" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day8" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
@@ -529,6 +586,10 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
       <div><div>Day 6 · 7/7 (二) 布達佩斯 → 維也納</div><div class="day-label">Checkout · RJX66 · Vienna Check-in</div></div>
+      <button class="lang-btn" data-trans="day6" onclick="toggleLang(this,event)">🇭🇺</button>
+      <button class="lang-btn" data-trans="day7" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day8" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
@@ -551,6 +612,9 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
       <div><div>Day 7 · 7/8 (三) 熊布朗宮＋普拉特</div><div class="day-label">Schönbrunn Palace · Prater · Riesenrad</div></div>
+      <button class="lang-btn" data-trans="day7" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day8" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
@@ -579,6 +643,8 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
       <div><div>Day 8 · 7/9 (四) 納許市場＋美景宮</div><div class="day-label">Naschmarkt · Belvedere · Figlmüller</div></div>
+      <button class="lang-btn" data-trans="day8" onclick="toggleLang(this,event)">🇩🇪</button>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
@@ -608,6 +674,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
       <div><div>Day 9 · 7/10 (五) 返回台灣</div><div class="day-label">Airport Transfer 07:30 · CI064 11:15</div></div>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
@@ -631,7 +698,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 ══════════════════════════════ -->
 <div class="section" id="transfer">
   <div class="card">
-    <div class="card-title"><span class="icon">🚐</span>維也納機場接送 <span class="badge badge-ok">✓ 已訂</span></div>
+    <div class="card-title"><span class="icon">🚐</span>維也納機場接送 <span class="badge badge-ok">✓ 已訂</span><button class="lang-btn" data-trans="transfer" onclick="toggleLang(this,event)">🇩🇪</button></div>
     <div class="info-row"><span class="il">訂單號</span><span class="iv">PTM726822 (Klook)</span></div>
     <div class="info-row"><span class="il">預訂人</span><span class="iv">Chen Li Jen</span></div>
     <div class="info-row"><span class="il">服務商</span><span class="iv">Elife Transfer</span></div>
@@ -684,7 +751,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 <div class="section" id="emergency">
 
   <div class="card">
-    <div class="card-title"><span class="icon">🆘</span>緊急電話</div>
+    <div class="card-title"><span class="icon">🆘</span>緊急電話<button class="lang-btn" data-trans="sos" onclick="toggleLang(this,event)">🇩🇪🇭🇺</button></div>
     <div class="em-card">
       <div class="em-title">🇦🇹 奧地利 / 🇭🇺 匈牙利（共用）</div>
       <div class="em-row"><b>112</b> – 歐盟通用緊急電話（火警 / 救護 / 警察）</div>
@@ -705,7 +772,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🏨</span>住宿緊急聯絡</div>
+    <div class="card-title"><span class="icon">🏨</span>住宿緊急聯絡<button class="lang-btn" data-trans="sos-accomm" onclick="toggleLang(this,event)">🇩🇪🇭🇺</button></div>
     <div class="info-row"><span class="il">布達佩斯公寓</span><span class="iv">+36 70 391 5060</span></div>
     <div class="info-row"><span class="il">訂單</span><span class="iv">#6515930123</span></div>
     <div class="info-row"><span class="il">地址</span><span class="iv">Király utca 19, 1075 Budapest</span></div>
@@ -799,6 +866,167 @@ document.querySelectorAll('.card, .day-body').forEach(block => {
     first.nextElementSibling.classList.add('open');
   }
 })();
+
+// ── Language Panel ──
+const langData = {
+  // Transport
+  'leg2':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Wien Hauptbahnhof',
+    p:[['Zum Wien Hauptbahnhof, bitte.','請帶我去維也納中央車站'],
+       ['Wo ist der Zug (IC/Railjet) nach Wien Hauptbahnhof?','往維也納中央車站的火車在哪裡？'],
+       ['Ein Ticket nach Wien Hauptbahnhof, bitte.','一張往維也納中央車站的票，謝謝'],
+       ['Wie lange dauert die Fahrt?','車程多久？']] },
+  'leg3':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Budapest-Keleti',
+    p:[['Welches Gleis für den Railjet RJX 63 nach Budapest?','RJX63往布達佩斯幾號月台？'],
+       ['Ich suche Wagen 26.','我在找第26節車廂'],
+       ['Ist das der Zug nach Budapest-Keleti?','這是往布達佩斯的火車嗎？']] },
+  'leg4':{ flag:'🇭🇺', head:'Magyarul', dest:'Király utca 19, Budapest',
+    p:[['A Király utca tizenkilencbe szeretnék menni.','我要去Király街19號'],
+       ['Hol van a 2-es metró (M2)?','M2地鐵在哪裡？'],
+       ['A Blaha Lujza térre szeretnék menni.','我要到Blaha Lujza廣場'],
+       ['Mennyi a jegy?','票多少錢？']] },
+  'bpTransit':{ flag:'🇭🇺', head:'Magyarul', dest:'Budapest 公共交通',
+    p:[['Hol van a Deák Ferenc tér?','Deák Ferenc廣場在哪裡？'],
+       ['Kérek egy metróbérletet.','我要買一張地鐵票'],
+       ['Hova megy ez a metró?','這班地鐵去哪裡？'],
+       ['Melyik metróval jutok a Király utcára?','搭哪條地鐵到Király街？']] },
+  'leg5':{ flag:'🇭🇺', head:'Magyarul', dest:'Szentendre',
+    p:[['Hol indul a HÉV H5 Szentendrére?','往聖安德烈的HÉV H5從哪裡出發？'],
+       ['Egy jegyet Szentendrére, kérem.','一張往聖安德烈的票，謝謝'],
+       ['Mikor indul a következő vonat?','下一班車幾點開？'],
+       ['Ez a vonat Szentendrére megy?','這班去聖安德烈嗎？']] },
+  'leg6':{ flag:'🇭🇺', head:'Magyarul', dest:'Budapest-Keleti pályaudvar',
+    p:[['A bécsi Railjet melyik vágányon indul?','往維也納的Railjet幾號月台？'],
+       ['A huszonhatodik kocsit keresem.','我在找第26節車廂'],
+       ['Ez a vonat Bécsbe megy?','這班去維也納嗎？']] },
+  'leg7':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Antonigasse 1, 1180 Wien',
+    p:[['Zum Antonigasse 1, bitte.','請到Antonigasse 1號（計程車用）'],
+       ['Wie komme ich zur U1-Station Wien Hbf?','怎麼到Wien Hbf的U1站？'],
+       ['Welche Straßenbahn fährt Richtung Schottentor?','往Schottentor方向的電車幾號？']] },
+  'viennaTransit':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Wien 市區交通',
+    p:[['Wo ist die nächste U-Bahn-Station?','最近的地鐵站在哪裡？'],
+       ['Eine 72-Stunden-Karte, bitte.','一張72小時交通票，謝謝'],
+       ['Fährt diese Linie zum Stephansplatz?','這條線到史蒂芬廣場嗎？'],
+       ['Wo kaufe ich ein Ticket?','在哪裡買票？']] },
+  'leg8':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Flughafen Wien (VIE)',
+    p:[['Unser Transfer kommt um 7:30 Uhr.','我們的接送7:30來'],
+       ['Wo ist Terminal 1A für China Airlines?','中華航空的1A航廈在哪裡？'],
+       ['Wir warten auf unseren Fahrer.','我們在等我們的司機']] },
+  // Immigration
+  'imm-flight':{ flag:'🇩🇪', head:'Einreise · Auf Deutsch', dest:'Einreise Wien',
+    p:[['Wir kommen aus Taiwan mit Flug CI063.','我們從台灣搭CI063來'],
+       ['Wir sind eine Reisegruppe von 8 Personen.','我們是8人旅遊團'],
+       ['Wir bleiben 9 Nächte in Österreich und Ungarn.','我們在奧匈住9晚'],
+       ['Rückflug: CI064 am 10. Juli um 11:15.','回程：7月10日CI064 11:15']] },
+  'imm-accomm':{ flag:'🇩🇪🇭🇺', head:'住宿 Unterkunft / Szállás', dest:'',
+    p:[['🇩🇪 Wien: Antonigasse 1, 1180 Wien','維也納公寓地址'],
+       ['🇩🇪 Budapest: Király utca 19, 1075 Budapest','布達佩斯公寓地址'],
+       ['🇩🇪 Buchungsnummer: 6568272860 (Wien)  /  6515930123 (Budapest)','兩地訂房號碼'],
+       ['🇭🇺 Budapest szállás: Király utca 19. (száma: 6515930123)','布達佩斯訂房（匈文）'],
+       ['🇭🇺 Bécs szállás: Antonigasse 1, 1180 Wien (száma: 6568272860)','維也納訂房（匈文）']] },
+  // Days
+  'day1':{ flag:'🇩🇪', head:'Wien · Auf Deutsch', dest:'Willkommen in Wien!',
+    p:[['Wir sind gerade aus Taiwan angekommen.','我們剛從台灣抵達'],
+       ['Wo ist der Zug zum Hauptbahnhof?','到中央車站的火車在哪裡？'],
+       ['Können Sie uns helfen?','您能幫我們嗎？'],
+       ['Wo gibt es einen Gepäckraum?','行李寄存在哪裡？']] },
+  'day2':{ flag:'🇭🇺', head:'Budavár · Magyarul', dest:'Budavári negyed',
+    p:[['A Budai Várba szeretnénk menni.','我們想去布達城堡'],
+       ['Hol van a Halászbástya?','漁夫堡在哪裡？'],
+       ['Mennyi a belépő a Mátyás-templomba?','馬提亞斯教堂多少錢？'],
+       ['Hol van a Sikló (fogasút)?','城堡纜車在哪裡？']] },
+  'day3':{ flag:'🇭🇺', head:'Szentendre · Magyarul', dest:'Szentendre',
+    p:[['Hol van a Kovács Margit Múzeum?','科瓦奇博物館在哪裡？'],
+       ['Mennyibe kerül a belépő?','入場費多少？'],
+       ['Lehet hitelkártyával fizetni?','可以刷卡嗎？'],
+       ['Hol a HÉV-megálló?','HÉV站在哪裡？']] },
+  'day4':{ flag:'🇭🇺', head:'Városliget · Magyarul', dest:'Széchenyi-fürdő',
+    p:[['Hol van a Széchenyi-fürdő?','塞切尼溫泉在哪裡？'],
+       ['Kérek egy fürdőjegyet.','我要一張浴場票'],
+       ['Kötelező az úszósapka?','泳帽是必備的嗎？'],
+       ['Mikor zár a fürdő?','溫泉幾點關門？']] },
+  'day5':{ flag:'🇭🇺', head:'Piac & Hajóút · Magyarul', dest:'Nagyvásárcsarnok',
+    p:[['Hol van a Nagyvásárcsarnok?','中央大市場在哪裡？'],
+       ['Mennyibe kerül ez?','這多少錢？'],
+       ['Hol van a Jane Haining rakpart?','Jane Haining碼頭在哪裡？'],
+       ['Mikor indul a hajó?','船幾點出發？']] },
+  'day6':{ flag:'🇭🇺', head:'Indulás Bécsbe · Magyarul', dest:'Keleti pályaudvar',
+    p:[['A bécsi vonatra szeretnék szállni.','我想搭往維也納的火車'],
+       ['Melyik vágányon áll a bécsi Railjet?','往維也納的Railjet幾號月台？'],
+       ['A huszonhatodik kocsit keresem.','我在找第26節車廂']] },
+  'day7':{ flag:'🇩🇪', head:'Schönbrunn & Prater · Auf Deutsch', dest:'Schloss Schönbrunn',
+    p:[['Wo ist der Eingang zum Schloss Schönbrunn?','熊布朗宮入口在哪？'],
+       ['Ich habe ein Online-Ticket.','我有網路預購票'],
+       ['Wo ist das Riesenrad im Prater?','普拉特的摩天輪在哪裡？'],
+       ['Eine Fahrkarte für das Riesenrad, bitte.','一張摩天輪票，謝謝']] },
+  'day8':{ flag:'🇩🇪', head:'Naschmarkt & Belvedere · Auf Deutsch', dest:'Naschmarkt / Oberes Belvedere',
+    p:[['Wo ist das Obere Belvedere?','上美景宮在哪裡？'],
+       ['Wo ist der Naschmarkt?','納許市場在哪裡？'],
+       ['Wir haben eine Reservierung bei Figlmüller.','我們在Figlmüller有訂位'],
+       ['Ich habe ein Online-Ticket.','我有網路預購票']] },
+  'day9':{ flag:'🇩🇪', head:'Abreise · Auf Deutsch', dest:'Terminal 1A – Flughafen Wien',
+    p:[['Unser Fahrer holt uns um 7:30 Uhr ab.','我們的司機7:30來接'],
+       ['Wo ist Terminal 1A für China Airlines?','中華航空的1A航廈在哪裡？'],
+       ['Wir fliegen mit China Airlines CI064.','我們搭CI064'],
+       ['Wo ist der Check-in-Schalter?','報到櫃台在哪裡？']] },
+  // Emergency
+  'sos':{ flag:'🇩🇪🇭🇺', head:'緊急求助 Notfall', dest:'',
+    p:[['🇩🇪 Bitte rufen Sie einen Krankenwagen! (107)','奧地利：請叫救護車！'],
+       ['🇩🇪 Bitte rufen Sie die Polizei! (133)','奧地利：請報警！'],
+       ['🇩🇪 Ich brauche sofort Hilfe!','奧地利：我需要幫助！'],
+       ['🇭🇺 Kérem, hívjon mentőt! (107)','匈牙利：請叫救護車！'],
+       ['🇭🇺 Kérem, hívja a rendőrséget! (107)','匈牙利：請報警！'],
+       ['🇭🇺 Segítséget kérek!','匈牙利：我需要幫助！']] },
+  'sos-accomm':{ flag:'🇩🇪🇭🇺', head:'住宿地址 Adresse', dest:'',
+    p:[['🇩🇪 Wien: Antonigasse 1, 1180 Wien','維也納公寓'],
+       ['🇩🇪 Ich wohne in der Antonigasse 1.','我住在Antonigasse 1'],
+       ['🇭🇺 Budapest: Király utca 19, 1075','布達佩斯公寓'],
+       ['🇭🇺 A Király utca 19-ben lakom.','我住在Király街19號']] },
+  'transfer':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Flughafen Wien – T1A',
+    p:[['Unser Transfer von Elife kommt um 7:30 Uhr.','Elife司機7:30來接我們'],
+       ['Bitte warten Sie – unser Fahrer ist unterwegs.','請等一下，我們的司機在路上'],
+       ['Wo ist Terminal 1A?','1A航廈在哪裡？']] },
+};
+
+function buildLocalPanel(key) {
+  const d = langData[key];
+  if (!d) return '<div style="color:#999;font-size:12px">（無翻譯資料）</div>';
+  let h = `<div class="local-header">${d.flag}&ensp;${d.head}</div>`;
+  if (d.dest) h += `<div class="local-dest">${d.dest}</div>`;
+  for (const [t,n] of d.p) {
+    h += `<div class="local-phrase">${t}</div><div class="local-note">${n}</div>`;
+  }
+  return h;
+}
+
+function toggleLang(btn, e) {
+  if (e) e.stopPropagation();
+  const key = btn.dataset.trans;
+  // Support both .card and .day-hdr → sibling .day-body
+  let container;
+  const hdr = btn.closest('.day-hdr');
+  if (hdr) {
+    container = hdr.nextElementSibling;
+    // auto-open accordion if closed
+    if (!hdr.classList.contains('open')) {
+      hdr.classList.add('open');
+      if (container) container.classList.add('open');
+    }
+  } else {
+    container = btn.closest('.card');
+  }
+  if (!container) return;
+  let panel = container.querySelector(`.local-panel[data-for="${key}"]`);
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.className = 'local-panel';
+    panel.dataset.for = key;
+    panel.innerHTML = buildLocalPanel(key);
+    container.appendChild(panel);
+  }
+  const show = panel.classList.toggle('show');
+  btn.classList.toggle('active', show);
+}
+
 </script>
 
 </body>
