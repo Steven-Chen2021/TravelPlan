@@ -942,7 +942,7 @@ function toggleReadingFocus(block) {
   block.setAttribute('aria-pressed', String(willFocus));
 }
 
-document.querySelectorAll('.card, .day-body').forEach(block => {
+document.querySelectorAll('.card, .day-body, .tip-card').forEach(block => {
   block.classList.add('readable-block');
   block.tabIndex = 0;
   block.setAttribute('aria-label', '點選以切換放大閱讀');
