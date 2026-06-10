@@ -132,6 +132,20 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 /* ── Optional block ── */
 .optional-block { background: #fffde7; border: 1.5px dashed #ffc107; border-radius: 10px; padding: 11px 13px; margin-bottom: 10px; }
 .optional-tag { display: inline-flex; align-items: center; gap: 4px; background: #ff8f00; color: #fff; border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 800; margin-bottom: 8px; }
+
+/* ── Tips tab ── */
+.tip-card { background: #fff; border-radius: 14px; padding: 14px; margin-bottom: 12px; box-shadow: 0 1px 5px rgba(0,0,0,.07); }
+.tip-num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #1a237e; color: #fff; font-size: 13px; font-weight: 800; flex-shrink: 0; }
+.tip-title { font-size: 15px; font-weight: 800; color: #1a237e; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.tip-row { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; align-items: flex-start; }
+.tip-row:last-child { border-bottom: none; }
+.tip-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.tip-text { line-height: 1.6; color: #333; }
+.tip-text b { color: #1a237e; }
+.tip-text .good { color: #2e7d32; font-weight: 700; }
+.tip-text .bad { color: #c62828; font-weight: 700; }
+.tip-hl { background: #e8f5e9; border-left: 3px solid #43a047; padding: 7px 10px; border-radius: 0 8px 8px 0; font-size: 12px; margin-top: 8px; color: #1b5e20; line-height: 1.6; }
+.tip-warn { background: #fff3e0; border-left: 3px solid #ffa000; padding: 7px 10px; border-radius: 0 8px 8px 0; font-size: 12px; margin-top: 8px; color: #e65100; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -156,6 +170,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="tab" onclick="showTab('itinerary', this)">🗺 每日行程</div>
   <div class="tab" onclick="showTab('transfer', this)">🚐 機場接送</div>
   <div class="tab" onclick="showTab('emergency', this)">🆘 緊急聯絡</div>
+  <div class="tab" onclick="showTab('tips', this)">💡 旅行小TIP</div>
 </div>
 
 <!-- ══════════════════════════════
@@ -779,6 +794,122 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
 </div><!-- /emergency -->
+
+<!-- ══════════════════════════════
+     TAB 6: 旅行小TIP
+══════════════════════════════ -->
+<div class="section" id="tips">
+
+  <!-- Tip 1: HUF換匯 -->
+  <div class="tip-card readable-block" tabindex="0">
+    <div class="tip-title"><span class="tip-num">1</span>💵 如何換 HUF 最划算</div>
+
+    <div class="tip-row">
+      <span class="tip-icon">✅</span>
+      <div class="tip-text"><span class="good">推薦：當地銀行 ATM</span><br>
+        OTP Bank、K&amp;H Bank、Erste 等當地銀行 ATM，匯率最接近銀行間匯率。市區到處有，Keleti 車站、Deák tér 附近都有。<br>
+        <b>一次提多一點</b>（例如 50,000–100,000 HUF）減少手續費次數。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">✅</span>
+      <div class="tip-text"><span class="good">推薦：Wise / Revolut 實體卡</span><br>
+        接近即時匯率、手續費極低。ATM 提領同樣適用。若家中有人已有這類卡，優先使用。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">❌</span>
+      <div class="tip-text"><span class="bad">避開：機場換匯亭、觀光區私人換匯所</span><br>
+        Váci Street、鏈橋周邊的 Exchange 攤位匯率可能差 8–15%，8 人旅行損失可觀。<br>
+        看到「0% commission」招牌反而要小心——通常靠匯率差賺錢。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">⚠️</span>
+      <div class="tip-text"><span class="bad">避開：Airport ATM（機場內）</span><br>
+        機場 ATM 常有「Dynamic Currency Conversion（DCC）」選項，要選<b>以 HUF 計算（Forint）</b>，絕對不要選「以台幣/美元計算」，後者匯率更差。
+      </div>
+    </div>
+
+    <div class="tip-hl">💡 實用估算：8 人在布達佩斯 5 天，現金需求約 160,000–200,000 HUF（含市場、小費、門票、HÉV）。ATM 分 2–3 次提領即可。</div>
+  </div>
+
+  <!-- Tip 2: 匈牙利小費文化 -->
+  <div class="tip-card readable-block" tabindex="0">
+    <div class="tip-title"><span class="tip-num">2</span>🍽️ 匈牙利 & 奧地利小費文化</div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🇭🇺</span>
+      <div class="tip-text"><b>匈牙利：說出含小費的總金額</b><br>
+        帳單來了之後，不要把錢放在桌上——匈牙利習慣是直接告訴服務生你<b>要付多少</b>（含小費），讓他找零。<br>
+        例：帳單 4,600 HUF → 直接說 <b>「Five thousand」或「5,000」</b>（服務生找你 400）<br>
+        把錢留在桌上走人在匈牙利會被視為忘記帶走，而非小費。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🇦🇹</span>
+      <div class="tip-text"><b>奧地利：結帳時說含小費金額</b><br>
+        做法相同——結帳時告訴服務生含小費的金額。<br>
+        例：帳單 €18.50 → 說 <b>「Twenty, please」</b>（給 €20，服務生不找零）<br>
+        比例約 <b>10%</b>，高品質餐廳可給 15%。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">☕</span>
+      <div class="tip-text"><b>咖啡廳、小吃攤</b><br>
+        不強制，若服務好可以湊整數。Szimpla 等酒吧不需要給小費。
+      </div>
+    </div>
+
+    <div class="tip-warn">⚠️ 8 人用餐帳單往往不含服務費，記得計算後一起給，別讓服務生跑 8 趟找零。</div>
+  </div>
+
+  <!-- Tip 3: Bolt App 叫車策略 -->
+  <div class="tip-card readable-block" tabindex="0">
+    <div class="tip-title"><span class="tip-num">3</span>🚗 Bolt App · 8 人叫車最佳策略</div>
+
+    <div class="tip-row">
+      <span class="tip-icon">📱</span>
+      <div class="tip-text"><b>下載 Bolt App（匈牙利最主流）</b><br>
+        Bolt 在布達佩斯比 Uber 更普遍、更便宜，維也納也可用。出發前手機綁定信用卡備妥。<br>
+        iOS / Android 均可，<b>8 人中建議至少 2 支手機裝好</b>。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🚕</span>
+      <div class="tip-text"><b>8 人同時叫 2 台</b><br>
+        Bolt 標準車型限 4 人，叫 Bolt XL（7 人座）需另付溢價。<br>
+        建議策略：<b>兩支手機同時各叫 1 台 4 人座</b>，行李平均分配，比叫一台 XL 便宜又快。<br>
+        從 Keleti 到 Király utca 19 約 <b>1,500–2,000 HUF / 車</b>，兩台合計約 400 台幣。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🌧️</span>
+      <div class="tip-text"><b>適合用 Bolt 的時機</b><br>
+        · 下大雨 · 攜帶大量戰利品（市場購物後）<br>
+        · 夜間遊船結束後回公寓 · 趕時間（如 13:10 前要到 Wien Hbf）
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🚫</span>
+      <div class="tip-text"><b>避開街頭攔車</b><br>
+        布達佩斯路邊攔的計程車收費不透明，有些針對觀光客。<b>一律用 App 叫車</b>，費用透明有保障。
+      </div>
+    </div>
+
+    <div class="tip-hl">💡 Bolt 使用推薦碼可各得免費乘車點數，有時間的話出發前可邀請家族成員互相推薦。</div>
+  </div>
+
+</div><!-- /tips -->
+
 
 <script>
 function showTab(id, el) {
