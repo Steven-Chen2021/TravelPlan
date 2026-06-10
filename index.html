@@ -128,6 +128,10 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 .local-phrase { font-size: 13px; font-weight: 700; color: #1a1a3e; padding: 4px 0 1px; }
 .local-note { font-size: 10px; color: #888; margin-bottom: 4px; }
 .local-divider { border: none; border-top: 1px dashed #c5cae9; margin: 7px 0; }
+
+/* ── Optional block ── */
+.optional-block { background: #fffde7; border: 1.5px dashed #ffc107; border-radius: 10px; padding: 11px 13px; margin-bottom: 10px; }
+.optional-tag { display: inline-flex; align-items: center; gap: 4px; background: #ff8f00; color: #fff; border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 800; margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -469,11 +473,27 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <!-- Day 3: 7/4 聖安德烈 -->
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
-      <div><div>Day 3 · 7/4 (六) 聖安德烈一日遊</div><div class="day-label">Szentendre · 小鎮 · 陶瓷博物館</div></div>
+      <div><div>Day 3 · 7/4 (六) 聖安德烈一日遊</div><div class="day-label">Szentendre · 小鎮 · 陶瓷博物館（Optional: Ecseri 跳蚤市場）</div></div>
       <button class="lang-btn" data-trans="day3" onclick="toggleLang(this,event)">🇭🇺</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
+      <div class="optional-block">
+        <div class="optional-tag">⭐ Optional · 機動安排</div>
+        <div class="attr-name" style="font-size:14px">🛍 艾喬里跳蚤市場（中歐最大）</div>
+        <div class="attr-en">Ecseri Bolhapiac – Central Europe's Largest Flea Market</div>
+        <div style="font-size:12px;color:#555;margin-top:7px;line-height:1.85">
+          <b style="color:#e65100">📅 週六最佳時段：</b>08:00 入場，10:00 前離開可接聖安德烈<br>
+          <b style="color:#e65100">⏱ 建議時程：</b>07:30 從公寓出發 → 08:00–10:00 逛市 → 10:40 抵達 Batthyány tér → 11:00 HÉV 往聖安德烈<br>
+          <b style="color:#e65100">🚇 交通：</b>M2→M3 至 <b>Ecseri út</b> 站，換搭 <b>54 號公車</b>，在 <b>Naszód utca</b> 下車過天橋即達（全程 ≈ 35 分鐘）<br>
+          <b style="color:#e65100">💰 門票：</b>約 300–500 HUF 入場費，<b>只收現金</b>，帶足 HUF<br>
+          <b style="color:#e65100">📍 地址：</b>Nagykőrösi út 156, District 19（布達佩斯南郊）
+        </div>
+        <div class="attr-links" style="margin-top:8px">
+          <a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Ecseri+Bolhapiac+Nagykörös+út+156+Budapest" target="_blank">📍 地圖</a>
+          <a class="attr-link" href="https://www.fleamapket.com/listing/ecseri-bolhapiac/" target="_blank">🌐 市集資訊</a>
+        </div>
+      </div>
       <div class="attr"><div class="attr-name">🚉 Batthyány tér 搭 HÉV H5 出發</div><div class="attr-en">Take HÉV suburban rail H5 from Batthyány tér</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Batthyany+ter+Budapest" target="_blank">📍 Batthyány tér</a></div></div>
       <div class="attr"><div class="attr-name">🏘 聖安德烈老城區散步</div><div class="attr-en">Szentendre Old Town</div><div class="attr-links"><a class="attr-link" href="https://www.szentendre.hu" target="_blank">🌐 觀光官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szentendre+HEV+station" target="_blank">📍 地圖</a></div></div>
       <div class="attr"><div class="attr-name">🏺 科瓦奇陶瓷博物館</div><div class="attr-en">Margit Kovács Ceramic Museum</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Margit+Kovacs+Ceramic+Museum+Szentendre" target="_blank">📍 地圖</a></div></div>
