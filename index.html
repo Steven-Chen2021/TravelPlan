@@ -134,7 +134,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 .optional-tag { display: inline-flex; align-items: center; gap: 4px; background: #ff8f00; color: #fff; border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 800; margin-bottom: 8px; }
 
 /* ── Tips tab ── */
-.tip-card { background: #fff; border-radius: 14px; padding: 14px; margin-bottom: 12px; box-shadow: 0 1px 5px rgba(0,0,0,.07); }
+.tip-card { background: #fff; border-radius: 14px; padding: 14px; margin-bottom: 12px; box-shadow: 0 1px 5px rgba(0,0,0,.07); position: relative; }
 .tip-num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #1a237e; color: #fff; font-size: 13px; font-weight: 800; flex-shrink: 0; }
 .tip-title { font-size: 15px; font-weight: 800; color: #1a237e; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
 .tip-row { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; align-items: flex-start; }
@@ -801,7 +801,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 <div class="section" id="tips">
 
   <!-- Tip 1: HUF換匯 -->
-  <div class="tip-card readable-block" tabindex="0">
+  <div class="tip-card">
     <div class="tip-title"><span class="tip-num">1</span>💵 如何換 HUF 最划算</div>
 
     <div class="tip-row">
@@ -838,7 +838,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <!-- Tip 2: 匈牙利小費文化 -->
-  <div class="tip-card readable-block" tabindex="0">
+  <div class="tip-card">
     <div class="tip-title"><span class="tip-num">2</span>🍽️ 匈牙利 & 奧地利小費文化</div>
 
     <div class="tip-row">
@@ -870,7 +870,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   </div>
 
   <!-- Tip 3: Bolt App 叫車策略 -->
-  <div class="tip-card readable-block" tabindex="0">
+  <div class="tip-card">
     <div class="tip-title"><span class="tip-num">3</span>🚗 Bolt App · 8 人叫車最佳策略</div>
 
     <div class="tip-row">
