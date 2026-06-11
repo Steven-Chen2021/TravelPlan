@@ -14,16 +14,16 @@ button,a { -webkit-tap-highlight-color:transparent; }
 button { font:inherit; }
 
 /* Budapest civic header */
-header { position:relative; overflow:hidden; padding:24px 18px 21px; color:#fffaf0; text-align:left; background:linear-gradient(145deg,#0c303b 0%,var(--danube) 58%,#204f59 100%); border-bottom:4px solid var(--gold); }
+header { position:relative; overflow:hidden; padding:10px 14px 8px; color:#fffaf0; text-align:left; background:linear-gradient(145deg,#0c303b 0%,var(--danube) 58%,#204f59 100%); border-bottom:2px solid var(--gold); }
 header::before { content:""; position:absolute; inset:0; opacity:.18; background-image:radial-gradient(circle at 12px 12px,transparent 8px,rgba(255,255,255,.8) 8.5px,transparent 9px),radial-gradient(circle at 0 0,transparent 8px,rgba(255,255,255,.55) 8.5px,transparent 9px); background-size:24px 24px; transform:rotate(-8deg) scale(1.2); }
-header::after { content:"BUDAPEST  •  WIEN"; position:absolute; right:-8px; bottom:-11px; color:rgba(255,255,255,.06); font:900 34px/1 Georgia,serif; letter-spacing:2px; white-space:nowrap; }
+header::after { content:"BUDAPEST  •  WIEN"; position:absolute; right:-5px; bottom:-7px; color:rgba(255,255,255,.06); font:900 23px/1 Georgia,serif; letter-spacing:2px; white-space:nowrap; }
 .header-inner { position:relative; z-index:1; max-width:760px; margin:0 auto; }
-header h1 { font-family:Georgia,"Noto Serif TC",serif; font-size:clamp(24px,7vw,34px); line-height:1.12; font-weight:700; letter-spacing:-.5px; }
-header h1 .title-zh { display:block; margin-top:5px; color:#f1ce88; font-family:"Avenir Next","Noto Sans TC",sans-serif; font-size:.55em; letter-spacing:.12em; }
-header .sub { max-width:520px; margin-top:9px; color:rgba(255,250,240,.76); font-family:Georgia,serif; font-size:12px; font-style:italic; letter-spacing:.04em; }
-header .trip-dates { display:flex; gap:8px; margin:17px -18px -3px; padding:0 18px 3px; overflow-x:auto; scrollbar-width:none; white-space:nowrap; }
+header h1 { font-family:Georgia,"Noto Serif TC",serif; font-size:20px; line-height:1.08; font-weight:700; letter-spacing:-.3px; }
+header h1 .title-zh { display:inline; margin-left:4px; color:#f1ce88; font-family:"Avenir Next","Noto Sans TC",sans-serif; font-size:.55em; letter-spacing:.08em; }
+header .sub { display:none; }
+header .trip-dates { display:flex; gap:6px; margin:7px -14px -1px; padding:0 14px 1px; overflow-x:auto; scrollbar-width:none; white-space:nowrap; }
 header .trip-dates::-webkit-scrollbar,.tabs::-webkit-scrollbar { display:none; }
-header .date-chip { flex:none; padding:7px 11px; border:1px solid rgba(241,206,136,.42); border-radius:4px; background:rgba(5,34,42,.36); color:#fff8e9; font-size:12px; font-weight:700; letter-spacing:.02em; }
+header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,136,.42); border-radius:3px; background:rgba(5,34,42,.36); color:#fff8e9; font-size:10px; font-weight:700; letter-spacing:.01em; }
 
 /* Route ticket tabs */
 .tabs { position:sticky; top:0; z-index:100; display:flex; gap:8px; overflow-x:auto; padding:10px 12px; background:rgba(247,240,223,.96); border-bottom:1px solid rgba(198,147,59,.45); box-shadow:0 5px 18px rgba(31,47,49,.12); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); scroll-snap-type:x proximity; }
@@ -144,8 +144,8 @@ header .date-chip { flex:none; padding:7px 11px; border:1px solid rgba(241,206,1
 .food-info { display:flex; flex-direction:column; gap:2px; color:#657373; font-size:12px; line-height:1.55; }
 .food-desc { margin-top:9px; padding-top:9px; border-top:1px solid #e9e0ce; color:#354447; font-size:14px; line-height:1.72; }
 
-@media (min-width:700px) { header { padding:32px 24px 27px; text-align:center; } header h1 .title-zh { display:inline; margin:0; } header .sub { margin:9px auto 0; } header .trip-dates { justify-content:center; margin:18px 0 -3px; } .tabs { justify-content:center; } .section { padding-top:22px; } }
-@media (max-width:390px) { body { font-size:15px; } header { padding-top:20px; } .section { padding-inline:9px; } .card,.tip-card,.food-card { padding:15px 13px; } .info-row { grid-template-columns:82px minmax(0,1fr); gap:8px; } .day-hdr { padding-inline:11px; } }
+@media (min-width:700px) { header { padding:14px 24px 11px; text-align:center; } header h1 { font-size:25px; } header h1 .title-zh { margin-left:5px; } header .sub { display:block; margin:4px auto 0; font-size:10px; } header .trip-dates { justify-content:center; margin:8px 0 -1px; } .tabs { justify-content:center; } .section { padding-top:22px; } }
+@media (max-width:390px) { body { font-size:15px; } .section { padding-inline:9px; } .card,.tip-card,.food-card { padding:15px 13px; } .info-row { grid-template-columns:82px minmax(0,1fr); gap:8px; } .day-hdr { padding-inline:11px; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
 </style>
 </head>
