@@ -154,6 +154,31 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 .reading-focus .tip-text { font-size: 15px; line-height: 1.75; }
 .reading-focus .tip-icon { font-size: 18px; }
 .reading-focus .tip-hl, .reading-focus .tip-warn { font-size: 14px; line-height: 1.75; padding: 9px 12px; }
+
+/* ── 美食 tab ── */
+.food-city-hdr { font-size: 15px; font-weight: 800; color: #fff; border-radius: 10px; padding: 9px 14px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+.food-city-hdr.hu { background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%); }
+.food-city-hdr.at { background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%); }
+.food-cat-lbl { font-size: 11px; font-weight: 800; color: #757575; letter-spacing: 1px; text-transform: uppercase; margin: 14px 0 5px 2px; }
+.food-card { background: #fff; border-radius: 14px; padding: 13px 14px; margin-bottom: 10px; box-shadow: 0 1px 5px rgba(0,0,0,.07); position: relative; }
+.food-name { font-size: 14px; font-weight: 800; color: #1a237e; display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin-bottom: 7px; }
+.food-tag { display: inline-flex; align-items: center; padding: 1px 7px; border-radius: 20px; font-size: 10px; font-weight: 800; flex-shrink: 0; }
+.food-tag-r { background: #e3f2fd; color: #1565c0; }
+.food-tag-s { background: #fce4ec; color: #880e4f; }
+.food-tag-m { background: #e8f5e9; color: #1b5e20; }
+.food-tag-b { background: #f3e5f5; color: #4a148c; }
+.food-tag-in { background: #e8f5e9; color: #2e7d32; }
+.food-tag-warn { background: #fff3e0; color: #e65100; }
+.food-tag-new { background: #fce4ec; color: #ad1457; }
+.food-info { font-size: 12px; color: #555; line-height: 1.6; }
+.food-info span { margin-right: 10px; }
+.food-desc { font-size: 13px; color: #333; line-height: 1.65; margin-top: 7px; padding-top: 7px; border-top: 1px solid #f0f0f0; }
+.food-links { display: flex; gap: 7px; margin-top: 8px; flex-wrap: wrap; }
+.food-link { font-size: 11px; color: #3949ab; text-decoration: none; background: #e8eaf6; padding: 3px 9px; border-radius: 20px; font-weight: 700; }
+.food-note { background: #fff8e1; border-left: 3px solid #ffc107; padding: 6px 10px; border-radius: 0 7px 7px 0; font-size: 12px; color: #795548; margin-top: 8px; line-height: 1.6; }
+.reading-focus .food-name { font-size: 17px; }
+.reading-focus .food-info { font-size: 14px; line-height: 1.75; }
+.reading-focus .food-desc { font-size: 15px; line-height: 1.8; }
 </style>
 </head>
 <body>
@@ -179,6 +204,7 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
   <div class="tab" onclick="showTab('transfer', this)">🚐 機場接送</div>
   <div class="tab" onclick="showTab('emergency', this)">🆘 緊急聯絡</div>
   <div class="tab" onclick="showTab('tips', this)">💡 旅行小TIP</div>
+  <div class="tab" onclick="showTab('food', this)">🍽 美食</div>
 </div>
 
 <!-- ══════════════════════════════
@@ -977,6 +1003,199 @@ header .date-chip + .date-chip::before { content: ''; width: 3px; height: 3px; m
 </div><!-- /tips -->
 
 
+
+<div class="section" id="food">
+
+  <!-- ═══ 布達佩斯 ═══ -->
+  <div class="food-city-hdr hu">🇭🇺 布達佩斯美食</div>
+
+  <div class="food-cat-lbl">🍽 餐廳（已排入行程）</div>
+
+  <!-- Parasztkonyha -->
+  <div class="food-card">
+    <div class="food-name">
+      Parasztkonyha
+      <span class="food-tag food-tag-r">餐廳</span>
+      <span class="food-tag food-tag-in">✅ Day 5 已排入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Ferenciek tere 7–8, Budapest</span>
+      <span>⏰ 11:00–23:00</span>
+      <span>💰 ~3,500–6,000 HUF/人</span>
+    </div>
+    <div class="food-desc">傳統匈牙利家常菜，古拉什湯、燉牛肉、醃高麗菜豬肉等道地料理。位於市中心，步行可達中央大市場。<br><b>Day 5 (7/6) 18:30</b> 晚餐，遊船前用餐首選。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Parasztkonyha+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <!-- Gettó Gulyás -->
+  <div class="food-card">
+    <div class="food-name">
+      Gettó Gulyás
+      <span class="food-tag food-tag-r">餐廳</span>
+      <span class="food-tag food-tag-warn">⚠ Day 4 尚未訂位</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Wesselényi utca 18, Budapest VII</span>
+      <span>⏰ 12:00–23:00</span>
+      <span>💰 ~3,000–5,500 HUF/人</span>
+    </div>
+    <div class="food-desc">猶太區內的人氣匈牙利餐廳，古拉什（Gulyás）湯品質口碑極佳，在地人也常去。距 Szimpla Kert 步行約 5 分鐘。<br><b>Day 4 (7/5) 晚餐</b>——逛完 Szimpla 農夫市集後的晚餐首選。</div>
+    <div class="food-note">⚠ 8 人需提前訂位，請盡快安排。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Gettó+Gulyás+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-cat-lbl">🥨 街頭小吃・必吃</div>
+
+  <!-- Retro Lángos -->
+  <div class="food-card">
+    <div class="food-name">
+      Retro Lángos Budapest
+      <span class="food-tag food-tag-s">街頭小吃</span>
+      <span class="food-tag food-tag-new">🆕 新加入</span>
+    </div>
+    <div class="food-info">
+      <span>⏰ 11:00–22:00 每天</span>
+      <span>💰 ~800–1,800 HUF/份</span>
+    </div>
+    <div class="food-desc"><b>Lángos（朗果什）</b>是匈牙利最具代表性的街頭小吃——油炸麵餅，淋上酸奶油（tejföl）＋磨碎起司（reszelt sajt），熱騰騰剛出鍋最好吃。<br><br>
+    Retro Lángos 是布達佩斯口碑最好的品牌店，料好實在、現點現炸。有兩個便利據點：<br>
+    📍 <b>Bajcsy-Zsilinszky út 25</b>（M3 Arany János 站，近聖史蒂芬大教堂）<br>
+    📍 <b>Vécsey utca 3</b>（M2 Kossuth 站，近國會大廈）</div>
+    <div class="food-links">
+      <a class="food-link" href="https://retrolangos.hu" target="_blank">🌐 官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Retro+Lángos+Budapest+Bajcsy-Zsilinszky" target="_blank">📍 教堂店地圖</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Retro+Langos+Vecsey+Budapest" target="_blank">📍 國會店地圖</a>
+    </div>
+  </div>
+
+  <div class="food-cat-lbl">🛒 市集・市場</div>
+
+  <!-- Great Market Hall -->
+  <div class="food-card">
+    <div class="food-name">
+      中央大市場 Nagyvásárcsarnok
+      <span class="food-tag food-tag-m">市場</span>
+      <span class="food-tag food-tag-in">✅ Day 5 已排入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Vámház körút 1–3</span>
+      <span>⏰ 週一–五 06:00–17:00 ／ 週六 06:00–15:00 ／ 週日公休</span>
+    </div>
+    <div class="food-desc"><b>1 樓：</b>新鮮蔬菜、豬肉、魚、辣椒粉（Paprika）攤位<br>
+    <b>2 樓：</b>Lángos 攤位、鵝肝醬、醃菜、手工紀念品——<b>帶現金，這裡刷卡攤位不多</b><br>
+    建議 10:00 前逛完，人潮較少、食材最新鮮。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.piaconline.hu" target="_blank">🌐 官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Great+Market+Hall+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <!-- Szimpla Farmers Market -->
+  <div class="food-card">
+    <div class="food-name">
+      Szimpla 農夫市集
+      <span class="food-tag food-tag-m">市集</span>
+      <span class="food-tag food-tag-in">✅ Day 4 已排入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Kazinczy utca 14, District VII</span>
+      <span>⏰ <b>僅週日</b> 09:00–14:00</span>
+    </div>
+    <div class="food-desc">廢墟酒吧 Szimpla Kert 週日白天化身農夫市集，有機蔬果、在地手工食品、街頭小吃、手工藝品。氣氛悠閒、布達佩斯人週末最愛。<br>這是行程中唯一的週日，絕對不能錯過！</div>
+    <div class="food-links">
+      <a class="food-link" href="https://szimpla.hu" target="_blank">🌐 官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-cat-lbl">🍸 酒吧・景觀</div>
+
+  <!-- Szimpla Kert -->
+  <div class="food-card">
+    <div class="food-name">
+      Szimpla Kert 廢墟酒吧
+      <span class="food-tag food-tag-b">酒吧</span>
+      <span class="food-tag food-tag-in">✅ Day 2 已排入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Kazinczy utca 14, District VII</span>
+      <span>⏰ 12:00 起每日開放，週末至深夜</span>
+      <span>💰 啤酒 ~600–900 HUF</span>
+    </div>
+    <div class="food-desc">布達佩斯最具代表性的廢墟酒吧（Ruin Bar），由廢棄公寓改建而成，各種古怪裝置藝術佈滿空間。供應本地 Dreher 啤酒和調酒，不需要給小費。<b>Day 2 (7/3) 晚間</b>前往感受猶太區夜晚氛圍。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <!-- Leo Rooftop Bar -->
+  <div class="food-card">
+    <div class="food-name">
+      Leo Rooftop Bar
+      <span class="food-tag food-tag-b">景觀酒吧</span>
+      <span class="food-tag food-tag-new">🆕 新加入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 布達區，鏈橋附近豪華飯店頂樓</span>
+      <span>💰 調酒 ~2,500–4,500 HUF</span>
+    </div>
+    <div class="food-desc">布達佩斯的隱藏景觀寶石。從屋頂俯瞰多瑙河、夜間點燈的國會大廈全景，是結束一天探索的完美收尾。<br>供應創意招牌調酒、優質葡萄酒、西班牙小點（tapas）與甜點。<br><b>最佳造訪時機：日落前抵達</b>，享受夕陽漸轉夜景的魔幻過渡，人潮也較少。<br>💡 推薦順序：布達城堡 → 步行鏈橋 → Leo Rooftop 收尾</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Leo+Rooftop+Bar+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <!-- ═══ 維也納 ═══ -->
+  <div class="food-city-hdr at" style="margin-top:20px">🇦🇹 維也納美食</div>
+
+  <div class="food-cat-lbl">🍽 餐廳（已排入行程）</div>
+
+  <!-- Figlmüller -->
+  <div class="food-card">
+    <div class="food-name">
+      Figlmüller Bäckerstraße
+      <span class="food-tag food-tag-r">餐廳</span>
+      <span class="food-tag food-tag-warn">⚠ Day 8 尚未訂位</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Bäckerstraße 6, 1st district Wien</span>
+      <span>⏰ 11:00–22:30 每日</span>
+      <span>💰 ~€18–28/人</span>
+    </div>
+    <div class="food-desc">維也納最著名的炸豬排（Wiener Schnitzel）餐廳，豬排大到超出盤子邊緣，傳承逾百年的老字號。<b>Day 8 (7/9) 晚餐</b>——納許市場後的完美收尾。<br>位於第一區舊城，步行可達聖史蒂芬大教堂。</div>
+    <div class="food-note">⚠ 為維也納人氣最高的餐廳之一，8 人訂位請<b>立即處理</b>，週四晚間也很搶手。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.figlmueller.at" target="_blank">🌐 訂位官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Figlmüller+Bäckerstraße+Vienna" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-cat-lbl">🛒 市場</div>
+
+  <!-- Naschmarkt -->
+  <div class="food-card">
+    <div class="food-name">
+      納許市場 Naschmarkt
+      <span class="food-tag food-tag-m">市場</span>
+      <span class="food-tag food-tag-in">✅ Day 8 已排入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 U4 Kettenbrückengasse</span>
+      <span>⏰ 週一–六 06:00 起（週日公休）</span>
+    </div>
+    <div class="food-desc">維也納最著名的露天市場，綿延超過 500 公尺，新鮮食材、起司、橄欖、香料、醃漬品應有盡有。<b>週四人較少，09:00 前最舒適</b>。市場早餐品質好、種類多，強力推薦直接在攤位吃早餐。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.wienernaschmarkt.eu" target="_blank">🌐 官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Naschmarkt+Vienna" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+</div><!-- /food -->
+
 <script>
 function showTab(id, el) {
   clearReadingFocus();
@@ -1008,7 +1227,7 @@ function toggleReadingFocus(block) {
   block.setAttribute('aria-pressed', String(willFocus));
 }
 
-document.querySelectorAll('.card, .day-body, .tip-card').forEach(block => {
+document.querySelectorAll('.card, .day-body, .tip-card, .food-card').forEach(block => {
   block.classList.add('readable-block');
   block.tabIndex = 0;
   block.setAttribute('aria-label', '點選以切換放大閱讀');
