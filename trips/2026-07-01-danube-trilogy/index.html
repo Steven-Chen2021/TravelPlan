@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123b4a">
+<title>2026 · 多瑙三城</title>
+<style>
+:root { --danube:#123b4a; --danube-2:#1d5967; --paprika:#a8322d; --gold:#c6933b; --cream:#f7f0df; --paper:#fffdf7; --ink:#243236; --muted:#68777a; --line:#ded4bd; --green:#426b55; --shadow:0 10px 28px rgba(35,47,48,.11); }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { background:var(--cream); scroll-behavior:smooth; }
+body { min-height:100vh; font-family:"Avenir Next","Noto Sans TC","PingFang TC",sans-serif; background-color:var(--cream); background-image:linear-gradient(rgba(18,59,74,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(18,59,74,.035) 1px,transparent 1px); background-size:24px 24px; color:var(--ink); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+button,a { -webkit-tap-highlight-color:transparent; }
+button { font:inherit; }
+
+/* Budapest civic header */
+header { position:relative; overflow:hidden; padding:10px 14px 8px; color:#fffaf0; text-align:left; background:linear-gradient(145deg,#0c303b 0%,var(--danube) 58%,#204f59 100%); border-bottom:2px solid var(--gold); }
+header::before { content:""; position:absolute; inset:0; opacity:.18; background-image:radial-gradient(circle at 12px 12px,transparent 8px,rgba(255,255,255,.8) 8.5px,transparent 9px),radial-gradient(circle at 0 0,transparent 8px,rgba(255,255,255,.55) 8.5px,transparent 9px); background-size:24px 24px; transform:rotate(-8deg) scale(1.2); }
+header::after { content:"BUDAPEST  •  WIEN"; position:absolute; right:-5px; bottom:-7px; color:rgba(255,255,255,.06); font:900 23px/1 Georgia,serif; letter-spacing:2px; white-space:nowrap; }
+.header-inner { position:relative; z-index:1; max-width:760px; margin:0 auto; }
+header h1 { font-family:Georgia,"Noto Serif TC",serif; font-size:20px; line-height:1.08; font-weight:700; letter-spacing:-.3px; }
+header h1 .title-zh { display:inline; margin-left:4px; color:#f1ce88; font-family:"Avenir Next","Noto Sans TC",sans-serif; font-size:.55em; letter-spacing:.08em; }
+header .sub { display:none; }
+header .trip-dates { display:flex; gap:6px; margin:7px -14px -1px; padding:0 14px 1px; overflow-x:auto; scrollbar-width:none; white-space:nowrap; }
+header .trip-dates::-webkit-scrollbar,.tabs::-webkit-scrollbar { display:none; }
+header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,136,.42); border-radius:3px; background:rgba(5,34,42,.36); color:#fff8e9; font-size:10px; font-weight:700; letter-spacing:.01em; }
+
+/* Route ticket tabs */
+.tabs { position:sticky; top:0; z-index:100; display:flex; gap:8px; overflow-x:auto; padding:10px 12px; background:rgba(247,240,223,.96); border-bottom:1px solid rgba(198,147,59,.45); box-shadow:0 5px 18px rgba(31,47,49,.12); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); scroll-snap-type:x proximity; }
+.tab { flex:none; min-height:44px; padding:10px 14px; border:1px solid #cfc3aa; border-radius:5px; background:var(--paper); color:#586366; cursor:pointer; font-size:13px; font-weight:750; white-space:nowrap; scroll-snap-align:start; box-shadow:0 2px 0 rgba(77,63,43,.08); transition:transform .18s ease,background .18s ease,color .18s ease,border-color .18s ease; }
+.tab.active { border-color:var(--danube); background:var(--danube); color:#fff; box-shadow:inset 0 -3px 0 var(--gold),0 4px 12px rgba(18,59,74,.2); }
+.tab:active { transform:translateY(1px); }
+.tab:focus-visible,.day-hdr:focus-visible,.lang-btn:focus-visible,a:focus-visible { outline:3px solid rgba(198,147,59,.62); outline-offset:2px; }
+
+/* Page and paper cards */
+.section { display:none; width:100%; max-width:620px; margin:0 auto; padding:16px 12px 34px; }
+.section.active { display:block; animation:section-in .28s ease both; }
+@keyframes section-in { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+.card,.tip-card,.food-card { position:relative; margin-bottom:14px; padding:17px 15px; overflow:hidden; border:1px solid var(--line); border-radius:7px; background:var(--paper); box-shadow:var(--shadow); }
+.card::before,.tip-card::before,.food-card::before { content:""; position:absolute; inset:0 auto 0 0; width:4px; background:linear-gradient(var(--paprika),var(--gold)); }
+.card-title,.tip-title { display:flex; align-items:center; gap:8px; margin-bottom:12px; color:var(--danube); font-family:Georgia,"Noto Serif TC",serif; font-size:17px; font-weight:700; line-height:1.35; }
+.card-title .icon { font-family:"Apple Color Emoji"; font-size:19px; }
+
+/* Reading focus */
+.card,.day-body { position:relative; }
+.readable-block { cursor:zoom-in; outline:none; transition:background-color .2s ease,box-shadow .2s ease,transform .2s ease; }
+.readable-block::after { content:"A+"; position:absolute; top:11px; right:11px; min-width:32px; padding:4px 6px; border:1px solid #cabfaa; border-radius:4px; background:#f8f2e5; color:var(--danube); font-size:10px; line-height:1.2; font-weight:900; text-align:center; pointer-events:none; }
+.readable-block > .card-title:first-child { padding-right:40px; }
+.readable-block:focus-visible { box-shadow:0 0 0 3px rgba(198,147,59,.35),var(--shadow); }
+.readable-block.reading-focus { cursor:zoom-out; background:#fffefa; box-shadow:0 0 0 2px var(--danube),0 16px 36px rgba(18,59,74,.18); }
+.readable-block.reading-focus::after { content:"A−"; border-color:var(--paprika); background:var(--paprika); color:#fff; }
+.reading-focus .card-title,.reading-focus .tip-title { font-size:21px; line-height:1.45; }
+.reading-focus .card-title .icon,.reading-focus .tip-icon { font-size:23px; }
+.reading-focus .info-row,.reading-focus .rem,.reading-focus .hl,.reading-focus .tip-row,.reading-focus .tip-text { font-size:19px; line-height:1.75; }
+.reading-focus .t-route,.reading-focus .attr-name,.reading-focus .food-name { font-size:19px; line-height:1.55; }
+.reading-focus .t-detail,.reading-focus .attr-link,.reading-focus .rem-title,.reading-focus .em-row,.reading-focus .food-desc { font-size:19px; line-height:1.75; }
+.reading-focus .attr-en,.reading-focus .cl-data,.reading-focus .food-info,.reading-focus .tip-hl,.reading-focus .tip-warn { font-size:17px; line-height:1.7; }
+.reading-focus .cl-item,.reading-focus .em-title { font-size:19px; line-height:1.65; }
+.reading-focus .tip-num { width:34px; height:34px; font-size:18px; }
+.reading-focus [style*="font-size:13px"] { font-size:19px !important; line-height:1.75 !important; }
+
+/* Data rows and badges */
+.badge { display:inline-flex; padding:3px 8px; border-radius:3px; font:800 10px/1.4 "Avenir Next",sans-serif; }
+.badge-ok { color:#28543c; background:#dcebdd; }
+.badge-book { color:#862722; background:#f3d9d3; }
+.badge-info { color:#174f62; background:#d8e9eb; }
+.info-row { display:grid; grid-template-columns:minmax(92px,.75fr) minmax(0,1.5fr); gap:12px; padding:10px 0; border-bottom:1px solid #e9e0ce; font-size:14px; }
+.info-row:last-child { border-bottom:none; }
+.il { color:var(--muted); font-size:12px; font-weight:750; letter-spacing:.04em; }
+.iv { min-width:0; font-weight:650; text-align:right; overflow-wrap:anywhere; }
+
+/* Transport */
+.transport { margin-bottom:10px; padding:13px; border:1px solid #c9d9d9; border-radius:6px; background:#eaf2f0; }
+.t-route { display:flex; align-items:center; justify-content:space-between; gap:8px; color:var(--danube); font-size:15px; font-weight:850; }
+.t-detail { margin-top:6px; color:#405054; font-size:13px; line-height:1.72; }
+.t-detail b { color:var(--danube); }
+.map-btn,.attr-link,.food-link { display:inline-flex; align-items:center; min-height:36px; margin-top:7px; padding:7px 10px; border:1px solid #9fb9ba; border-radius:4px; background:#f7fbf9; color:#14536a; font-size:12px; font-weight:800; line-height:1.2; text-decoration:none; }
+
+/* Day accordion */
+.day-wrap { margin-bottom:13px; overflow:hidden; border:1px solid #c9bea8; border-radius:7px; background:var(--paper); box-shadow:var(--shadow); }
+.day-hdr { width:100%; min-height:66px; padding:12px 14px; border:0; background:linear-gradient(135deg,var(--danube),var(--danube-2)); color:#fff; cursor:pointer; user-select:none; display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:8px; align-items:center; text-align:left; font-size:15px; font-weight:850; }
+.day-hdr > div:first-child { min-width:0; }
+.day-hdr .day-label { margin-top:3px; color:#d3e4e1; font-size:11px; font-weight:600; line-height:1.4; }
+.day-hdr .arrow { font-size:12px; transition:transform .25s; }
+.day-hdr.open .arrow { transform:rotate(180deg); }
+.day-body { display:none; padding:14px; background:var(--paper); }
+.day-body.open { display:block; animation:section-in .22s ease both; }
+
+/* Attractions and reminders */
+.attr { padding:11px 0; border-bottom:1px dashed #d9cfbb; }
+.attr:last-of-type { border-bottom:none; }
+.attr-name { color:#293b3f; font-size:15px; font-weight:800; line-height:1.5; }
+.attr-en { margin-top:2px; color:#7b8584; font:italic 11px/1.45 Georgia,serif; }
+.attr-links,.food-links { display:flex; flex-wrap:wrap; gap:7px; margin-top:5px; }
+.reminders { margin-top:12px; padding:12px; border:1px solid #e4ca94; border-radius:6px; background:#fff5dc; }
+.rem-title { margin-bottom:5px; color:#885522; font-size:11px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+.rem { display:flex; gap:9px; align-items:flex-start; padding:6px 0; font-size:14px; }
+.rem-dot { display:flex; flex:none; align-items:center; justify-content:center; width:23px; height:23px; margin-top:1px; border-radius:50%; background:var(--paprika); color:#fff; font-size:11px; font-weight:900; }
+.hl,.tip-warn,.food-note { margin:9px 0; padding:10px 12px; border-left:4px solid var(--gold); border-radius:0 5px 5px 0; background:#fff2d7; color:#55452f; font-size:14px; line-height:1.65; }
+.hl b { color:#8c382c; }
+.cl-item { display:flex; gap:10px; align-items:flex-start; padding:10px 0; border-bottom:1px solid #e9e0ce; font-size:14px; }
+.cl-item:last-child { border-bottom:none; }
+.cl-box { width:22px; height:22px; flex:none; margin-top:1px; border:2px solid #9d927e; border-radius:3px; background:#fff; }
+.cl-data { margin-top:2px; color:var(--muted); font-size:11px; }
+
+/* Emergency */
+.em-card { margin-bottom:10px; padding:13px; border:1px solid #e4b7ae; border-radius:6px; background:#fff0ec; }
+.em-title { margin-bottom:7px; color:#932d29; font-size:14px; font-weight:850; }
+.em-row { padding:4px 0; color:#4b4a46; font-size:13px; }
+.em-row b { color:#262d2e; }
+
+/* Language panel */
+.lang-btn { min-width:42px; min-height:36px; margin-left:auto; padding:5px 8px; flex:none; border:1px solid #b7c8c6; border-radius:4px; background:#e8f0ed; color:var(--danube); cursor:pointer; font-size:13px; font-weight:800; transition:background .2s,color .2s; }
+.lang-btn.active,.lang-btn:hover { border-color:var(--danube); background:var(--danube); color:#fff; }
+.day-hdr .lang-btn { margin:0; border-color:rgba(255,255,255,.45); background:rgba(255,255,255,.12); color:#fff; }
+.day-hdr .lang-btn.active,.day-hdr .lang-btn:hover { background:#fff8e9; color:var(--danube); }
+.local-panel { display:none; margin-top:12px; padding:13px; border:1px solid #a9c1bf; border-radius:6px; background:#eef5f2; }
+.local-panel.show { display:block; }
+.local-header { margin-bottom:7px; color:#52716f; font-size:10px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+.local-dest { margin:0 0 9px; color:var(--danube); font-family:Georgia,serif; font-size:17px; font-weight:700; line-height:1.35; }
+.local-phrase { padding:5px 0 1px; color:#203c43; font-size:14px; font-weight:800; }
+.local-note { margin-bottom:4px; color:#74817f; font-size:11px; }
+.local-divider { margin:8px 0; border:0; border-top:1px dashed #b9c9c5; }
+
+/* Optional, tips and food */
+.optional-block { margin-bottom:11px; padding:13px; border:1px dashed #c6973b; border-radius:6px; background:#fff8df; }
+.optional-tag { display:inline-flex; margin-bottom:8px; padding:4px 9px; border-radius:3px; background:var(--gold); color:#fff; font-size:10px; font-weight:900; letter-spacing:.04em; }
+.tip-num { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; flex:none; border-radius:50%; background:var(--paprika); color:#fff; font-family:"Avenir Next",sans-serif; font-size:13px; font-weight:900; }
+.tip-row { display:flex; gap:9px; align-items:flex-start; padding:9px 0; border-bottom:1px solid #e9e0ce; font-size:14px; }
+.tip-row:last-child { border-bottom:none; }
+.tip-icon { flex:none; margin-top:1px; font-size:16px; }
+.tip-text { color:#354447; line-height:1.68; }
+.tip-text b { color:var(--danube); }
+.tip-text .good { color:#326344; font-weight:800; }
+.tip-text .bad { color:#9b302b; font-weight:800; }
+.tip-hl { margin-top:9px; padding:9px 11px; border-left:4px solid var(--green); border-radius:0 5px 5px 0; background:#e9f2e8; color:#31533d; font-size:13px; line-height:1.65; }
+.food-city-hdr { display:flex; align-items:center; gap:8px; margin:3px 0 12px; padding:12px 14px; border-radius:6px; color:#fff; font-family:Georgia,"Noto Serif TC",serif; font-size:18px; font-weight:700; box-shadow:var(--shadow); }
+.food-city-hdr.hu { background:linear-gradient(135deg,#8e2926,var(--paprika)); }
+.food-city-hdr.at { background:linear-gradient(135deg,var(--danube),#1e6471); }
+.food-cat-lbl { margin:18px 0 7px 3px; color:#776442; font-size:11px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+.food-name { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:8px; padding-right:38px; color:var(--danube); font-family:Georgia,"Noto Serif TC",serif; font-size:16px; font-weight:700; }
+.food-tag { display:inline-flex; padding:3px 7px; border-radius:3px; font-family:"Avenir Next",sans-serif; font-size:9px; font-weight:900; }
+.food-tag-r { background:#dcebef; color:#155164; }.food-tag-s { background:#f4ded8; color:#8b322b; }.food-tag-m,.food-tag-in { background:#dfece0; color:#315d40; }.food-tag-b { background:#eadfea; color:#68436b; }.food-tag-warn { background:#f8e4bd; color:#89541f; }.food-tag-new { background:#f1d9d5; color:#96352f; }
+.food-info { display:flex; flex-direction:column; gap:2px; color:#657373; font-size:12px; line-height:1.55; }
+.food-desc { margin-top:9px; padding-top:9px; border-top:1px solid #e9e0ce; color:#354447; font-size:14px; line-height:1.72; }
+
+@media (min-width:700px) { header { padding:14px 24px 11px; text-align:center; } header h1 { font-size:25px; } header h1 .title-zh { margin-left:5px; } header .sub { display:block; margin:4px auto 0; font-size:10px; } header .trip-dates { justify-content:center; margin:8px 0 -1px; } .tabs { justify-content:center; } .section { padding-top:22px; } }
+@media (max-width:390px) { body { font-size:15px; } .section { padding-inline:9px; } .card,.tip-card,.food-card { padding:15px 13px; } .info-row { grid-template-columns:82px minmax(0,1fr); gap:8px; } .day-hdr { padding-inline:11px; } }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>Danube Trilogy <span class="title-zh">· 多瑙三城 2026</span></h1>
+    <div class="sub">Three cities along one river, one journey to remember.</div>
+    <div class="trip-dates" aria-label="行程日期摘要">
+      <div class="date-chip">出發 7/1</div>
+      <div class="date-chip">布達佩斯 7/2–7/7</div>
+      <div class="date-chip">維也納 7/7–7/10</div>
+      <div class="date-chip">返台 7/11</div>
+    </div>
+  </div>
+</header>
+
+<!-- ── TABS ── -->
+<div class="tabs" role="tablist" aria-label="旅行手冊章節">
+  <button class="tab active" type="button" role="tab" aria-selected="true" aria-controls="immigration" onclick="showTab('immigration', this)">📋 入境文件</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="transport" onclick="showTab('transport', this)">🚆 交通路線</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="itinerary" onclick="showTab('itinerary', this)">🗺 每日行程</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="transfer" onclick="showTab('transfer', this)">🚐 機場接送</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="emergency" onclick="showTab('emergency', this)">🆘 緊急聯絡</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="tips" onclick="showTab('tips', this)">💡 旅行小TIP</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="food" onclick="showTab('food', this)">🍽 美食</button>
+</div>
+
+<!-- ══════════════════════════════
+     TAB 1: 入境文件
+══════════════════════════════ -->
+<div class="section active" id="immigration">
+
+  <div class="card">
+    <div class="card-title"><span class="icon">✈️</span>航班資訊（入境備用）<button class="lang-btn" data-trans="imm-flight" onclick="toggleLang(this,event)">🇩🇪</button></div>
+    <div class="info-row"><span class="il">去程航班</span><span class="iv">CI063 · 台北→維也納</span></div>
+    <div class="info-row"><span class="il">去程起飛</span><span class="iv">2026/07/01 (三) 23:40 <br>桃園機場 第一航廈</span></div>
+    <div class="info-row"><span class="il">去程抵達</span><span class="iv">2026/07/02 (四) 06:35 <br>維也納 Schwechat T3</span></div>
+    <div class="info-row"><span class="il">回程航班</span><span class="iv">CI064 · 維也納→台北</span></div>
+    <div class="info-row"><span class="il">回程起飛</span><span class="iv">2026/07/10 (五) 11:15 <br>維也納 Schwechat T1A</span></div>
+    <div class="info-row"><span class="il">回程抵達</span><span class="iv">2026/07/11 (六) 05:30 <br>桃園機場 第一航廈</span></div>
+    <div class="info-row"><span class="il">託運行李</span><span class="iv">每人 2 件（含機票）</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🏨</span>住宿確認（入境備用）<button class="lang-btn" data-trans="imm-accomm" onclick="toggleLang(this,event)">🇩🇪🇭🇺</button></div>
+    <div class="hl">海關可能要求提示住宿地址，以下資料請備妥</div>
+    <div class="info-row"><span class="il">布達佩斯</span><span class="iv">Király utca 19<br>1075 Budapest, Hungary</span></div>
+    <div class="info-row"><span class="il">訂房編號</span><span class="iv">6515930123 (Booking.com)</span></div>
+    <div class="info-row"><span class="il">入住</span><span class="iv">7/2 (四) 16:00 起</span></div>
+    <div class="info-row"><span class="il">退房</span><span class="iv">7/7 (二) 06:30–10:00</span></div>
+    <div style="margin-top:12px"></div>
+    <div class="info-row"><span class="il">維也納</span><span class="iv">Antonigasse 1<br>1180 Wien, Austria</span></div>
+    <div class="info-row"><span class="il">訂房編號</span><span class="iv">6568272860 (Booking.com)</span></div>
+    <div class="info-row"><span class="il">入住</span><span class="iv">7/7 (二) 14:00 起</span></div>
+    <div class="info-row"><span class="il">退房</span><span class="iv">7/10 (五) 11:00 前</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🚂</span>火車票（布達佩斯往返）</div>
+    <div class="info-row"><span class="il">去程</span><span class="iv">RJX 63 · 7/2 13:40<br>Wien Hbf → Budapest-Keleti</span></div>
+    <div class="info-row"><span class="il">回程</span><span class="iv">RJX 66 · 7/7 13:40<br>Budapest-Keleti → Wien Hbf</span></div>
+    <div class="info-row"><span class="il">座位</span><span class="iv">Car 26 · 桌位 4 席（1st Class）</span></div>
+    <div class="info-row"><span class="il">備注</span><span class="iv">Sparschiene（不可退換）</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span>入境文件核對清單</div>
+    <div class="hl">入境申根區首站為<b>維也納</b>，清關在此辦理</div>
+    <div class="cl-item"><div class="cl-box"></div><div><div>有效護照（餘效 6 個月以上）</div><div class="cl-data">所有同行成員，各自備妥</div></div></div>
+    <div class="cl-item"><div class="cl-box"></div><div><div>回程機票（CI064 訂位確認）</div><div class="cl-data">7/10 11:15 維也納→台北</div></div></div>
+    <div class="cl-item"><div class="cl-box"></div><div><div>布達佩斯住宿確認書</div><div class="cl-data">Király utca 19 · 訂單 #6515930123</div></div></div>
+    <div class="cl-item"><div class="cl-box"></div><div><div>維也納住宿確認書</div><div class="cl-data">Antonigasse 1 · 訂單 #6568272860</div></div></div>
+    <div class="cl-item"><div class="cl-box"></div><div><div>旅遊保險（建議備妥）</div><div class="cl-data">含醫療與緊急撤離保障</div></div></div>
+    <div class="cl-item"><div class="cl-box"></div><div><div>充足資金（信用卡或現金）</div><div class="cl-data">申根標準：每人每日約 €50–100</div></div></div>
+    <div class="cl-item"><div class="cl-box"></div><div><div>台灣護照免申根簽證</div><div class="cl-data">90 天內免簽，無需另外辦理</div></div></div>
+    <div class="hl" style="margin-top:10px">⚠️ 布達佩斯公寓入住：備妥 <b>€100 現金押金</b>；晚於正常入住時間需支付 <b>€19 附加費</b>，請提前告知房東</div>
+    <div class="hl">⚠️ 維也納公寓為<b>自助入住（keybox）</b>，無前台，請確認抵達前已收到密碼郵件</div>
+  </div>
+
+</div><!-- /immigration -->
+
+
+<!-- ══════════════════════════════
+     TAB 2: 交通路線
+══════════════════════════════ -->
+<div class="section" id="transport">
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛫</span>Leg 1 · 桃園 → 維也納</div>
+    <div class="transport">
+      <div class="t-route">CI063 <span class="badge badge-ok">✓ 已訂</span></div>
+      <div class="t-detail">
+        <b>出發：</b>2026/07/01 (三) 23:40 · 桃園機場 T1<br>
+        <b>抵達：</b>2026/07/02 (四) 06:35 · 維也納 Schwechat T3<br>
+        飛行時間約 13h 15m
+      </div>
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Taiwan+Taoyuan+International+Airport+Terminal+1" target="_blank">📍 桃園機場 T1</a>
+      &nbsp;
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Vienna+International+Airport+VIE" target="_blank">📍 VIE 機場 T3</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🚆</span>Leg 2 · 維也納機場 → Wien Hauptbahnhof<button class="lang-btn" data-trans="leg2" onclick="toggleLang(this,event)">🇩🇪</button></div>
+    <div class="transport">
+      <div class="t-route">⭐ IC / Railjet（直達推薦）</div>
+      <div class="t-detail">
+        <b>路線：</b>VIE Airport（地下月台）→ Wien Hauptbahnhof（直達，無需轉車）<br>
+        <b>票價：</b>約 €4–6 / 人（ÖBB 車票，非交通通票）<br>
+        <b>時間：</b>約 15–16 分鐘<br>
+        <b>班次：</b>每 30 分鐘一班<br>
+        <b>備注：</b>06:35 落地後直接搭，約 07:00 即可抵達 Wien Hbf，比 RJX63（13:40）早 6 小時，可寄放行李自由活動
+      </div>
+      <a class="map-btn" href="https://www.oebb.at" target="_blank">🌐 ÖBB 購票</a>
+      &nbsp;
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Wien+Hauptbahnhof" target="_blank">📍 Wien Hauptbahnhof</a>
+    </div>
+    <div class="transport" style="margin-top:8px">
+      <div class="t-route">REX7 快鐵（省錢方案）</div>
+      <div class="t-detail">
+        <b>路線：</b>Flughafen Wien → Wien Hauptbahnhof（直達）<br>
+        <b>票價：</b>約 €5.40 / 人（2 區票）<br>
+        <b>時間：</b>約 33 分鐘<br>
+        <b>備注：</b>Google Maps 顯示的「REX7 → REX3」表示需中途轉車，建議選直達 Wien Hbf 的班次
+      </div>
+    </div>
+    <div class="transport" style="margin-top:8px;background:#fff8f0;border-left:3px solid #f90">
+      <div class="t-route" style="color:#c66">⚠ CAT 注意（不建議）</div>
+      <div class="t-detail">
+        CAT（€14.90）終點為 <b>Wien Mitte</b>，需再轉 U4 才能到 Wien Hbf，費用最貴且不直達
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🚄</span>Leg 3 · Wien Hbf → 布達佩斯 <span class="badge badge-ok">✓ 已訂</span><button class="lang-btn" data-trans="leg3" onclick="toggleLang(this,event)">🇩🇪</button></div>
+    <div class="transport">
+      <div class="t-route">RJX 63 · 7/2 出發</div>
+      <div class="t-detail">
+        <b>出發：</b>Wien Hauptbahnhof 13:40<br>
+        <b>抵達：</b>Budapest-Keleti 16:19（約 2h 39m）<br>
+        <b>座位：</b>Car 26 · 桌位 4 席（74/83 走道，76/85 靠窗）<br>
+        <b>艙等：</b>1st Class · Sparschiene（不可退換）
+      </div>
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Wien+Hauptbahnhof" target="_blank">📍 Wien Hauptbahnhof</a>
+      &nbsp;
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Budapest+Keleti+railway+station" target="_blank">📍 Budapest-Keleti</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🏙️</span>Leg 4 · Budapest-Keleti → 公寓<button class="lang-btn" data-trans="leg4" onclick="toggleLang(this,event)">🇭🇺</button></div>
+    <div class="transport">
+      <div class="t-route">地鐵 M2 + 步行（建議）</div>
+      <div class="t-detail">
+        <b>路線：</b>Keleti pályaudvar → Blaha Lujza tér（M2，2 站）→ 步行 8 分鐘<br>
+        <b>公寓地址：</b>Király utca 19, 1075 Budapest<br>
+        <b>票價：</b>單程 450 HUF / 人（刷卡或現金）
+      </div>
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Kiraly+utca+19+Budapest" target="_blank">📍 Király utca 19</a>
+    </div>
+    <div class="transport" style="margin-top:8px">
+      <div class="t-route">Bolt（匈牙利版 Uber）</div>
+      <div class="t-detail">
+        <b>適合：</b>8 人有行李，建議叫 2 台車<br>
+        <b>費用：</b>約 1,500–2,500 HUF / 車（10 分鐘）<br>
+        下載 Bolt App 或使用 Uber
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🚇</span>布達佩斯市區交通<button class="lang-btn" data-trans="bpTransit" onclick="toggleLang(this,event)">🇭🇺</button></div>
+    <div class="transport">
+      <div class="t-route">Budapest 交通 App</div>
+      <div class="t-detail">
+        <b>建議：</b>下載 BKK Futar App 查詢即時公車/地鐵<br>
+        <b>Budapest Card：</b>24hr/48hr/72hr 無限乘車，含部分景點折扣<br>
+        地鐵 M1/M2/M3、電車、公車均可使用<br>
+        <b>主要站名（Google Maps 用）：</b><br>
+        · Deák Ferenc tér（中心換乘站）<br>
+        · Batthyány tér（搭 HÉV 往聖安德烈）<br>
+        · Keleti pályaudvar（火車站）<br>
+        · Vörösmarty tér（市中心購物）
+      </div>
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Deak+Ferenc+ter+Budapest" target="_blank">📍 Deák Ferenc tér</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🚌</span>Leg 5 · 聖安德烈 一日遊<button class="lang-btn" data-trans="leg5" onclick="toggleLang(this,event)">🇭🇺</button></div>
+    <div class="transport">
+      <div class="t-route">HÉV 郊區列車 H5線</div>
+      <div class="t-detail">
+        <b>出發站：</b>Batthyány tér（M2 地鐵站旁）<br>
+        <b>終點站：</b>Szentendre（約 40 分鐘）<br>
+        <b>班次：</b>約每 10–20 分鐘一班<br>
+        <b>票價：</b>單程 930 HUF / 人（不含 Budapest Card）<br>
+        <b>注意：</b>持 Budapest Card 不可搭此段，需另購票
+      </div>
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Batthyany+ter+Budapest" target="_blank">📍 Batthyány tér</a>
+      &nbsp;
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Szentendre+HEV+station" target="_blank">📍 Szentendre 站</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🚄</span>Leg 6 · 布達佩斯 → Wien Hbf <span class="badge badge-ok">✓ 已訂</span><button class="lang-btn" data-trans="leg6" onclick="toggleLang(this,event)">🇭🇺</button></div>
+    <div class="transport">
+      <div class="t-route">RJX 66 · 7/7 出發</div>
+      <div class="t-detail">
+        <b>出發：</b>Budapest-Keleti 13:40<br>
+        <b>抵達：</b>Wien Hauptbahnhof 16:20（約 2h 40m）<br>
+        <b>座位：</b>Car 26 · 桌位 4 席（73/84 走道，75/86 靠窗）<br>
+        <b>建議：</b>12:50 前抵達月台
+      </div>
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Budapest+Keleti+railway+station" target="_blank">📍 Budapest-Keleti</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🏠</span>Leg 7 · Wien Hbf → 維也納公寓<button class="lang-btn" data-trans="leg7" onclick="toggleLang(this,event)">🇩🇪</button></div>
+    <div class="transport">
+      <div class="t-route">地鐵 U1 + 電車 40/41</div>
+      <div class="t-detail">
+        <b>路線：</b>Wien Hbf → U1 Karlsplatz → U2 Schottentor → 電車 40/41 方向 Antonigasse<br>
+        <b>或：</b>計程車 / Bolt，約 €15–20，推薦（有行李）<br>
+        <b>公寓地址：</b>Antonigasse 1, 1180 Wien
+      </div>
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Antonigasse+1+1180+Wien" target="_blank">📍 Antonigasse 1, Wien</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🚇</span>維也納市區交通<button class="lang-btn" data-trans="viennaTransit" onclick="toggleLang(this,event)">🇩🇪</button></div>
+    <div class="transport">
+      <div class="t-route">72小時交通通票（強烈推薦）</div>
+      <div class="t-detail">
+        <b>票價：</b>€21.10 / 人<br>
+        <b>涵蓋：</b>U-Bahn（地鐵）、電車、公車（市區全線）<br>
+        <b>購票處：</b>機場、地鐵站自動售票機<br>
+        <b>主要站名（Google Maps 用）：</b><br>
+        · Karlsplatz（中心換乘，U1/U2/U4）<br>
+        · Stephansplatz（聖史蒂芬大教堂，市中心）<br>
+        · Schönbrunn（熊布朗宮，U4）<br>
+        · Praterstern（普拉特公園，U1）<br>
+        · Kettenbrückengasse（納許市場，U4）
+      </div>
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Wien+Hauptbahnhof" target="_blank">📍 Wien Hauptbahnhof</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🚐</span>Leg 8 · 公寓 → VIE 機場 <span class="badge badge-ok">✓ 已訂</span><button class="lang-btn" data-trans="leg8" onclick="toggleLang(this,event)">🇩🇪</button></div>
+    <div class="transport">
+      <div class="t-route">Elife Transfer · Klook PTM726822</div>
+      <div class="t-detail">
+        <b>接車時間：</b>2026/07/10 (五) 07:30<br>
+        <b>接車地點：</b>Antonigasse 1, 1180 Wien<br>
+        <b>車型：</b>9 人座廂型車（最多 8 人 / 6 件行李）<br>
+        <b>供應商：</b>Elife Transfer · +1-800-814-4204<br>
+        <b>等候時間：</b>指定時間起 15 分鐘<br>
+        ⚠️ 前一天司機會電話確認，請確保手機可接國際來電
+      </div>
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Vienna+International+Airport+VIE" target="_blank">📍 VIE 維也納機場</a>
+    </div>
+  </div>
+
+</div><!-- /transport -->
+
+
+<!-- ══════════════════════════════
+     TAB 3: 每日行程
+══════════════════════════════ -->
+<div class="section" id="itinerary">
+
+  <!-- Day 0: 7/1 出發 -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 0 · 7/1 (三) 台灣出發</div><div class="day-label">桃園機場 → 登機</div></div>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="attr"><div class="attr-name">🛫 桃園國際機場 第一航廈</div><div class="attr-en">Taiwan Taoyuan International Airport Terminal 1</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Taiwan+Taoyuan+International+Airport+Terminal+1" target="_blank">📍 地圖</a><a class="attr-link" href="https://www.taoyuan-airport.com" target="_blank">🌐 官網</a></div></div>
+      <div class="hl">CI063 起飛 <b>23:40</b>，建議 <b>20:30</b> 前抵達航廈辦理報到</div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>出門前再次確認：護照、訂位確認信、信用卡、插座轉接頭（歐規 Type C/F）、藥物</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>CI063 為台灣出發深夜班機，建議在機場用餐後，上機即休息，維也納落地已是清晨</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>托運行李每人 2 件（已含），確認每件行李姓名吊牌，8 人行李別搞混</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 1: 7/2 抵達 -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 1 · 7/2 (四) 抵達 & 移動</div><div class="day-label">維也納機場 → 布達佩斯入住</div></div>
+      <button class="lang-btn" data-trans="day1" onclick="toggleLang(this,event)">🇩🇪</button>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="attr"><div class="attr-name">🛬 06:35 抵達維也納 T3</div><div class="attr-en">Vienna Schwechat Airport Terminal 3</div><div class="attr-links"><a class="attr-link" href="https://www.viennaairport.com" target="_blank">🌐 機場官網</a></div></div>
+      <div class="attr"><div class="attr-name">🏛 申根入境清關</div><div class="attr-en">Schengen Immigration Control</div><div style="font-size:12px;color:#666;margin-top:4px">備妥護照＋住宿確認書，這是全程唯一一次入境審查</div></div>
+      <div class="attr"><div class="attr-name">☕ 自由活動（約 5 小時）</div><div class="attr-en">Free time in Vienna before train departure</div><div style="font-size:12px;color:#666;margin-top:4px">可在機場用早餐、或搭 CAT 進市區逛逛，13:10 前回 Wien Hbf</div></div>
+      <div class="attr"><div class="attr-name">🚄 13:40 RJX63 往布達佩斯</div><div class="attr-en">Railjet to Budapest-Keleti</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Wien+Hauptbahnhof" target="_blank">📍 Wien Hbf</a></div></div>
+      <div class="attr"><div class="attr-name">🏠 16:19 抵達，前往公寓入住</div><div class="attr-en">Check-in: Király utca 19, 1075 Budapest</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Kiraly+utca+19+Budapest" target="_blank">📍 公寓位置</a></div></div>
+      <div class="hl">⚠️ 入住後備妥 <b>€100 現金押金</b>；若晚於正常入住時間需提前通知</div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>清關時全家準備好護照，可以同時入隊加快速度；備妥兩份住宿確認書（布達佩斯＋維也納）</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>Wien Hbf 月台建議 13:10 前抵達，找好 Car 26 車廂位置，8 人行李多、上車需要時間</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>抵達布達佩斯後先換一點匈牙利福林（HUF），市區地鐵與小店多只收現金，機場或 Keleti 車站有 ATM</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 2: 7/3 城堡山 -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 2 · 7/3 (五) 布達城堡山</div><div class="day-label">Castle Hill · Fisherman's Bastion · Chain Bridge</div></div>
+      <button class="lang-btn" data-trans="day2" onclick="toggleLang(this,event)">🇭🇺</button>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="attr"><div class="attr-name">🏰 布達城堡（匈牙利國家美術館）</div><div class="attr-en">Buda Castle / Hungarian National Gallery</div><div class="attr-links"><a class="attr-link" href="https://www.mng.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Buda+Castle+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">⛪ 馬提亞斯教堂</div><div class="attr-en">Matthias Church (Mátyás-templom)</div><div class="attr-links"><a class="attr-link" href="https://www.matyas-templom.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Matthias+Church+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🐟 漁夫堡（城市全景）</div><div class="attr-en">Fisherman's Bastion (Halászbástya)</div><div class="attr-links"><a class="attr-link" href="https://www.fishermansbastion.com" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Fishermans+Bastion+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">⛓ 鏈橋（Széchenyi Lánchíd）</div><div class="attr-en">Chain Bridge</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szechenyi+Chain+Bridge+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🍺 廢墟酒吧區（晚間）</div><div class="attr-en">Ruin Bars – Erzsébetváros District</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 Szimpla Kert 位置</a></div></div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>城堡山夏日正午非常熱，建議早上 9 點前出發，下午午休後再出動；帶足飲水</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>馬提亞斯教堂需購票入場（約 2,500 HUF），漁夫堡外觀免費，主塔需購票</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>往城堡山可搭城堡纜車（Budavári Sikló）上山，步行下山走鏈橋，景觀最好</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 3: 7/4 聖安德烈 -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 3 · 7/4 (六) 聖安德烈一日遊</div><div class="day-label">Szentendre · 小鎮 · 陶瓷博物館（Optional: Ecseri 跳蚤市場）</div></div>
+      <button class="lang-btn" data-trans="day3" onclick="toggleLang(this,event)">🇭🇺</button>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="optional-block">
+        <div class="optional-tag">⭐ Optional · 機動安排</div>
+        <div class="attr-name" style="font-size:14px">🛍 艾喬里跳蚤市場（中歐最大）</div>
+        <div class="attr-en">Ecseri Bolhapiac – Central Europe's Largest Flea Market</div>
+        <div style="font-size:12px;color:#555;margin-top:7px;line-height:1.85">
+          <b style="color:#e65100">📅 週六最佳時段：</b>08:00 入場，10:00 前離開可接聖安德烈<br>
+          <b style="color:#e65100">⏱ 建議時程：</b>07:30 從公寓出發 → 08:00–10:00 逛市 → 10:40 抵達 Batthyány tér → 11:00 HÉV 往聖安德烈<br>
+          <b style="color:#e65100">🚇 交通：</b>M2→M3 至 <b>Ecseri út</b> 站，換搭 <b>54 號公車</b>，在 <b>Naszód utca</b> 下車過天橋即達（全程 ≈ 35 分鐘）<br>
+          <b style="color:#e65100">💰 門票：</b>約 300–500 HUF 入場費，<b>只收現金</b>，帶足 HUF<br>
+          <b style="color:#e65100">📍 地址：</b>Nagykőrösi út 156, District 19（布達佩斯南郊）
+        </div>
+        <div class="attr-links" style="margin-top:8px">
+          <a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Ecseri+Bolhapiac+Nagykörös+út+156+Budapest" target="_blank">📍 地圖</a>
+          <a class="attr-link" href="https://www.fleamapket.com/listing/ecseri-bolhapiac/" target="_blank">🌐 市集資訊</a>
+        </div>
+      </div>
+      <div class="attr"><div class="attr-name">🚉 Batthyány tér 搭 HÉV H5 出發</div><div class="attr-en">Take HÉV suburban rail H5 from Batthyány tér</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Batthyany+ter+Budapest" target="_blank">📍 Batthyány tér</a></div></div>
+      <div class="attr"><div class="attr-name">🏘 聖安德烈老城區散步</div><div class="attr-en">Szentendre Old Town</div><div class="attr-links"><a class="attr-link" href="https://www.szentendre.hu" target="_blank">🌐 觀光官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szentendre+HEV+station" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🏺 科瓦奇陶瓷博物館</div><div class="attr-en">Margit Kovács Ceramic Museum</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Margit+Kovacs+Ceramic+Museum+Szentendre" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">⛪ 塞爾維亞東正教教堂群</div><div class="attr-en">Serbian Orthodox Churches</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Serbian+Orthodox+Church+Szentendre" target="_blank">📍 地圖</a></div></div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>HÉV 單程 930 HUF / 人，注意：Budapest Card 不包含此段，需另購票（可在 Batthyány tér 站窗口購買）</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>聖安德烈夏日遊客多，建議早上 9 點前抵達，中午前回程可避開下午人潮</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>小鎮部分商店不收信用卡，帶足 HUF 現金；手工藝品、陶瓷是最佳伴手禮</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 4: 7/5 Szimpla + 城市公園 -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 4 · 7/5 (日) Szimpla 市集＋城市公園</div><div class="day-label">Farmers Market · Széchenyi Bath · Vajdahunyad</div></div>
+      <button class="lang-btn" data-trans="day4" onclick="toggleLang(this,event)">🇭🇺</button>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="attr"><div class="attr-name">🛒 Szimpla 農夫市集（週日限定）</div><div class="attr-en">Szimpla Farmers Market（Sun 09:00–14:00）</div><div class="attr-links"><a class="attr-link" href="https://szimpla.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🏰 瓦伊達胡尼亞德城堡（免費）</div><div class="attr-en">Vajdahunyad Castle – free outdoor</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Vajdahunyad+Castle+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">♨️ 塞切尼溫泉浴場</div><div class="attr-en">Széchenyi Thermal Bath</div><div class="attr-links"><a class="attr-link" href="https://www.szechenyibath.com" target="_blank">🌐 官網／購票</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szechenyi+Thermal+Bath+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🌳 城市公園（Városliget）</div><div class="attr-en">Budapest City Park</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Varosliget+City+Park+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="hl">🍽️ 晚餐 Gettó Gulyás <span class="badge badge-book">⚠ 尚未訂位</span> – 建議 8 人提前訂位</div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>Szimpla 農夫市集僅週日 09:00–14:00，今天是唯一機會，務必把握早上前往</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>溫泉浴場請帶泳帽（必備，現場亦可購買）、泳裝，建議下午 2–4 點入場人較少；可線上預購</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>城市公園從地鐵 M1 Hősök tere（英雄廣場站）下車，步行即達；英雄廣場本身免費值得一看</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 5: 7/6 市場 + 遊船 -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 5 · 7/6 (一) 中央市場＋多瑙河遊船</div><div class="day-label">Great Market Hall · Danube Cruise 20:45 ✓</div></div>
+      <button class="lang-btn" data-trans="day5" onclick="toggleLang(this,event)">🇭🇺</button>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="attr"><div class="attr-name">🏛 中央大市場</div><div class="attr-en">Great Market Hall (Nagyvásárcsarnok)</div><div class="attr-links"><a class="attr-link" href="https://www.piaconline.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Great+Market+Hall+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🛍️ Váci Street 購物街</div><div class="attr-en">Váci utca Shopping Street</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Vaci+utca+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">⛪ 聖史蒂芬大教堂</div><div class="attr-en">St. Stephen's Basilica (Szent István-bazilika)</div><div class="attr-links"><a class="attr-link" href="https://www.bazilika.biz" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=St+Stephens+Basilica+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🍽 18:30 晚餐 Parasztkonyha</div><div class="attr-en">Dinner – Parasztkonyha Restaurant</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Parasztkonyha+restaurant+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr">
+        <div class="attr-name">🚢 20:45 多瑙河夜遊 <span class="badge badge-ok">✓ 已訂</span></div>
+        <div class="attr-en">Danube Cruise – Legenda City Cruises</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">
+          <b>碼頭：</b>Jane Haining rakpart（伊麗莎白橋附近）<br>
+          <b>請 20:15 前抵達碼頭，19:55 出發步行前往</b>
+        </div>
+        <div class="attr-links">
+          <a class="attr-link" href="https://www.legenda.hu" target="_blank">🌐 Legenda 官網</a>
+          <a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Jane+Haining+rakpart+Budapest" target="_blank">📍 碼頭位置</a>
+        </div>
+      </div>
+      <div class="hl">⚠️ 請再次向 Legenda 確認確切碼頭位置（Jane Haining rakpart 7 附近，Elizabeth Bridge 旁）</div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>中央市場建議 10:00 前逛完，1 樓生鮮市場、2 樓辣椒粉 / 鵝肝醬等伴手禮，帶現金</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>多瑙河遊船 20:45 開船，20:15 前務必到達碼頭；晚間河風涼，帶薄外套</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>今晚是布達佩斯最後夜晚，明日 13:40 火車，建議今晚整理行李，明早輕鬆出發</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 6: 7/7 移動到維也納 -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 6 · 7/7 (二) 布達佩斯 → 維也納</div><div class="day-label">Checkout · RJX66 · Vienna Check-in</div></div>
+      <button class="lang-btn" data-trans="day6" onclick="toggleLang(this,event)">🇭🇺</button>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="attr"><div class="attr-name">🧳 退房（06:30–10:00 前）</div><div class="attr-en">Checkout – Király utca 19</div></div>
+      <div class="attr"><div class="attr-name">☕ 早餐／自由活動</div><div class="attr-en">Morning free time in Budapest</div></div>
+      <div class="attr"><div class="attr-name">🚄 13:40 RJX66 返回維也納</div><div class="attr-en">Railjet 66 – Budapest-Keleti → Wien Hbf</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Budapest+Keleti+railway+station" target="_blank">📍 Keleti 車站</a></div></div>
+      <div class="attr"><div class="attr-name">🏠 16:20 抵達，前往維也納公寓</div><div class="attr-en">Check-in: Antonigasse 1, 1180 Wien</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Antonigasse+1+1180+Wien" target="_blank">📍 公寓位置</a></div></div>
+      <div class="hl">⚠️ 自助入住，<b>提前確認 keybox 密碼郵件已收到</b>；維也納公寓不收現金</div>
+      <div class="hl">建議抵達後就近超市採購（Billa / Spar，Antonigasse 附近有）</div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>12:50 前抵達 Budapest-Keleti，Car 26 桌位，行李提前整理好減少月台慌亂</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>入住前確認 keybox 密碼；兩間房間（Luxury Double Suite + Premium Apartment）各有不同入口，確認分配</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>抵達後先購買 72 小時交通通票（€21.10/人）以供後兩天使用，在 Wien Hbf 售票機即可購買</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 7: 7/8 熊布朗宮 -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 7 · 7/8 (三) 熊布朗宮＋普拉特</div><div class="day-label">Schönbrunn Palace · Prater · Riesenrad</div></div>
+      <button class="lang-btn" data-trans="day7" onclick="toggleLang(this,event)">🇩🇪</button>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="attr">
+        <div class="attr-name">👑 熊布朗宮 <span class="badge badge-book">⚠ 建議預購票</span></div>
+        <div class="attr-en">Schönbrunn Palace</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.schoenbrunn.at/en" target="_blank">🌐 官網／購票</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Schonbrunn+Palace+Vienna" target="_blank">📍 地圖</a></div>
+      </div>
+      <div class="attr"><div class="attr-name">🦁 熊布朗宮動物園（可選）</div><div class="attr-en">Tiergarten Schönbrunn</div><div class="attr-links"><a class="attr-link" href="https://www.zoovienna.at" target="_blank">🌐 官網</a></div></div>
+      <div class="attr">
+        <div class="attr-name">🎡 普拉特公園 · 大摩天輪</div>
+        <div class="attr-en">Prater Park · Wiener Riesenrad</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.wienerriesenrad.com" target="_blank">🌐 摩天輪官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Wiener+Riesenrad+Prater+Vienna" target="_blank">📍 地圖</a></div>
+      </div>
+      <div class="attr"><div class="attr-name">🌳 Prater 公園散步</div><div class="attr-en">Prater Green Promenade</div><div class="attr-links"><a class="attr-link" href="https://www.prater.at" target="_blank">🌐 官網</a></div></div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>熊布朗宮強烈建議網路預購，避免現場排隊；Grand Tour 約 55 分鐘，含 40 個宮殿廳室</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>地鐵 U4 至 Schönbrunn 站；普拉特搭 U1 至 Praterstern 站，兩景點一天可一起走完</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>Riesenrad 摩天輪建議傍晚搭乘，夕陽中俯瞰維也納全景最美；可現場購票</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 8: 7/9 Naschmarkt + Belvedere -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 8 · 7/9 (四) 納許市場＋美景宮</div><div class="day-label">Naschmarkt · Belvedere · Figlmüller</div></div>
+      <button class="lang-btn" data-trans="day8" onclick="toggleLang(this,event)">🇩🇪</button>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="attr"><div class="attr-name">🥩 納許市場（早上）</div><div class="attr-en">Naschmarkt – open Mon–Sat from 06:00</div><div class="attr-links"><a class="attr-link" href="https://www.wienernaschmarkt.eu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Naschmarkt+Vienna" target="_blank">📍 地圖</a></div></div>
+      <div class="attr">
+        <div class="attr-name">🖼 上美景宮（克林姆「吻」）<span class="badge badge-book">⚠ 建議預購票</span></div>
+        <div class="attr-en">Upper Belvedere – Klimt's "The Kiss"</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.belvedere.at/en" target="_blank">🌐 官網／購票</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Upper+Belvedere+Vienna" target="_blank">📍 地圖</a></div>
+      </div>
+      <div class="attr"><div class="attr-name">🏛 維也納國家歌劇院（外觀）</div><div class="attr-en">Vienna State Opera – Wiener Staatsoper</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Vienna+State+Opera+Wiener+Staatsoper" target="_blank">📍 地圖</a></div></div>
+      <div class="attr">
+        <div class="attr-name">🍽 晚餐 Figlmüller（維也納炸豬排）<span class="badge badge-book">⚠ 尚未訂位</span></div>
+        <div class="attr-en">Figlmüller Bäckerstraße</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.figlmueller.at" target="_blank">🌐 官網／訂位</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Figlmueller+Backerstrasse+Vienna" target="_blank">📍 地圖</a></div>
+      </div>
+      <div class="hl">🔴 Figlmüller 8 人訂位請盡快處理，為維也納最熱門餐廳之一</div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>納許市場週四人較少，09:00 前逛最舒適；可嘗試市場早餐，品質好、種類多</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>美景宮「吻」是全程亮點之一，建議預購票，美景宮花園免費參觀可拍照</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>明天 07:30 接車，今晚用完餐後盡早回公寓整理行李、確認所有物品，做好出發準備</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 9: 7/10 返程 -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 9 · 7/10 (五) 返回台灣</div><div class="day-label">Airport Transfer 07:30 · CI064 11:15</div></div>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="attr"><div class="attr-name">🚐 07:30 Elife Transfer 接車 <span class="badge badge-ok">✓ 已訂</span></div><div class="attr-en">Pickup: Antonigasse 1, 1180 Wien</div><div style="font-size:12px;color:#444;margin-top:4px">Klook 訂單 PTM726822 · 前一天司機電話確認</div></div>
+      <div class="attr"><div class="attr-name">✈ 11:15 CI064 起飛</div><div class="attr-en">Vienna Schwechat T1A → Taipei Taoyuan T1</div><div style="font-size:12px;color:#444;margin-top:4px">抵達台北：7/11 (六) 05:30</div></div>
+      <div class="hl">⚠️ 請確認兩個房間都沒有遺留物品，退房前拍照存證</div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>07:30 準時在 Antonigasse 1 門口等候，司機僅等候 15 分鐘；建議 07:20 前下樓</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>VIE 機場 T1A 出境（注意：去程是 T3 入境，回程是 T1A 出境），請提前確認登機門</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>記得保留部分 HUF / EUR 現金或使用完畢；購買伴手禮剩餘外幣限額注意</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /itinerary -->
+
+
+<!-- ══════════════════════════════
+     TAB 4: 機場接送
+══════════════════════════════ -->
+<div class="section" id="transfer">
+  <div class="card">
+    <div class="card-title"><span class="icon">🚐</span>維也納機場接送 <span class="badge badge-ok">✓ 已訂</span><button class="lang-btn" data-trans="transfer" onclick="toggleLang(this,event)">🇩🇪</button></div>
+    <div class="info-row"><span class="il">訂單號</span><span class="iv">PTM726822 (Klook)</span></div>
+    <div class="info-row"><span class="il">預訂人</span><span class="iv">Chen Li Jen</span></div>
+    <div class="info-row"><span class="il">服務商</span><span class="iv">Elife Transfer</span></div>
+    <div class="info-row"><span class="il">接車時間</span><span class="iv">2026/07/10 (五) <b>07:30</b></span></div>
+    <div class="info-row"><span class="il">接車地點</span><span class="iv">Antonigasse 1, 1180 Wien<br>（維也納 18 區公寓門口）</span></div>
+    <div class="info-row"><span class="il">目的地</span><span class="iv">維也納國際機場 VIE</span></div>
+    <div class="info-row"><span class="il">車型</span><span class="iv">9 人座廂型車</span></div>
+    <div class="info-row"><span class="il">乘客上限</span><span class="iv">8 人</span></div>
+    <div class="info-row"><span class="il">行李上限</span><span class="iv">6 件（標準 24 吋計）</span></div>
+    <div class="info-row"><span class="il">免費等候</span><span class="iv">15 分鐘</span></div>
+    <div class="info-row"><span class="il">退款政策</span><span class="iv">接送前 24 小時免費取消</span></div>
+    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Antonigasse+1+1180+Wien" target="_blank">📍 接車地點</a>
+    &nbsp;
+    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Vienna+International+Airport+VIE" target="_blank">📍 VIE 機場</a>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📞</span>聯絡資訊</div>
+    <div class="info-row"><span class="il">供應商電話</span><span class="iv">+1-800-814-4204</span></div>
+    <div class="info-row"><span class="il">供應商信箱</span><span class="iv">support@elifelimo.com</span></div>
+    <div class="info-row"><span class="il">預訂人電話</span><span class="iv">+886 0952576371</span></div>
+    <div class="hl">⚠️ 前一天（7/9）當地供應商會電話確認接車資訊，請確保手機開啟國際漫遊可接聽</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🧳</span>行李注意事項</div>
+    <div style="font-size:13px;line-height:1.8">
+      <div>· 標準行李（≤24 吋）= 1 件</div>
+      <div>· 大型行李（24–28 吋）= 2 件計</div>
+      <div>· 超大行李（≥28 吋）= 3 件計</div>
+      <div>· 此車限 6 件（標準計算），8 人請提前確認行李數</div>
+      <div style="margin-top:8px;color:#c62828;font-weight:600">⚠ 若行李件數超過限制，司機有權拒絕服務且不退款</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">✈️</span>回程航班資訊</div>
+    <div class="info-row"><span class="il">航班</span><span class="iv">CI064 China Airlines</span></div>
+    <div class="info-row"><span class="il">起飛</span><span class="iv">2026/07/10 (五) <b>11:15</b></span></div>
+    <div class="info-row"><span class="il">出發航廈</span><span class="iv">維也納 Schwechat <b>T1A</b></span></div>
+    <div class="info-row"><span class="il">抵達</span><span class="iv">2026/07/11 (六) 05:30<br>桃園機場 第一航廈</span></div>
+    <div class="hl">請注意：去程在 T3 入境，<b>回程在 T1A 出境</b>，航廈不同！</div>
+  </div>
+</div><!-- /transfer -->
+
+
+<!-- ══════════════════════════════
+     TAB 5: 緊急聯絡
+══════════════════════════════ -->
+<div class="section" id="emergency">
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🆘</span>緊急電話<button class="lang-btn" data-trans="sos" onclick="toggleLang(this,event)">🇩🇪🇭🇺</button></div>
+    <div class="em-card">
+      <div class="em-title">🇪🇺 歐盟共用 / 🇦🇹 奧地利 / 🇭🇺 匈牙利</div>
+      <div class="em-row"><b>112</b> – 歐盟通用緊急電話（火警 / 救護 / 警察）</div>
+      <div class="em-row"><b>133</b> – 奧地利警察</div>
+      <div class="em-row"><b>144</b> – 奧地利救護車</div>
+      <div class="em-row"><b>122</b> – 奧地利消防</div>
+      <div class="em-row"><b>104</b> – 匈牙利救護</div>
+      <div class="em-row"><b>105</b> – 匈牙利消防</div>
+      <div class="em-row"><b>107</b> – 匈牙利警察</div>
+    </div>
+    <div class="em-card">
+      <div class="em-title">🇹🇼 台灣駐外機構</div>
+      <div class="em-row"><b>奧地利 · 台灣經貿辦事處</b></div>
+      <div class="em-row">📞 +43-1-212-4720（維也納）</div>
+      <div class="em-row" style="margin-top:6px"><b>匈牙利 · 台北貿易辦事處</b></div>
+      <div class="em-row">📞 +36-1-266-2884（布達佩斯）</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🏨</span>住宿緊急聯絡<button class="lang-btn" data-trans="sos-accomm" onclick="toggleLang(this,event)">🇩🇪🇭🇺</button></div>
+    <div class="info-row"><span class="il">布達佩斯公寓</span><span class="iv">+36 70 391 5060</span></div>
+    <div class="info-row"><span class="il">訂單</span><span class="iv">#6515930123</span></div>
+    <div class="info-row"><span class="il">地址</span><span class="iv">Király utca 19, 1075 Budapest</span></div>
+    <div style="margin-top:10px"></div>
+    <div class="info-row"><span class="il">維也納公寓</span><span class="iv">+43 1 4022604</span></div>
+    <div class="info-row"><span class="il">訂單</span><span class="iv">#6568272860</span></div>
+    <div class="info-row"><span class="il">地址</span><span class="iv">Antonigasse 1, 1180 Wien</span></div>
+    <div class="hl">維也納公寓無前台，緊急請直接電洽或 Booking.com 聯絡</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">✈️</span>航空公司緊急聯絡</div>
+    <div class="info-row"><span class="il">中華航空</span><span class="iv">+886-2-412-9000（台灣）</span></div>
+    <div class="info-row"><span class="il">訂位代號</span><span class="iv">ESNYU5</span></div>
+    <div class="info-row"><span class="il">機場接送</span><span class="iv">Elife Transfer<br>+1-800-814-4204</span></div>
+    <div class="info-row"><span class="il">Klook 訂單</span><span class="iv">PTM726822</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">💳</span>重要提醒</div>
+    <div style="font-size:13px;line-height:1.9">
+      <div>· 維也納公寓<b>不收現金</b>，請備妥信用卡</div>
+      <div>· 布達佩斯公寓入住需 <b>€100 現金押金</b></div>
+      <div>· 匈牙利貨幣：<b>HUF（福林）</b>，ATM 提領最划算</div>
+      <div>· 護照遺失：立即聯絡台灣駐外機構</div>
+      <div>· 布達佩斯 <b>6/24</b> 前可免費取消（訂單 #6515930123）</div>
+      <div>· 維也納 <b>6/23</b> 前可免費取消（訂單 #6568272860）</div>
+    </div>
+  </div>
+
+</div><!-- /emergency -->
+
+<!-- ══════════════════════════════
+     TAB 6: 旅行小TIP
+══════════════════════════════ -->
+<div class="section" id="tips">
+
+  <!-- Tip 1: HUF換匯 -->
+  <div class="tip-card">
+    <div class="tip-title"><span class="tip-num">1</span>💵 如何換 HUF 最划算</div>
+
+    <div class="tip-row">
+      <span class="tip-icon">✅</span>
+      <div class="tip-text"><span class="good">推薦：當地銀行 ATM</span><br>
+        OTP Bank、K&amp;H Bank、Erste 等當地銀行 ATM，匯率最接近銀行間匯率。市區到處有，Keleti 車站、Deák tér 附近都有。<br>
+        <b>一次提多一點</b>（例如 50,000–100,000 HUF）減少手續費次數。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">✅</span>
+      <div class="tip-text"><span class="good">推薦：Wise / Revolut 實體卡</span><br>
+        接近即時匯率、手續費極低。ATM 提領同樣適用。若家中有人已有這類卡，優先使用。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">💶</span>
+      <div class="tip-text"><span class="good">手上有歐元現金？→ 布達佩斯優質兌換所</span><br>
+        歐元是布達佩斯最常交換的幣別，競爭激烈、匯率緊，<b>好的兌換所 EUR→HUF 幾乎零手續費</b>，划算程度不輸 ATM 提款。<br>
+        ✅ 推薦區域：<b>Oktogon 站周邊</b>、<b>Blaha Lujza tér 周邊</b>的兌換所，當地人也在用，匯率透明。<br>
+        🚫 同樣要避開：機場兌換亭、Váci utca 沿街攤位、鏈橋周邊——這些專坑觀光客，即使是換歐元也差很多。<br>
+        💡 <b>換之前先用手機查 Google「EUR HUF」即時匯率</b>，對照兌換所看板，差距超過 1.5% 就換下一家。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">❌</span>
+      <div class="tip-text"><span class="bad">避開：機場換匯亭、觀光區私人換匯所</span><br>
+        Váci Street、鏈橋周邊的 Exchange 攤位匯率可能差 8–15%，8 人旅行損失可觀。<br>
+        看到「0% commission」招牌反而要小心——通常靠匯率差賺錢。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">⚠️</span>
+      <div class="tip-text"><span class="bad">避開：Airport ATM（機場內）</span><br>
+        機場 ATM 常有「Dynamic Currency Conversion（DCC）」選項，要選<b>以 HUF 計算（Forint）</b>，絕對不要選「以台幣/美元計算」，後者匯率更差。
+      </div>
+    </div>
+
+    <div class="tip-hl">💡 實用估算：8 人在布達佩斯 5 天，現金需求約 160,000–200,000 HUF（含市場、小費、門票、HÉV）。ATM 分 2–3 次提領即可。</div>
+  </div>
+
+  <!-- Tip 2: 匈牙利小費文化 -->
+  <div class="tip-card">
+    <div class="tip-title"><span class="tip-num">2</span>🍽️ 匈牙利 & 奧地利小費文化</div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🇭🇺</span>
+      <div class="tip-text"><b>匈牙利：說出含小費的總金額</b><br>
+        帳單來了之後，不要把錢放在桌上——匈牙利習慣是直接告訴服務生你<b>要付多少</b>（含小費），讓他找零。<br>
+        例：帳單 4,600 HUF → 直接說 <b>「Five thousand」或「5,000」</b>（服務生找你 400）<br>
+        把錢留在桌上走人在匈牙利會被視為忘記帶走，而非小費。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🇦🇹</span>
+      <div class="tip-text"><b>奧地利：結帳時說含小費金額</b><br>
+        做法相同——結帳時告訴服務生含小費的金額。<br>
+        例：帳單 €18.50 → 說 <b>「Twenty, please」</b>（給 €20，服務生不找零）<br>
+        比例約 <b>10%</b>，高品質餐廳可給 15%。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">☕</span>
+      <div class="tip-text"><b>咖啡廳、小吃攤</b><br>
+        不強制，若服務好可以湊整數。Szimpla 等酒吧不需要給小費。
+      </div>
+    </div>
+
+    <div class="tip-warn">⚠️ 8 人用餐帳單往往不含服務費，記得計算後一起給，別讓服務生跑 8 趟找零。</div>
+  </div>
+
+  <!-- Tip 3: Bolt App 叫車策略 -->
+  <div class="tip-card">
+    <div class="tip-title"><span class="tip-num">3</span>🚗 Bolt App · 8 人叫車最佳策略</div>
+
+    <div class="tip-row">
+      <span class="tip-icon">📱</span>
+      <div class="tip-text"><b>下載 Bolt App（匈牙利最主流）</b><br>
+        Bolt 在布達佩斯比 Uber 更普遍、更便宜，維也納也可用。出發前手機綁定信用卡備妥。<br>
+        iOS / Android 均可，<b>8 人中建議至少 2 支手機裝好</b>。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🚕</span>
+      <div class="tip-text"><b>8 人同時叫 2 台</b><br>
+        Bolt 標準車型限 4 人，叫 Bolt XL（7 人座）需另付溢價。<br>
+        建議策略：<b>兩支手機同時各叫 1 台 4 人座</b>，行李平均分配，比叫一台 XL 便宜又快。<br>
+        從 Keleti 到 Király utca 19 約 <b>1,500–2,000 HUF / 車</b>，兩台合計約 400 台幣。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🌧️</span>
+      <div class="tip-text"><b>適合用 Bolt 的時機</b><br>
+        · 下大雨 · 攜帶大量戰利品（市場購物後）<br>
+        · 夜間遊船結束後回公寓 · 趕時間（如 13:10 前要到 Wien Hbf）
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🚫</span>
+      <div class="tip-text"><b>避開街頭攔車</b><br>
+        布達佩斯路邊攔的計程車收費不透明，有些針對觀光客。<b>一律用 App 叫車</b>，費用透明有保障。
+      </div>
+    </div>
+
+    <div class="tip-hl">💡 Bolt 使用推薦碼可各得免費乘車點數，有時間的話出發前可邀請家族成員互相推薦。</div>
+  </div>
+
+
+  <!-- Tip 4: 信用卡/金融卡出國提款需知 -->
+  <div class="tip-card">
+    <div class="tip-title"><span class="tip-num">4</span>💳 出國提款：銀行卡準備清單</div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🔍</span>
+      <div class="tip-text"><b>確認卡片網路標誌</b><br>
+        卡背面必須有 <b>Visa Plus</b> 或 <b>Mastercard Cirrus</b> 的標誌，才能在匈牙利／奧地利 ATM 提款。<br>
+        純銀聯（UnionPay）卡在布達佩斯接受度低，<b>不建議單靠銀聯</b>。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">📞</span>
+      <div class="tip-text"><b>出發前打給銀行，確認三件事</b><br>
+        ① <b>開通海外 ATM 提款功能</b>——多數台灣金融卡預設關閉，需主動申請<br>
+        ② <b>調高海外單日提款上限</b>——預設約 NT$10,000，建議提升至 NT$30,000–50,000 以上（8 人旅行現金需求大）<br>
+        ③ <b>告知出行日期與國家</b>——部分銀行偵測到海外交易會直接鎖卡，事先告知可避免
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🔢</span>
+      <div class="tip-text"><b>PIN 碼確認</b><br>
+        匈牙利 ATM 使用 <b>4 位數 PIN</b>。若你的卡是 6 位數 PIN，大多數現代 ATM 仍可輸入前 4 位——但建議出發前向銀行確認。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">💸</span>
+      <div class="tip-text"><b>費用預期（台灣銀行卡）</b><br>
+        每次提款：固定手續費約 NT$75–100 ＋ 幣別轉換費約 1–1.5%。<br>
+        策略：<b>單次提多一點</b>（50,000–80,000 HUF），降低手續費佔比。
+      </div>
+    </div>
+
+    <div class="tip-row">
+      <span class="tip-icon">🌍</span>
+      <div class="tip-text"><b>Wise 卡（最省手續費選項）</b><br>
+        接近銀行間匯率、每月有免手續費提款額度。<br>
+        需提前 <b>2–3 週申請</b>（實體卡寄送至台灣需時間）。有時間的話強烈推薦全家出發前各辦一張。
+      </div>
+    </div>
+
+    <div class="tip-warn">⚠️ 備用：至少帶 <b>2 張不同銀行的卡</b>，以防其中一張被鎖或 ATM 讀不到。信用卡也可在 ATM 預借現金，但手續費高，當最後備案使用。</div>
+  </div>
+
+</div><!-- /tips -->
+
+
+
+<div class="section" id="food">
+
+  <!-- ═══ 布達佩斯 ═══ -->
+  <div class="food-city-hdr hu">🇭🇺 布達佩斯美食</div>
+
+  <div class="food-cat-lbl">🍽 餐廳（已排入行程）</div>
+
+  <!-- Parasztkonyha -->
+  <div class="food-card">
+    <div class="food-name">
+      Parasztkonyha
+      <span class="food-tag food-tag-r">餐廳</span>
+      <span class="food-tag food-tag-in">✅ Day 5 已排入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Ferenciek tere 7–8, Budapest</span>
+      <span>⏰ 11:00–23:00</span>
+      <span>💰 ~3,500–6,000 HUF/人</span>
+    </div>
+    <div class="food-desc">傳統匈牙利家常菜，古拉什湯、燉牛肉、醃高麗菜豬肉等道地料理。位於市中心，步行可達中央大市場。<br><b>Day 5 (7/6) 18:30</b> 晚餐，遊船前用餐首選。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Parasztkonyha+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <!-- Gettó Gulyás -->
+  <div class="food-card">
+    <div class="food-name">
+      Gettó Gulyás
+      <span class="food-tag food-tag-r">餐廳</span>
+      <span class="food-tag food-tag-warn">⚠ Day 4 尚未訂位</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Wesselényi utca 18, Budapest VII</span>
+      <span>⏰ 12:00–23:00</span>
+      <span>💰 ~3,000–5,500 HUF/人</span>
+    </div>
+    <div class="food-desc">猶太區內的人氣匈牙利餐廳，古拉什（Gulyás）湯品質口碑極佳，在地人也常去。距 Szimpla Kert 步行約 5 分鐘。<br><b>Day 4 (7/5) 晚餐</b>——逛完 Szimpla 農夫市集後的晚餐首選。</div>
+    <div class="food-note">⚠ 8 人需提前訂位，請盡快安排。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Gettó+Gulyás+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-cat-lbl">🥨 街頭小吃・必吃</div>
+
+  <!-- Retro Lángos -->
+  <div class="food-card">
+    <div class="food-name">
+      Retro Lángos Budapest
+      <span class="food-tag food-tag-s">街頭小吃</span>
+      <span class="food-tag food-tag-new">🆕 新加入</span>
+    </div>
+    <div class="food-info">
+      <span>⏰ 11:00–22:00 每天</span>
+      <span>💰 ~800–1,800 HUF/份</span>
+    </div>
+    <div class="food-desc"><b>Lángos（朗果什）</b>是匈牙利最具代表性的街頭小吃——油炸麵餅，淋上酸奶油（tejföl）＋磨碎起司（reszelt sajt），熱騰騰剛出鍋最好吃。<br><br>
+    Retro Lángos 是布達佩斯口碑最好的品牌店，料好實在、現點現炸。有兩個便利據點：<br>
+    📍 <b>Bajcsy-Zsilinszky út 25</b>（M3 Arany János 站，近聖史蒂芬大教堂）<br>
+    📍 <b>Vécsey utca 3</b>（M2 Kossuth 站，近國會大廈）</div>
+    <div class="food-links">
+      <a class="food-link" href="https://retrolangos.hu" target="_blank">🌐 官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Retro+Lángos+Budapest+Bajcsy-Zsilinszky" target="_blank">📍 教堂店地圖</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Retro+Langos+Vecsey+Budapest" target="_blank">📍 國會店地圖</a>
+    </div>
+  </div>
+
+  <div class="food-cat-lbl">🛒 市集・市場</div>
+
+  <!-- Great Market Hall -->
+  <div class="food-card">
+    <div class="food-name">
+      中央大市場 Nagyvásárcsarnok
+      <span class="food-tag food-tag-m">市場</span>
+      <span class="food-tag food-tag-in">✅ Day 5 已排入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Vámház körút 1–3</span>
+      <span>⏰ 週一–五 06:00–17:00 ／ 週六 06:00–15:00 ／ 週日公休</span>
+    </div>
+    <div class="food-desc"><b>1 樓：</b>新鮮蔬菜、豬肉、魚、辣椒粉（Paprika）攤位<br>
+    <b>2 樓：</b>Lángos 攤位、鵝肝醬、醃菜、手工紀念品——<b>帶現金，這裡刷卡攤位不多</b><br>
+    建議 10:00 前逛完，人潮較少、食材最新鮮。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.piaconline.hu" target="_blank">🌐 官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Great+Market+Hall+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <!-- Szimpla Farmers Market -->
+  <div class="food-card">
+    <div class="food-name">
+      Szimpla 農夫市集
+      <span class="food-tag food-tag-m">市集</span>
+      <span class="food-tag food-tag-in">✅ Day 4 已排入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Kazinczy utca 14, District VII</span>
+      <span>⏰ <b>僅週日</b> 09:00–14:00</span>
+    </div>
+    <div class="food-desc">廢墟酒吧 Szimpla Kert 週日白天化身農夫市集，有機蔬果、在地手工食品、街頭小吃、手工藝品。氣氛悠閒、布達佩斯人週末最愛。<br>這是行程中唯一的週日，絕對不能錯過！</div>
+    <div class="food-links">
+      <a class="food-link" href="https://szimpla.hu" target="_blank">🌐 官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-cat-lbl">🍸 酒吧・景觀</div>
+
+  <!-- Szimpla Kert -->
+  <div class="food-card">
+    <div class="food-name">
+      Szimpla Kert 廢墟酒吧
+      <span class="food-tag food-tag-b">酒吧</span>
+      <span class="food-tag food-tag-in">✅ Day 2 已排入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Kazinczy utca 14, District VII</span>
+      <span>⏰ 12:00 起每日開放，週末至深夜</span>
+      <span>💰 啤酒 ~600–900 HUF</span>
+    </div>
+    <div class="food-desc">布達佩斯最具代表性的廢墟酒吧（Ruin Bar），由廢棄公寓改建而成，各種古怪裝置藝術佈滿空間。供應本地 Dreher 啤酒和調酒，不需要給小費。<b>Day 2 (7/3) 晚間</b>前往感受猶太區夜晚氛圍。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <!-- Leo Rooftop Bar -->
+  <div class="food-card">
+    <div class="food-name">
+      Leo Rooftop Bar
+      <span class="food-tag food-tag-b">景觀酒吧</span>
+      <span class="food-tag food-tag-new">🆕 新加入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 布達區，鏈橋附近豪華飯店頂樓</span>
+      <span>💰 調酒 ~2,500–4,500 HUF</span>
+    </div>
+    <div class="food-desc">布達佩斯的隱藏景觀寶石。從屋頂俯瞰多瑙河、夜間點燈的國會大廈全景，是結束一天探索的完美收尾。<br>供應創意招牌調酒、優質葡萄酒、西班牙小點（tapas）與甜點。<br><b>最佳造訪時機：日落前抵達</b>，享受夕陽漸轉夜景的魔幻過渡，人潮也較少。<br>💡 推薦順序：布達城堡 → 步行鏈橋 → Leo Rooftop 收尾</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Leo+Rooftop+Bar+Budapest" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <!-- ═══ 維也納 ═══ -->
+  <div class="food-city-hdr at" style="margin-top:20px">🇦🇹 維也納美食</div>
+
+  <div class="food-cat-lbl">🍽 餐廳（已排入行程）</div>
+
+  <!-- Figlmüller -->
+  <div class="food-card">
+    <div class="food-name">
+      Figlmüller Bäckerstraße
+      <span class="food-tag food-tag-r">餐廳</span>
+      <span class="food-tag food-tag-warn">⚠ Day 8 尚未訂位</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Bäckerstraße 6, 1st district Wien</span>
+      <span>⏰ 11:00–22:30 每日</span>
+      <span>💰 ~€18–28/人</span>
+    </div>
+    <div class="food-desc">維也納最著名的炸豬排（Wiener Schnitzel）餐廳，豬排大到超出盤子邊緣，傳承逾百年的老字號。<b>Day 8 (7/9) 晚餐</b>——納許市場後的完美收尾。<br>位於第一區舊城，步行可達聖史蒂芬大教堂。</div>
+    <div class="food-note">⚠ 為維也納人氣最高的餐廳之一，8 人訂位請<b>立即處理</b>，週四晚間也很搶手。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.figlmueller.at" target="_blank">🌐 訂位官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Figlmüller+Bäckerstraße+Vienna" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-cat-lbl">🛒 市場</div>
+
+  <!-- Naschmarkt -->
+  <div class="food-card">
+    <div class="food-name">
+      納許市場 Naschmarkt
+      <span class="food-tag food-tag-m">市場</span>
+      <span class="food-tag food-tag-in">✅ Day 8 已排入</span>
+    </div>
+    <div class="food-info">
+      <span>📍 U4 Kettenbrückengasse</span>
+      <span>⏰ 週一–六 06:00 起（週日公休）</span>
+    </div>
+    <div class="food-desc">維也納最著名的露天市場，綿延超過 500 公尺，新鮮食材、起司、橄欖、香料、醃漬品應有盡有。<b>週四人較少，09:00 前最舒適</b>。市場早餐品質好、種類多，強力推薦直接在攤位吃早餐。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.wienernaschmarkt.eu" target="_blank">🌐 官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Naschmarkt+Vienna" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+</div><!-- /food -->
+
+<script>
+function showTab(id, el) {
+  clearReadingFocus();
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.remove('active');
+    t.setAttribute('aria-selected', 'false');
+  });
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  el.setAttribute('aria-selected', 'true');
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleDay(hdr) {
+  const open = hdr.classList.toggle('open');
+  hdr.nextElementSibling.classList.toggle('open', open);
+  hdr.setAttribute('aria-expanded', String(open));
+}
+
+function clearReadingFocus(except) {
+  document.querySelectorAll('.reading-focus').forEach(block => {
+    if (block !== except) {
+      block.classList.remove('reading-focus');
+      block.setAttribute('aria-pressed', 'false');
+    }
+  });
+}
+
+function toggleReadingFocus(block) {
+  const willFocus = !block.classList.contains('reading-focus');
+  clearReadingFocus(block);
+  block.classList.toggle('reading-focus', willFocus);
+  block.setAttribute('aria-pressed', String(willFocus));
+}
+
+document.querySelectorAll('.card, .day-body, .tip-card, .food-card').forEach(block => {
+  block.classList.add('readable-block');
+  block.tabIndex = 0;
+  block.setAttribute('aria-label', '點選以切換放大閱讀');
+  block.setAttribute('aria-pressed', 'false');
+
+  block.addEventListener('click', event => {
+    if (event.target.closest('a, button, input, select, textarea')) return;
+    toggleReadingFocus(block);
+  });
+
+  block.addEventListener('keydown', event => {
+    if (event.target !== block || (event.key !== 'Enter' && event.key !== ' ')) return;
+    event.preventDefault();
+    toggleReadingFocus(block);
+  });
+});
+
+document.querySelectorAll('.day-hdr').forEach(hdr => {
+  hdr.setAttribute('role', 'button');
+  hdr.setAttribute('tabindex', '0');
+  hdr.setAttribute('aria-expanded', 'false');
+  hdr.addEventListener('keydown', event => {
+    if (event.target !== hdr || (event.key !== 'Enter' && event.key !== ' ')) return;
+    event.preventDefault();
+    toggleDay(hdr);
+  });
+});
+
+// Auto-open today's day based on date
+(function() {
+  const today = new Date();
+  const m = today.getMonth() + 1;
+  const d = today.getDate();
+  // Open first day by default
+  const first = document.querySelector('.day-hdr');
+  if (first) {
+    first.classList.add('open');
+    first.nextElementSibling.classList.add('open');
+    first.setAttribute('aria-expanded', 'true');
+  }
+})();
+
+// ── Language Panel ──
+const langData = {
+  // Transport
+  'leg2':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Wien Hauptbahnhof',
+    p:[['Zum Wien Hauptbahnhof, bitte.','請帶我去維也納中央車站'],
+       ['Wo ist der Zug (IC/Railjet) nach Wien Hauptbahnhof?','往維也納中央車站的火車在哪裡？'],
+       ['Ein Ticket nach Wien Hauptbahnhof, bitte.','一張往維也納中央車站的票，謝謝'],
+       ['Wie lange dauert die Fahrt?','車程多久？']] },
+  'leg3':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Budapest-Keleti',
+    p:[['Welches Gleis für den Railjet RJX 63 nach Budapest?','RJX63往布達佩斯幾號月台？'],
+       ['Ich suche Wagen 26.','我在找第26節車廂'],
+       ['Ist das der Zug nach Budapest-Keleti?','這是往布達佩斯的火車嗎？']] },
+  'leg4':{ flag:'🇭🇺', head:'Magyarul', dest:'Király utca 19, Budapest',
+    p:[['A Király utca tizenkilencbe szeretnék menni.','我要去Király街19號'],
+       ['Hol van a 2-es metró (M2)?','M2地鐵在哪裡？'],
+       ['A Blaha Lujza térre szeretnék menni.','我要到Blaha Lujza廣場'],
+       ['Mennyi a jegy?','票多少錢？']] },
+  'bpTransit':{ flag:'🇭🇺', head:'Magyarul', dest:'Budapest 公共交通',
+    p:[['Hol van a Deák Ferenc tér?','Deák Ferenc廣場在哪裡？'],
+       ['Kérek egy metróbérletet.','我要買一張地鐵票'],
+       ['Hova megy ez a metró?','這班地鐵去哪裡？'],
+       ['Melyik metróval jutok a Király utcára?','搭哪條地鐵到Király街？']] },
+  'leg5':{ flag:'🇭🇺', head:'Magyarul', dest:'Szentendre',
+    p:[['Hol indul a HÉV H5 Szentendrére?','往聖安德烈的HÉV H5從哪裡出發？'],
+       ['Egy jegyet Szentendrére, kérem.','一張往聖安德烈的票，謝謝'],
+       ['Mikor indul a következő vonat?','下一班車幾點開？'],
+       ['Ez a vonat Szentendrére megy?','這班去聖安德烈嗎？']] },
+  'leg6':{ flag:'🇭🇺', head:'Magyarul', dest:'Budapest-Keleti pályaudvar',
+    p:[['A bécsi Railjet melyik vágányon indul?','往維也納的Railjet幾號月台？'],
+       ['A huszonhatodik kocsit keresem.','我在找第26節車廂'],
+       ['Ez a vonat Bécsbe megy?','這班去維也納嗎？']] },
+  'leg7':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Antonigasse 1, 1180 Wien',
+    p:[['Zum Antonigasse 1, bitte.','請到Antonigasse 1號（計程車用）'],
+       ['Wie komme ich zur U1-Station Wien Hbf?','怎麼到Wien Hbf的U1站？'],
+       ['Welche Straßenbahn fährt Richtung Schottentor?','往Schottentor方向的電車幾號？']] },
+  'viennaTransit':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Wien 市區交通',
+    p:[['Wo ist die nächste U-Bahn-Station?','最近的地鐵站在哪裡？'],
+       ['Eine 72-Stunden-Karte, bitte.','一張72小時交通票，謝謝'],
+       ['Fährt diese Linie zum Stephansplatz?','這條線到史蒂芬廣場嗎？'],
+       ['Wo kaufe ich ein Ticket?','在哪裡買票？']] },
+  'leg8':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Flughafen Wien (VIE)',
+    p:[['Unser Transfer kommt um 7:30 Uhr.','我們的接送7:30來'],
+       ['Wo ist Terminal 1A für China Airlines?','中華航空的1A航廈在哪裡？'],
+       ['Wir warten auf unseren Fahrer.','我們在等我們的司機']] },
+  // Immigration
+  'imm-flight':{ flag:'🇩🇪', head:'Einreise · Auf Deutsch', dest:'Einreise Wien',
+    p:[['Wir kommen aus Taiwan mit Flug CI063.','我們從台灣搭CI063來'],
+       ['Wir sind eine Reisegruppe von 8 Personen.','我們是8人旅遊團'],
+       ['Wir bleiben 9 Nächte in Österreich und Ungarn.','我們在奧匈住9晚'],
+       ['Rückflug: CI064 am 10. Juli um 11:15.','回程：7月10日CI064 11:15']] },
+  'imm-accomm':{ flag:'🇩🇪🇭🇺', head:'住宿 Unterkunft / Szállás', dest:'',
+    p:[['🇩🇪 Wien: Antonigasse 1, 1180 Wien','維也納公寓地址'],
+       ['🇩🇪 Budapest: Király utca 19, 1075 Budapest','布達佩斯公寓地址'],
+       ['🇩🇪 Buchungsnummer: 6568272860 (Wien)  /  6515930123 (Budapest)','兩地訂房號碼'],
+       ['🇭🇺 Budapest szállás: Király utca 19. (száma: 6515930123)','布達佩斯訂房（匈文）'],
+       ['🇭🇺 Bécs szállás: Antonigasse 1, 1180 Wien (száma: 6568272860)','維也納訂房（匈文）']] },
+  // Days
+  'day1':{ flag:'🇩🇪', head:'Wien · Auf Deutsch', dest:'Willkommen in Wien!',
+    p:[['Wir sind gerade aus Taiwan angekommen.','我們剛從台灣抵達'],
+       ['Wo ist der Zug zum Hauptbahnhof?','到中央車站的火車在哪裡？'],
+       ['Können Sie uns helfen?','您能幫我們嗎？'],
+       ['Wo gibt es einen Gepäckraum?','行李寄存在哪裡？']] },
+  'day2':{ flag:'🇭🇺', head:'Budavár · Magyarul', dest:'Budavári negyed',
+    p:[['A Budai Várba szeretnénk menni.','我們想去布達城堡'],
+       ['Hol van a Halászbástya?','漁夫堡在哪裡？'],
+       ['Mennyi a belépő a Mátyás-templomba?','馬提亞斯教堂多少錢？'],
+       ['Hol van a Sikló (fogasút)?','城堡纜車在哪裡？']] },
+  'day3':{ flag:'🇭🇺', head:'Szentendre · Magyarul', dest:'Szentendre',
+    p:[['Hol van a Kovács Margit Múzeum?','科瓦奇博物館在哪裡？'],
+       ['Mennyibe kerül a belépő?','入場費多少？'],
+       ['Lehet hitelkártyával fizetni?','可以刷卡嗎？'],
+       ['Hol a HÉV-megálló?','HÉV站在哪裡？']] },
+  'day4':{ flag:'🇭🇺', head:'Városliget · Magyarul', dest:'Széchenyi-fürdő',
+    p:[['Hol van a Széchenyi-fürdő?','塞切尼溫泉在哪裡？'],
+       ['Kérek egy fürdőjegyet.','我要一張浴場票'],
+       ['Kötelező az úszósapka?','泳帽是必備的嗎？'],
+       ['Mikor zár a fürdő?','溫泉幾點關門？']] },
+  'day5':{ flag:'🇭🇺', head:'Piac & Hajóút · Magyarul', dest:'Nagyvásárcsarnok',
+    p:[['Hol van a Nagyvásárcsarnok?','中央大市場在哪裡？'],
+       ['Mennyibe kerül ez?','這多少錢？'],
+       ['Hol van a Jane Haining rakpart?','Jane Haining碼頭在哪裡？'],
+       ['Mikor indul a hajó?','船幾點出發？']] },
+  'day6':{ flag:'🇭🇺', head:'Indulás Bécsbe · Magyarul', dest:'Keleti pályaudvar',
+    p:[['A bécsi vonatra szeretnék szállni.','我想搭往維也納的火車'],
+       ['Melyik vágányon áll a bécsi Railjet?','往維也納的Railjet幾號月台？'],
+       ['A huszonhatodik kocsit keresem.','我在找第26節車廂']] },
+  'day7':{ flag:'🇩🇪', head:'Schönbrunn & Prater · Auf Deutsch', dest:'Schloss Schönbrunn',
+    p:[['Wo ist der Eingang zum Schloss Schönbrunn?','熊布朗宮入口在哪？'],
+       ['Ich habe ein Online-Ticket.','我有網路預購票'],
+       ['Wo ist das Riesenrad im Prater?','普拉特的摩天輪在哪裡？'],
+       ['Eine Fahrkarte für das Riesenrad, bitte.','一張摩天輪票，謝謝']] },
+  'day8':{ flag:'🇩🇪', head:'Naschmarkt & Belvedere · Auf Deutsch', dest:'Naschmarkt / Oberes Belvedere',
+    p:[['Wo ist das Obere Belvedere?','上美景宮在哪裡？'],
+       ['Wo ist der Naschmarkt?','納許市場在哪裡？'],
+       ['Wir haben eine Reservierung bei Figlmüller.','我們在Figlmüller有訂位'],
+       ['Ich habe ein Online-Ticket.','我有網路預購票']] },
+  'day9':{ flag:'🇩🇪', head:'Abreise · Auf Deutsch', dest:'Terminal 1A – Flughafen Wien',
+    p:[['Unser Fahrer holt uns um 7:30 Uhr ab.','我們的司機7:30來接'],
+       ['Wo ist Terminal 1A für China Airlines?','中華航空的1A航廈在哪裡？'],
+       ['Wir fliegen mit China Airlines CI064.','我們搭CI064'],
+       ['Wo ist der Check-in-Schalter?','報到櫃台在哪裡？']] },
+  // Emergency
+  'sos':{ flag:'🇩🇪🇭🇺', head:'緊急求助 Notfall', dest:'',
+    p:[['🇩🇪 Bitte rufen Sie einen Krankenwagen! (144)','奧地利：請叫救護車！'],
+       ['🇩🇪 Bitte rufen Sie die Polizei! (133)','奧地利：請報警！'],
+       ['🇩🇪 Ich brauche sofort Hilfe!','奧地利：我需要幫助！'],
+       ['🇭🇺 Kérem, hívjon mentőt! (104)','匈牙利：請叫救護車！'],
+       ['🇭🇺 Kérem, hívja a rendőrséget! (107)','匈牙利：請報警！'],
+       ['🇭🇺 Segítséget kérek!','匈牙利：我需要幫助！']] },
+  'sos-accomm':{ flag:'🇩🇪🇭🇺', head:'住宿地址 Adresse', dest:'',
+    p:[['🇩🇪 Wien: Antonigasse 1, 1180 Wien','維也納公寓'],
+       ['🇩🇪 Ich wohne in der Antonigasse 1.','我住在Antonigasse 1'],
+       ['🇭🇺 Budapest: Király utca 19, 1075','布達佩斯公寓'],
+       ['🇭🇺 A Király utca 19-ben lakom.','我住在Király街19號']] },
+  'transfer':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Flughafen Wien – T1A',
+    p:[['Unser Transfer von Elife kommt um 7:30 Uhr.','Elife司機7:30來接我們'],
+       ['Bitte warten Sie – unser Fahrer ist unterwegs.','請等一下，我們的司機在路上'],
+       ['Wo ist Terminal 1A?','1A航廈在哪裡？']] },
+};
+
+function buildLocalPanel(key) {
+  const d = langData[key];
+  if (!d) return '<div style="color:#999;font-size:12px">（無翻譯資料）</div>';
+  let h = `<div class="local-header">${d.flag}&ensp;${d.head}</div>`;
+  if (d.dest) h += `<div class="local-dest">${d.dest}</div>`;
+  for (const [t,n] of d.p) {
+    h += `<div class="local-phrase">${t}</div><div class="local-note">${n}</div>`;
+  }
+  return h;
+}
+
+function toggleLang(btn, e) {
+  if (e) e.stopPropagation();
+  const key = btn.dataset.trans;
+  // Support both .card and .day-hdr → sibling .day-body
+  let container;
+  const hdr = btn.closest('.day-hdr');
+  if (hdr) {
+    container = hdr.nextElementSibling;
+    // auto-open accordion if closed
+    if (!hdr.classList.contains('open')) {
+      hdr.classList.add('open');
+      if (container) container.classList.add('open');
+    }
+  } else {
+    container = btn.closest('.card');
+  }
+  if (!container) return;
+  let panel = container.querySelector(`.local-panel[data-for="${key}"]`);
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.className = 'local-panel';
+    panel.dataset.for = key;
+    panel.innerHTML = buildLocalPanel(key);
+    container.appendChild(panel);
+  }
+  const show = panel.classList.toggle('show');
+  btn.classList.toggle('active', show);
+}
+
+</script>
+
+</body>
+</html>
