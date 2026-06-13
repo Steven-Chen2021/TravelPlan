@@ -4,16 +4,250 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#123b4a">
-<meta http-equiv="refresh" content="0; url=trips/2026-07-01-danube-trilogy/">
-<title>TravelPlan</title>
-<link rel="canonical" href="trips/2026-07-01-danube-trilogy/">
+<meta name="description" content="TravelPlan — personal travel plans and journey archive.">
+<title>TravelPlan · Journey Archive</title>
 <style>
-html, body { min-height: 100%; }
-body { display: grid; place-items: center; margin: 0; background: #f7f0df; color: #123b4a; font-family: "Avenir Next", "Noto Sans TC", sans-serif; }
-a { color: inherit; font-weight: 700; }
+:root {
+  --danube: #123b4a;
+  --deep: #092b35;
+  --water: #2b6975;
+  --paprika: #a8322d;
+  --gold: #c6933b;
+  --cream: #f5eddc;
+  --paper: #fffdf7;
+  --ink: #26373a;
+  --muted: #6e7a79;
+  --line: #d9cdb5;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { min-height: 100%; background: var(--cream); }
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: "Avenir Next", "Noto Sans TC", "PingFang TC", sans-serif;
+  background-color: var(--cream);
+  background-image:
+    linear-gradient(rgba(18,59,74,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,59,74,.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; -webkit-tap-highlight-color: transparent; }
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 20px 66px;
+  color: #fffaf0;
+  background: linear-gradient(145deg, var(--deep), var(--danube) 60%, var(--water));
+  border-bottom: 4px solid var(--gold);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .16;
+  background-image:
+    radial-gradient(circle at 12px 12px, transparent 8px, rgba(255,255,255,.8) 8.5px, transparent 9px),
+    radial-gradient(circle at 0 0, transparent 8px, rgba(255,255,255,.55) 8.5px, transparent 9px);
+  background-size: 24px 24px;
+  transform: rotate(-7deg) scale(1.2);
+}
+
+.hero::after {
+  content: "TRAVEL / PLAN / REPEAT";
+  position: absolute;
+  right: -14px;
+  bottom: -8px;
+  color: rgba(255,255,255,.055);
+  font: 900 34px/1 Georgia, serif;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
+
+.hero-inner, main, footer { width: min(100%, 760px); margin-inline: auto; }
+.hero-inner { position: relative; z-index: 1; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #f1ce88;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--gold); }
+
+h1 {
+  max-width: 600px;
+  font: 700 clamp(35px, 11vw, 62px)/.96 Georgia, "Noto Serif TC", serif;
+  letter-spacing: -.045em;
+}
+
+h1 span { display: block; margin-top: 9px; color: #f1ce88; font: 800 .36em/1.2 "Avenir Next", sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+
+.intro { max-width: 470px; margin-top: 15px; color: rgba(255,250,240,.75); font: italic 14px/1.65 Georgia, serif; }
+
+.summary {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: min(calc(100% - 24px), 620px);
+  margin: -38px auto 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--paper);
+  box-shadow: 0 14px 32px rgba(31,48,49,.16);
+}
+
+.stat { padding: 13px 8px; text-align: center; border-right: 1px solid #e4dac7; }
+.stat:last-child { border-right: 0; }
+.stat strong { display: block; color: var(--danube); font: 700 20px/1 Georgia, serif; }
+.stat span { display: block; margin-top: 5px; color: var(--muted); font-size: 9px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+
+main { padding: 31px 12px 44px; }
+.section-head { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin: 0 3px 14px; }
+.section-head h2 { color: var(--danube); font: 700 23px/1.15 Georgia, "Noto Serif TC", serif; }
+.section-head p { color: var(--muted); font-size: 11px; font-weight: 700; }
+
+.trip-grid { display: grid; gap: 16px; }
+
+.trip-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0 10px 28px rgba(35,47,48,.12);
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.trip-card::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--paprika) 0 33.33%, #f6f0df 33.33% 66.66%, var(--green, #426b55) 66.66%);
+}
+
+.trip-card:active { transform: translateY(1px); }
+.trip-card:focus-visible { outline: 3px solid rgba(198,147,59,.65); outline-offset: 3px; }
+
+.trip-visual {
+  position: relative;
+  min-height: 182px;
+  padding: 22px 18px;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 79% 18%, rgba(241,206,136,.32) 0 8%, transparent 8.5%),
+    linear-gradient(150deg, #0c303b, var(--danube) 58%, #3b747a);
+}
+
+.trip-visual::before {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  right: -58px;
+  bottom: -155px;
+  border: 2px solid rgba(255,255,255,.18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 18px rgba(255,255,255,.035), 0 0 0 38px rgba(255,255,255,.025);
+}
+
+.trip-visual::after {
+  content: "BUDAPEST   —   WIEN";
+  position: absolute;
+  right: -2px;
+  bottom: 12px;
+  color: rgba(255,255,255,.1);
+  font: 900 18px/1 Georgia, serif;
+  letter-spacing: 2px;
+}
+
+.trip-status { display: inline-flex; padding: 5px 8px; border: 1px solid rgba(241,206,136,.5); border-radius: 3px; color: #f7d998; background: rgba(5,34,42,.34); font-size: 9px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.trip-visual h3 { position: relative; z-index: 1; max-width: 310px; margin-top: 19px; font: 700 31px/1.02 Georgia, "Noto Serif TC", serif; }
+.trip-visual h3 span { display: block; margin-top: 7px; color: #f1ce88; font: 800 12px/1.35 "Avenir Next", sans-serif; letter-spacing: .09em; }
+.route { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; margin-top: 17px; color: #d8e5e3; font-size: 11px; font-weight: 750; }
+.route i { display: block; width: 36px; height: 1px; background: var(--gold); }
+
+.trip-info { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; padding: 16px 17px; }
+.trip-date { color: var(--paprika); font-size: 11px; font-weight: 900; letter-spacing: .06em; }
+.trip-meta { margin-top: 5px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.open-label { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 8px 10px; border-radius: 4px; background: var(--danube); color: white; font-size: 11px; font-weight: 900; white-space: nowrap; }
+.open-label::after { content: "→"; color: #f1ce88; font-size: 16px; }
+
+.archive-note { margin-top: 19px; padding: 14px 15px; border: 1px dashed #c8b995; border-radius: 6px; color: #74684f; background: rgba(255,253,247,.58); font-size: 12px; line-height: 1.65; }
+.archive-note b { color: var(--danube); }
+
+footer { padding: 0 16px 30px; color: #847d6d; font: 10px/1.5 Georgia, serif; text-align: center; letter-spacing: .08em; text-transform: uppercase; }
+
+@media (min-width: 650px) {
+  .hero { padding: 46px 34px 82px; }
+  .trip-card:hover { transform: translateY(-3px); box-shadow: 0 17px 38px rgba(35,47,48,.17); }
+  .trip-card { display: grid; grid-template-columns: 1.5fr .9fr; }
+  .trip-info { grid-template-columns: 1fr; align-content: center; padding: 24px; }
+  .open-label { justify-content: center; margin-top: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
 </style>
 </head>
 <body>
-  <p>正在前往最新旅遊計劃：<a href="trips/2026-07-01-danube-trilogy/">2026 多瑙三城</a></p>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Personal Journey Archive</div>
+    <h1>TravelPlan<span>Every journey, kept in one place</span></h1>
+    <p class="intro">A growing collection of routes, reservations, discoveries and small details worth remembering.</p>
+  </div>
+</header>
+
+<section class="summary" aria-label="旅行摘要">
+  <div class="stat"><strong>1</strong><span>Journey</span></div>
+  <div class="stat"><strong>2</strong><span>Countries</span></div>
+  <div class="stat"><strong>9</strong><span>Days</span></div>
+</section>
+
+<main>
+  <div class="section-head">
+    <div><h2>旅遊計劃</h2><p>依出發日期收藏</p></div>
+    <p>2026 — PRESENT</p>
+  </div>
+
+  <div class="trip-grid">
+    <a class="trip-card" href="trips/2026-07-01-danube-trilogy/" aria-label="開啟 2026 多瑙三城旅遊計劃">
+      <div class="trip-visual">
+        <span class="trip-status">Upcoming Journey</span>
+        <h3>Danube Trilogy<span>多瑙三城 · 2026</span></h3>
+        <div class="route"><span>Taipei</span><i></i><span>Budapest</span><i></i><span>Vienna</span></div>
+      </div>
+      <div class="trip-info">
+        <div>
+          <div class="trip-date">2026.07.01 — 07.11</div>
+          <p class="trip-meta">匈牙利 · 奧地利<br>8 位旅人 · 城市、溫泉與多瑙河</p>
+        </div>
+        <span class="open-label">開啟計劃</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="archive-note"><b>Travel archive</b> · 未來每趟旅行都會依開始日期建立獨立目錄，並顯示於此入口頁。</div>
+</main>
+
+<footer>TravelPlan · Routes become stories</footer>
 </body>
 </html>
