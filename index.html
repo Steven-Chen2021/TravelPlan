@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#123b4a">
-<meta name="description" content="TravelPlan — personal travel plans and journey archive.">
-<title>TravelPlan · Journey Archive</title>
+<meta name="description" content="Steven Journey Album — personal travel plans and family journey archive.">
+<title>Steven Journey Album</title>
 <style>
 :root {
   --danube: #123b4a;
@@ -58,7 +58,7 @@ a { color: inherit; -webkit-tap-highlight-color: transparent; }
 }
 
 .hero::after {
-  content: "TRAVEL / PLAN / REPEAT";
+  content: "GO / SEE / REMEMBER";
   position: absolute;
   right: -14px;
   bottom: -8px;
@@ -141,6 +141,16 @@ main { padding: 31px 12px 44px; }
   background: linear-gradient(90deg, var(--paprika) 0 33.33%, #f6f0df 33.33% 66.66%, var(--green, #426b55) 66.66%);
 }
 
+.trip-card.yilan::after { background: linear-gradient(90deg, #276b73 0 38%, #f0c25a 38% 67%, #4d7651 67%); }
+.trip-card.yilan .trip-visual {
+  background:
+    radial-gradient(circle at 79% 18%, rgba(255,223,132,.42) 0 8%, transparent 8.5%),
+    linear-gradient(150deg, #245f68, #397d7a 58%, #729568);
+}
+.trip-card.yilan .trip-visual::after { content: "YILAN   —   FAMILY"; }
+.trip-card.yilan .trip-status { color: #fff0b8; border-color: rgba(255,233,159,.55); }
+.trip-card.yilan .trip-date { color: #276b73; }
+
 .trip-card:active { transform: translateY(1px); }
 .trip-card:focus-visible { outline: 3px solid rgba(198,147,59,.65); outline-offset: 3px; }
 
@@ -210,16 +220,16 @@ footer { padding: 0 16px 30px; color: #847d6d; font: 10px/1.5 Georgia, serif; te
 <body>
 <header class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">Personal Journey Archive</div>
-    <h1>TravelPlan<span>Every journey, kept in one place</span></h1>
-    <p class="intro">A growing collection of routes, reservations, discoveries and small details worth remembering.</p>
+    <div class="eyebrow">Steven's Personal Travel Collection</div>
+    <h1>Steven Journey Album<span>Routes, moments and family memories</span></h1>
+    <p class="intro">Every journey begins as a plan, then becomes a page in the album.</p>
   </div>
 </header>
 
 <section class="summary" aria-label="旅行摘要">
-  <div class="stat"><strong>1</strong><span>Journey</span></div>
-  <div class="stat"><strong>2</strong><span>Countries</span></div>
-  <div class="stat"><strong>9</strong><span>Days</span></div>
+  <div class="stat"><strong>2</strong><span>Journeys</span></div>
+  <div class="stat"><strong>3</strong><span>Places</span></div>
+  <div class="stat"><strong>22</strong><span>Travelers</span></div>
 </section>
 
 <main>
@@ -229,6 +239,21 @@ footer { padding: 0 16px 30px; color: #847d6d; font: 10px/1.5 Georgia, serif; te
   </div>
 
   <div class="trip-grid">
+    <a class="trip-card yilan" href="trips/2026-08-08-yilan-family-trip/" aria-label="開啟 2026 宜蘭家族旅行計劃">
+      <div class="trip-visual">
+        <span class="trip-status">Upcoming Family Trip</span>
+        <h3>Yilan Together<span>宜蘭家族旅行 · 2026</span></h3>
+        <div class="route"><span>頭城</span><i></i><span>壯圍</span><i></i><span>家族同遊</span></div>
+      </div>
+      <div class="trip-info">
+        <div>
+          <div class="trip-date">2026.08.08 — 08.09</div>
+          <p class="trip-meta">台灣 · 宜蘭<br>14 位家人 · 海鮮、戲水與動物王國</p>
+        </div>
+        <span class="open-label">開啟計劃</span>
+      </div>
+    </a>
+
     <a class="trip-card" href="trips/2026-07-01-danube-trilogy/" aria-label="開啟 2026 多瑙三城旅遊計劃">
       <div class="trip-visual">
         <span class="trip-status">Upcoming Journey</span>
@@ -248,6 +273,6 @@ footer { padding: 0 16px 30px; color: #847d6d; font: 10px/1.5 Georgia, serif; te
   <div class="archive-note"><b>Travel archive</b> · 未來每趟旅行都會依開始日期建立獨立目錄，並顯示於此入口頁。</div>
 </main>
 
-<footer>TravelPlan · Routes become stories</footer>
+<footer>Steven Journey Album · Routes become stories</footer>
 </body>
 </html>

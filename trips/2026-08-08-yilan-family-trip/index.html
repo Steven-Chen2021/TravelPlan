@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#245f68">
+<meta name="description" content="2026 宜蘭家族旅行，8月8日至8月9日，14人輕鬆行程。">
+<title>2026 · 宜蘭家族旅行</title>
+<style>
+:root { --sea:#245f68; --sea2:#397d7a; --field:#557a52; --sun:#d9a83c; --coral:#ae5141; --cream:#f5f0e3; --paper:#fffdf8; --ink:#293839; --muted:#6d7977; --line:#d9cfba; --shadow:0 10px 28px rgba(39,60,59,.12); }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { background:var(--cream); scroll-behavior:smooth; }
+body { min-height:100vh; color:var(--ink); font-family:"Avenir Next","Noto Sans TC","PingFang TC",sans-serif; background-color:var(--cream); background-image:linear-gradient(rgba(36,95,104,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(36,95,104,.035) 1px,transparent 1px); background-size:24px 24px; font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+a,button { -webkit-tap-highlight-color:transparent; }
+button { font:inherit; }
+
+header { position:relative; overflow:hidden; padding:13px 14px 11px; color:#fff; background:linear-gradient(145deg,#174b55,var(--sea) 58%,var(--sea2)); border-bottom:3px solid var(--sun); }
+header::before { content:""; position:absolute; inset:0; opacity:.15; background-image:radial-gradient(circle at 12px 12px,transparent 8px,rgba(255,255,255,.8) 8.5px,transparent 9px); background-size:24px 24px; transform:rotate(-7deg) scale(1.2); }
+header::after { content:"YILAN · FAMILY"; position:absolute; right:-4px; bottom:-6px; color:rgba(255,255,255,.07); font:900 24px/1 Georgia,serif; letter-spacing:2px; }
+.head-inner { position:relative; z-index:1; max-width:720px; margin:auto; }
+.back { display:inline-flex; align-items:center; gap:5px; color:#d8eee8; font-size:10px; font-weight:850; text-decoration:none; letter-spacing:.05em; }
+h1 { margin-top:5px; font:700 22px/1.08 Georgia,"Noto Serif TC",serif; }
+h1 span { margin-left:4px; color:#ffe097; font:800 .52em/1 "Avenir Next",sans-serif; letter-spacing:.08em; }
+.chips { display:flex; gap:6px; margin:8px -14px -2px; padding:0 14px 2px; overflow-x:auto; white-space:nowrap; scrollbar-width:none; }
+.chips::-webkit-scrollbar,.tabs::-webkit-scrollbar { display:none; }
+.chip { flex:none; padding:3px 7px; border:1px solid rgba(255,224,151,.44); border-radius:3px; background:rgba(7,49,56,.3); color:#fff9e8; font-size:10px; font-weight:800; }
+
+.tabs { position:sticky; top:0; z-index:20; display:flex; gap:8px; overflow-x:auto; padding:10px 12px; background:rgba(245,240,227,.96); border-bottom:1px solid rgba(217,168,60,.45); box-shadow:0 5px 16px rgba(38,55,55,.1); backdrop-filter:blur(12px); }
+.tab { flex:none; min-height:44px; padding:9px 13px; border:1px solid #cfc3aa; border-radius:5px; color:#61706f; background:var(--paper); font-size:13px; font-weight:800; cursor:pointer; }
+.tab.active { color:#fff; border-color:var(--sea); background:var(--sea); box-shadow:inset 0 -3px 0 var(--sun); }
+.tab:focus-visible,a:focus-visible { outline:3px solid rgba(217,168,60,.6); outline-offset:2px; }
+
+.section { display:none; max-width:620px; margin:auto; padding:15px 10px 34px; }
+.section.active { display:block; animation:fade .24s ease both; }
+@keyframes fade { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
+.card,.day { position:relative; margin-bottom:13px; overflow:hidden; border:1px solid var(--line); border-radius:7px; background:var(--paper); box-shadow:var(--shadow); }
+.card { padding:16px 14px; }
+.card::before { content:""; position:absolute; inset:0 auto 0 0; width:4px; background:linear-gradient(var(--sea2),var(--sun)); }
+.title { display:flex; align-items:center; gap:8px; margin-bottom:11px; padding-right:40px; color:var(--sea); font:700 17px/1.35 Georgia,"Noto Serif TC",serif; }
+
+.readable { cursor:zoom-in; outline:none; }
+.readable::after { content:"A+"; position:absolute; top:10px; right:10px; min-width:32px; padding:4px 6px; border:1px solid #b9c7c1; border-radius:4px; color:var(--sea); background:#eef5ef; font-size:10px; line-height:1.2; font-weight:900; text-align:center; }
+.readable.focus { cursor:zoom-out; background:#fffefa; box-shadow:0 0 0 2px var(--sea),0 16px 34px rgba(36,95,104,.18); }
+.readable.focus::after { content:"A−"; color:#fff; border-color:var(--coral); background:var(--coral); }
+.readable.focus .row,.readable.focus .item,.readable.focus .note,.readable.focus .detail { font-size:19px; line-height:1.75; }
+.readable.focus .title,.readable.focus .item-name { font-size:21px; }
+
+.row { display:grid; grid-template-columns:92px minmax(0,1fr); gap:10px; padding:9px 0; border-bottom:1px solid #eae2d2; font-size:14px; }
+.row:last-child { border-bottom:0; }
+.label { color:var(--muted); font-size:11px; font-weight:850; letter-spacing:.04em; }
+.value { text-align:right; font-weight:700; overflow-wrap:anywhere; }
+.value a { color:var(--sea); }
+.callout { margin:9px 0; padding:10px 12px; border-left:4px solid var(--sun); border-radius:0 5px 5px 0; background:#fff3d6; color:#5e5036; font-size:13px; }
+
+.day-head { width:100%; min-height:68px; display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; padding:12px 13px; border:0; color:#fff; background:linear-gradient(135deg,var(--sea),var(--sea2)); text-align:left; cursor:pointer; }
+.day-num { display:grid; place-items:center; width:40px; height:40px; border:1px solid rgba(255,255,255,.4); border-radius:50%; font:700 17px/1 Georgia,serif; }
+.day-head strong { display:block; font-size:15px; }
+.day-head small { display:block; margin-top:3px; color:#d8ebe6; font-size:10px; }
+.arrow { transition:transform .2s; }
+.day-head.open .arrow { transform:rotate(180deg); }
+.day-body { display:none; position:relative; padding:10px 14px 14px; }
+.day-body.open { display:block; }
+.item { position:relative; display:grid; grid-template-columns:68px minmax(0,1fr); gap:10px; padding:12px 0 12px 10px; border-bottom:1px dashed #d8ceba; font-size:14px; }
+.item:last-of-type { border-bottom:0; }
+.item::before { content:""; position:absolute; left:0; top:19px; width:5px; height:5px; border-radius:50%; background:var(--coral); }
+.time { color:var(--coral); font-size:11px; font-weight:900; }
+.item-name { color:#304a4b; font-size:15px; font-weight:850; }
+.detail { margin-top:3px; color:#5d6967; font-size:12px; line-height:1.65; }
+.links { display:flex; flex-wrap:wrap; gap:6px; margin-top:7px; }
+.btn { display:inline-flex; align-items:center; min-height:36px; padding:7px 9px; border:1px solid #a7beb9; border-radius:4px; color:#155765; background:#f4faf7; font-size:11px; font-weight:850; text-decoration:none; }
+.optional { margin-top:10px; padding:10px 11px; border:1px dashed #c9aa64; border-radius:5px; background:#fff8e6; color:#67593e; font-size:12px; }
+
+.check { display:flex; gap:10px; align-items:flex-start; padding:10px 0; border-bottom:1px solid #e9e1d1; font-size:14px; }
+.check:last-child { border-bottom:0; }
+.box { width:21px; height:21px; flex:none; margin-top:1px; border:2px solid #9c9b88; border-radius:3px; background:#fff; }
+.note { color:#65706e; font-size:11px; }
+.source-link { display:block; margin-top:12px; color:var(--sea); font-size:12px; font-weight:800; }
+
+@media (min-width:700px) { header { padding:17px 24px 14px; text-align:center; } h1 { font-size:27px; } .back { position:absolute; left:0; top:8px; } .chips { justify-content:center; margin:9px 0 -2px; } .tabs { justify-content:center; } }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <a class="back" href="../../">← Steven Journey Album</a>
+    <h1>Yilan Together <span>· 宜蘭家族旅行 2026</span></h1>
+    <div class="chips" aria-label="行程摘要">
+      <span class="chip">8/8–8/9</span><span class="chip">14 人同行</span><span class="chip">爺奶同遊</span><span class="chip">輕鬆愜意</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="宜蘭旅行章節">
+  <button class="tab active" role="tab" aria-selected="true" data-target="overview">📌 行程總覽</button>
+  <button class="tab" role="tab" aria-selected="false" data-target="days">🗓 每日行程</button>
+  <button class="tab" role="tab" aria-selected="false" data-target="stay">🏡 住宿資訊</button>
+  <button class="tab" role="tab" aria-selected="false" data-target="notes">✅ 出發提醒</button>
+</nav>
+
+<main>
+<section class="section active" id="overview">
+  <article class="card readable" tabindex="0" aria-pressed="false">
+    <h2 class="title">🌊 旅行基本資料</h2>
+    <div class="row"><span class="label">日期</span><span class="value">2026/08/08（六）– 08/09（日）</span></div>
+    <div class="row"><span class="label">成員</span><span class="value">14 人 · 爺爺奶奶至國小四年級</span></div>
+    <div class="row"><span class="label">核心節奏</span><span class="value">少移動、可避暑、全家同樂</span></div>
+    <div class="callout">原始 PDF 的星期標示為五／六；依 2026 年日曆校正為星期六／日。</div>
+  </article>
+
+  <article class="card readable" tabindex="0" aria-pressed="false">
+    <h2 class="title">📍 已確認行程錨點</h2>
+    <div class="row"><span class="label">8/8 09:30</span><span class="value">蘭楊蟹莊 · 釣蝦</span></div>
+    <div class="row"><span class="label">8/8 11:30</span><span class="value">蘭楊船菜 · 午餐</span></div>
+    <div class="row"><span class="label">8/8 17:30</span><span class="value">阿國海鮮 · 已訂位</span></div>
+    <div class="row"><span class="label">8/8 晚上</span><span class="value">兔彼兔莊園 · 住宿</span></div>
+    <div class="row"><span class="label">8/9 11:30</span><span class="value">壯圍穀倉 · 已訂位</span></div>
+  </article>
+</section>
+
+<section class="section" id="days">
+  <article class="day">
+    <button class="day-head open" aria-expanded="true"><span class="day-num">1</span><span><strong>8/8 星期六 · 頭城到壯圍</strong><small>釣蝦 · 博物館 · 戲水 · 海鮮</small></span><span class="arrow">▼</span></button>
+    <div class="day-body open readable" tabindex="0" aria-pressed="false">
+      <div class="item"><span class="time">09:30–11:30</span><div><div class="item-name">蘭楊蟹莊 · 釣蝦體驗</div><p class="detail">每竿 $330／70 分鐘，保證半斤蝦。14 人約需 12 支竿，出發前 2–3 天預約。</p><div class="links"><a class="btn" href="tel:0983428019">📞 0983-428-019</a><a class="btn" href="https://www.google.com/maps/search/?api=1&query=蘭楊蟹莊+頭城鎮頭濱路三段110號" target="_blank">📍 地圖</a></div></div></div>
+      <div class="item"><span class="time">11:30–13:00</span><div><div class="item-name">蘭楊船菜 · 午餐</div><p class="detail">就在蟹莊正對面，釣到的泰國蝦可請店家代烤或快炒，另可自行點餐。過馬路請留意車流並牽好孩子。</p></div></div>
+      <div class="item"><span class="time">13:00–15:00</span><div><div class="item-name">蘭陽博物館</div><p class="detail">車程約 5 分鐘。全程冷氣，適合正午避暑；13:30 有定時導覽，考古沙坑適合孩子。</p><div class="links"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=蘭陽博物館" target="_blank">📍 地圖</a></div></div></div>
+      <div class="item"><span class="time">15:00–17:00</span><div><div class="item-name">兔彼兔莊園 · 入住與戲水</div><p class="detail">沿台 2 線南下約 25 分鐘。爺奶優先入住一樓孝親套房，孩子戲水，大人休息或開麻將局。</p></div></div>
+      <div class="item"><span class="time">17:30</span><div><div class="item-name">阿國海鮮 · 晚餐（已訂位）</div><p class="detail">從莊園約 10 分鐘。餐廳僅營業至 19:00，務必準時出發。</p><div class="links"><a class="btn" href="tel:039303720">📞 03-930-3720</a><a class="btn" href="https://www.google.com/maps/search/?api=1&query=阿國海鮮+壯圍鄉壯濱路六段215巷6號" target="_blank">📍 地圖</a></div></div></div>
+      <div class="item"><span class="time">晚上</span><div><div class="item-name">莊園同樂與宜大雞肉串</div><p class="detail">Vic 帶回在地人氣烤肉串，搭配歡唱與電動麻將。</p></div></div>
+      <div class="optional"><b>選擇性：</b>壯圍番社同安廟口夜市，每週六 16:00–22:00，距莊園約 5 分鐘。</div>
+    </div>
+  </article>
+
+  <article class="day">
+    <button class="day-head" aria-expanded="false"><span class="day-num">2</span><span><strong>8/9 星期日 · 動物王國與返程</strong><small>早餐 · 動物互動 · 農村風味午餐</small></span><span class="arrow">▼</span></button>
+    <div class="day-body readable" tabindex="0" aria-pressed="false">
+      <div class="item"><span class="time">早上</span><div><div class="item-name">莊園早餐</div><p class="detail">可向民宿代訂早餐。全家慢慢用餐，退房時間為 11:00。</p></div></div>
+      <div class="item"><span class="time">09:00–11:00</span><div><div class="item-name">蘭陽動植物王國</div><p class="detail">從莊園步行可達。袋鼠、水豚、草泥馬與樹懶近距離互動；室內館有冷氣，長輩可在 CAPY CAFE 休息。</p><div class="links"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=蘭陽動植物王國" target="_blank">📍 地圖</a></div></div></div>
+      <div class="item"><span class="time">11:00</span><div><div class="item-name">退房與移車</div><p class="detail">行李放車上，前往壯圍穀倉，車程約 10 分鐘。</p></div></div>
+      <div class="item"><span class="time">11:30</span><div><div class="item-name">壯圍穀倉風味料理（已訂位）</div><p class="detail">以在地食材入菜的農村風味料理，作為旅程收尾。</p><div class="links"><a class="btn" href="tel:039383186">📞 03-938-3186</a><a class="btn" href="https://www.google.com/maps/search/?api=1&query=壯圍穀倉風味料理+壯圍鄉壯五路143號" target="_blank">📍 地圖</a></div></div></div>
+      <div class="item"><span class="time">午後</span><div><div class="item-name">賦歸</div><p class="detail">用完午餐後輕鬆踏上歸途。</p></div></div>
+    </div>
+  </article>
+</section>
+
+<section class="section" id="stay">
+  <article class="card readable" tabindex="0" aria-pressed="false">
+    <h2 class="title">🏡 兔彼兔莊園</h2>
+    <div class="row"><span class="label">地址</span><span class="value">宜蘭縣壯圍鄉紅葉路 62 之 11 號</span></div>
+    <div class="row"><span class="label">電話</span><span class="value"><a href="tel:0909138727">0909-138-727</a></span></div>
+    <div class="row"><span class="label">入住／退房</span><span class="value">15:00 起／翌日 11:00</span></div>
+    <div class="row"><span class="label">押金</span><span class="value">$3,000 · 整理乾淨可退</span></div>
+    <div class="row"><span class="label">停車</span><span class="value">10 個車位 · 3–4 台車無虞</span></div>
+    <div class="callout">超過 18:00 入住需提前電話告知；爺奶的一樓孝親套房請再次確認。</div>
+    <div class="links"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=兔彼兔莊園+壯圍鄉紅葉路62之11號" target="_blank">📍 莊園位置</a></div>
+  </article>
+  <article class="card readable" tabindex="0" aria-pressed="false">
+    <h2 class="title">🎤 莊園設施</h2>
+    <div class="check"><span class="box"></span><div>戶外戲水池</div></div><div class="check"><span class="box"></span><div>歡唱設備</div></div><div class="check"><span class="box"></span><div>電動麻將桌</div></div><div class="check"><span class="box"></span><div>烤肉場地</div></div><div class="check"><span class="box"></span><div>一樓孝親套房</div></div><div class="check"><span class="box"></span><div>步行可達蘭陽動植物王國</div></div>
+  </article>
+</section>
+
+<section class="section" id="notes">
+  <article class="card readable" tabindex="0" aria-pressed="false">
+    <h2 class="title">✅ 出發前核對</h2>
+    <div class="check"><span class="box"></span><div><b>預約蘭楊蟹莊</b><p class="note">出發前 2–3 天，14 人約 12 支竿。</p></div></div>
+    <div class="check"><span class="box"></span><div><b>確認阿國海鮮 17:30 訂位</b><p class="note">僅營業至 19:00，不能遲到。</p></div></div>
+    <div class="check"><span class="box"></span><div><b>確認孝親房與早餐</b><p class="note">訂房時備註爺奶一樓房、是否代訂早餐。</p></div></div>
+    <div class="check"><span class="box"></span><div><b>預購動物王國門票</b><p class="note">暑假旺季可先由 Klook 購票。</p></div></div>
+    <div class="check"><span class="box"></span><div><b>防曬與戲水用品</b><p class="note">帽子、防曬乳、風扇、飲水、泳衣與毛巾。</p></div></div>
+    <div class="check"><span class="box"></span><div><b>莊園規定</b><p class="note">室內禁菸、禁帶寵物、禁止煙火鞭炮。</p></div></div>
+    <a class="source-link" href="source-itinerary.pdf" target="_blank">查看原始確定行程 PDF →</a>
+  </article>
+</section>
+</main>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+  document.getElementById(tab.dataset.target).classList.add('active');
+  tab.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click',()=>showTab(tab)));
+document.querySelectorAll('.day-head').forEach(head => head.addEventListener('click',()=>{
+  const open=head.classList.toggle('open'); head.setAttribute('aria-expanded',String(open)); head.nextElementSibling.classList.toggle('open',open);
+}));
+function toggleRead(block) {
+  const on=!block.classList.contains('focus');
+  document.querySelectorAll('.readable.focus').forEach(b=>{ if(b!==block){b.classList.remove('focus');b.setAttribute('aria-pressed','false');} });
+  block.classList.toggle('focus',on); block.setAttribute('aria-pressed',String(on));
+}
+document.querySelectorAll('.readable').forEach(block=>{
+  block.addEventListener('click',e=>{if(!e.target.closest('a,button'))toggleRead(block);});
+  block.addEventListener('keydown',e=>{if(e.target===block&&(e.key==='Enter'||e.key===' ')){e.preventDefault();toggleRead(block);}});
+});
+</script>
+</body>
+</html>
