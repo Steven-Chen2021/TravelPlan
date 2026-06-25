@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0c4b52">
+<meta name="description" content="2026 Da Nang, Hue and Hoi An travel plan for Steven Journey Album.">
+<title>2026 · DAD 越南中部</title>
+<style>
+:root {
+  --lagoon:#0c4b52;
+  --teal:#16736e;
+  --jade:#5d9c73;
+  --sand:#f5e5c8;
+  --paper:#fffaf0;
+  --ink:#213a3d;
+  --muted:#687a73;
+  --coral:#c75d43;
+  --gold:#d4a24b;
+  --line:#ddcaa4;
+  --shadow:0 14px 32px rgba(19,58,61,.14);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { background:#f3e5c9; }
+body {
+  min-height:100vh;
+  color:var(--ink);
+  font-family:"Avenir Next","Noto Sans TC","PingFang TC",sans-serif;
+  background:
+    radial-gradient(circle at 16% 10%, rgba(255,255,255,.52) 0 8%, transparent 8.5%),
+    linear-gradient(90deg, rgba(12,75,82,.04) 1px, transparent 1px),
+    linear-gradient(rgba(12,75,82,.04) 1px, transparent 1px),
+    linear-gradient(180deg,#f7edd6,#efe1c3 58%,#e8d7b4);
+  background-size:220px 220px,24px 24px,24px 24px,100% 100%;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; -webkit-tap-highlight-color:transparent; }
+.hero {
+  position:relative;
+  overflow:hidden;
+  padding:16px 14px 22px;
+  color:#fff7e5;
+  background:
+    radial-gradient(circle at 83% 13%, rgba(255,218,123,.36) 0 9%, transparent 9.5%),
+    linear-gradient(135deg,#073840,var(--lagoon) 58%,#2f8a80);
+  border-bottom:4px solid var(--gold);
+}
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:-70px -90px auto auto;
+  width:210px;
+  height:210px;
+  border:2px solid rgba(255,255,255,.18);
+  border-radius:50%;
+  box-shadow:0 0 0 22px rgba(255,255,255,.045),0 0 0 44px rgba(255,255,255,.032);
+}
+.hero::after {
+  content:"DA NANG · HUE · HOI AN";
+  position:absolute;
+  right:-8px;
+  bottom:6px;
+  color:rgba(255,255,255,.08);
+  font:900 22px/1 Georgia,serif;
+  letter-spacing:2px;
+}
+.hero-inner, main, footer { width:min(100%,760px); margin-inline:auto; }
+.back { position:relative; z-index:1; display:inline-flex; margin-bottom:14px; color:#ffe9ad; font-size:12px; font-weight:900; text-decoration:none; }
+h1 { position:relative; z-index:1; max-width:640px; font:800 clamp(34px,10vw,58px)/.94 Georgia,"Noto Serif TC",serif; letter-spacing:-.04em; }
+h1 span { display:block; margin-top:8px; color:#ffe4a1; font:900 12px/1.4 "Avenir Next",sans-serif; letter-spacing:.16em; text-transform:uppercase; }
+.chips { position:relative; z-index:1; display:flex; gap:7px; flex-wrap:wrap; margin-top:14px; }
+.chip { padding:6px 8px; border:1px solid rgba(255,232,174,.5); border-radius:4px; background:rgba(0,0,0,.14); color:#fff4d8; font-size:11px; font-weight:900; }
+.tabs {
+  position:sticky;
+  top:0;
+  z-index:5;
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:9px 10px;
+  border-bottom:1px solid var(--line);
+  background:rgba(247,237,214,.94);
+  backdrop-filter:blur(10px);
+}
+.tab { flex:0 0 auto; min-height:42px; padding:9px 12px; border:1px solid var(--line); border-radius:6px; color:var(--lagoon); background:var(--paper); font-size:12px; font-weight:900; cursor:pointer; }
+.tab.active { color:#fff; border-color:var(--lagoon); background:linear-gradient(135deg,var(--lagoon),var(--teal)); box-shadow:0 8px 18px rgba(12,75,82,.18); }
+.tab:focus-visible,a:focus-visible,.day-head:focus-visible { outline:3px solid rgba(212,162,75,.65); outline-offset:2px; }
+main { padding:14px 10px 36px; }
+.section { display:none; animation:in .18s ease both; }
+.section.active { display:block; }
+@keyframes in { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+.grid { display:grid; gap:12px; }
+.card, .day {
+  position:relative;
+  overflow:hidden;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:rgba(255,250,240,.94);
+  box-shadow:var(--shadow);
+}
+.card::after {
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:4px;
+  background:linear-gradient(90deg,var(--lagoon),var(--gold),var(--coral));
+}
+.title { margin-bottom:12px; color:var(--lagoon); font:800 21px/1.2 Georgia,"Noto Serif TC",serif; }
+.row { display:grid; grid-template-columns:98px minmax(0,1fr); gap:9px; padding:10px 0; border-top:1px dashed #d6c6a5; }
+.row:first-of-type { border-top:0; }
+.label { color:#9a6546; font-size:11px; font-weight:950; letter-spacing:.04em; }
+.value { color:var(--ink); font-size:13px; line-height:1.58; font-weight:720; }
+.note { margin-top:10px; padding:11px; border:1px dashed #d1b676; border-radius:7px; color:#6b5630; background:#fff7df; font-size:12px; line-height:1.7; }
+.links { display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
+.btn { display:inline-flex; min-height:38px; align-items:center; padding:8px 10px; border:1px solid #b8c8bb; border-radius:6px; color:var(--lagoon); background:#f8fff7; font-size:12px; font-weight:900; text-decoration:none; }
+.timeline { display:grid; gap:12px; }
+.day { padding:0; }
+.day-head { width:100%; min-height:66px; display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; padding:12px; border:0; color:#fff; background:linear-gradient(135deg,var(--lagoon),var(--teal)); text-align:left; cursor:pointer; }
+.num { display:grid; width:34px; height:34px; place-items:center; border:1px solid rgba(255,255,255,.52); border-radius:50%; color:#ffe6a4; font:900 13px/1 Georgia,serif; }
+.day-head strong { display:block; font-size:15px; line-height:1.32; }
+.day-head small { display:block; margin-top:4px; color:#d8f3ed; font-size:11px; line-height:1.4; }
+.arrow { transition:transform .22s; }
+.day-head.open .arrow { transform:rotate(180deg); }
+.day-body { display:none; padding:14px; background:var(--paper); }
+.day-body.open { display:block; }
+.item { position:relative; padding:0 0 13px 18px; border-left:2px solid #dcc48e; }
+.item:last-child { padding-bottom:0; }
+.item::before { content:""; position:absolute; left:-6px; top:4px; width:10px; height:10px; border-radius:50%; background:var(--coral); }
+.time { color:#9a543e; font-size:11px; font-weight:950; letter-spacing:.05em; }
+.item-name { margin-top:3px; color:var(--lagoon); font-size:16px; font-weight:950; line-height:1.35; }
+.detail { margin-top:4px; color:#586b65; font-size:13px; line-height:1.72; }
+.check { display:grid; grid-template-columns:auto 1fr; gap:9px; padding:10px 0; border-top:1px dashed #d6c6a5; font-size:13px; line-height:1.62; }
+.check:first-of-type { border-top:0; }
+.box { width:17px; height:17px; margin-top:2px; border:2px solid var(--jade); border-radius:4px; }
+.source-link { display:block; margin-top:13px; padding:12px; border-radius:7px; color:#fff; background:linear-gradient(135deg,var(--lagoon),var(--teal)); text-align:center; text-decoration:none; font-weight:950; }
+footer { padding:0 14px 28px; color:#846f4e; font:10px/1.5 Georgia,serif; text-align:center; letter-spacing:.08em; text-transform:uppercase; }
+@media (min-width:680px) {
+  .hero { padding:26px 28px 34px; }
+  main { padding-top:20px; }
+  .grid.two { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:380px) {
+  .row { grid-template-columns:84px minmax(0,1fr); }
+  .card { padding:13px; }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <a class="back" href="../../">← Steven Journey Album</a>
+    <h1>DAD Vietnam <span>Da Nang · Hue · Hoi An 2026</span></h1>
+    <div class="chips" aria-label="行程摘要">
+      <span class="chip">9/9–9/13</span>
+      <span class="chip">2 travelers</span>
+      <span class="chip">Booking 3813</span>
+      <span class="chip">CI787 / CI790</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="DAD 旅行章節">
+  <button class="tab active" type="button" role="tab" aria-selected="true" data-target="overview">📌 總覽</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" data-target="daily">🗓 每日</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" data-target="included">🎟 包含</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" data-target="notes">✅ 提醒</button>
+</nav>
+
+<main>
+<section class="section active" id="overview">
+  <div class="grid two">
+    <article class="card">
+      <h2 class="title">✈️ 航班資訊</h2>
+      <div class="row"><span class="label">去程</span><span class="value">CI787 · 台北桃園 TPE → 峴港 DAD<br>2026/09/09 07:10–09:00</span></div>
+      <div class="row"><span class="label">回程</span><span class="value">CI790 · 峴港 DAD → 台北桃園 TPE<br>2026/09/13 17:30–21:20</span></div>
+      <div class="row"><span class="label">飛行時間</span><span class="value">約 2 小時 50 分，時刻皆為當地時間</span></div>
+      <div class="note">Outo 機場接駁原則為班機起飛前 3 小時出發；回程可先抓 9/13 14:30 從飯店大廳出發。</div>
+    </article>
+
+    <article class="card">
+      <h2 class="title">🧾 Outo 憑證</h2>
+      <div class="row"><span class="label">訂單</span><span class="value">Booking ID 3813</span></div>
+      <div class="row"><span class="label">行程</span><span class="value">順化皇城經典 ft. 峴港會安美山 6 日旅程</span></div>
+      <div class="row"><span class="label">方案</span><span class="value">2 人 / 高級房型 / Outo 辦到好 + 快速通關</span></div>
+      <div class="row"><span class="label">旅客</span><span class="value">CHEN LI JEN、CHEN YI CHING</span></div>
+      <a class="source-link" href="source-voucher.pdf" target="_blank">查看原始 Outo 行程憑證 PDF →</a>
+    </article>
+  </div>
+
+  <div class="grid two" style="margin-top:12px">
+    <article class="card">
+      <h2 class="title">🏨 住宿安排</h2>
+      <div class="row"><span class="label">9/9–9/12</span><span class="value">Prince Hotel Da Nang (Sel de Mer Hotel & Suites)<br>Deluxe Ocean View<br>92 Võ Nguyên Giáp, Mân Thái, Sơn Trà, Đà Nẵng 550000</span></div>
+      <div class="row"><span class="label">9/12</span><span class="value">Little Oasis Hội An<br>Deluxe Balcony<br>211 Lê Thánh Tông, Cẩm Châu, Hội An, Quảng Nam</span></div>
+      <div class="links">
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Sel+de+Mer+Hotel+%26+Suites+Da+Nang" target="_blank">📍 峴港住宿</a>
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Little+Oasis+Hoi+An" target="_blank">📍 會安住宿</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2 class="title">🧭 旅行節奏</h2>
+      <div class="check"><span class="box"></span><div>9/9 入境、SIM、接駁、入住，晚上峴港街頭美食導覽。</div></div>
+      <div class="check"><span class="box"></span><div>9/10 峴港城市導覽，晚上自由探索。</div></div>
+      <div class="check"><span class="box"></span><div>9/11 順化全日包車導覽，晚上自由探索。</div></div>
+      <div class="check"><span class="box"></span><div>9/12 美山聖地與會安古城，入住會安。</div></div>
+      <div class="check"><span class="box"></span><div>9/13 會安自由探索，下午返回峴港機場。</div></div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="daily">
+  <div class="timeline">
+    <article class="day">
+      <button class="day-head open" type="button" aria-expanded="true"><span class="num">1</span><span><strong>9/9 星期三 · 抵達峴港</strong><small>入境快速通關 · 接駁 · 美食導覽</small></span><span class="arrow">▼</span></button>
+      <div class="day-body open">
+        <div class="item"><div class="time">07:10–09:00</div><div class="item-name">CI787 台北桃園 → 峴港</div><div class="detail">抵達後依必看手冊辦理簽證／通關，領取 Viettel 5G SIM，完成換匯與機場接駁。</div></div>
+        <div class="item"><div class="time">抵達後</div><div class="item-name">接駁前往峴港市區</div><div class="detail">與司機會面後前往飯店；上車提供飯店名稱，可用 Google 翻譯確認。</div></div>
+        <div class="item"><div class="time">入住</div><div class="item-name">Sel de Mer Hotel & Suites</div><div class="detail">櫃檯提交護照與預訂憑證；入住後於 LINE 群組告知。</div></div>
+        <div class="item"><div class="time">18:00 · 3 hr</div><div class="item-name">峴港街頭美食導覽</div><div class="detail">集合地點：飯店大廳。開始時告知個人飲食偏好。</div></div>
+      </div>
+    </article>
+
+    <article class="day">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">2</span><span><strong>9/10 星期四 · 峴港城市導覽</strong><small>包車導覽 · 午餐咖啡 · 夜晚自由探索</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item"><div class="time">09:00 · 6 hr</div><div class="item-name">峴港全日包車導覽</div><div class="detail">集合地點：飯店大廳。含導遊、包車、門票、午餐與咖啡；攜帶防曬、飲用水。</div></div>
+        <div class="item"><div class="time">晚上</div><div class="item-name">自由探索</div><div class="detail">晚餐自理，可參考 Outo 必看手冊與越南自助攻略中的餐廳、酒吧、咖啡店地圖。</div></div>
+      </div>
+    </article>
+
+    <article class="day">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">3</span><span><strong>9/11 星期五 · 順化皇城</strong><small>Hue full-day private tour</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item"><div class="time">08:00 · 6 hr</div><div class="item-name">順化全日包車導覽</div><div class="detail">集合地點：飯店大廳。含導遊、包車、門票、午餐與咖啡；請攜帶防曬用品與飲用水。</div></div>
+        <div class="item"><div class="time">晚上</div><div class="item-name">自由探索</div><div class="detail">晚餐自理，使用 Outo 手冊內的順化 Day 建議與地圖收藏名單。</div></div>
+      </div>
+    </article>
+
+    <article class="day">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">4</span><span><strong>9/12 星期六 · 美山與會安</strong><small>My Son · Hoi An old town · night river</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item"><div class="time">09:00 · 6 hr</div><div class="item-name">前往美山聖地，會安古城探索</div><div class="detail">集合地點：飯店大廳。請自備防曬用品、飲用水。</div></div>
+        <div class="item"><div class="time">下午</div><div class="item-name">Little Oasis Hội An 入住</div><div class="detail">提交護照與預訂憑證辦理入住；入住後於 LINE 群組告知。</div></div>
+        <div class="item"><div class="time">晚上</div><div class="item-name">會安夜遊與精緻越料晚餐</div><div class="detail">憑證包含秋盆河夜遊船票、會安精緻越料晚餐與會安印象秀 HIGH 座位門票。</div></div>
+      </div>
+    </article>
+
+    <article class="day">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">5</span><span><strong>9/13 星期日 · 會安自由探索與返台</strong><small>Hoi An free time · DAD airport</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item"><div class="time">白天</div><div class="item-name">會安自由探索</div><div class="detail">飯店可協助置物；依 Outo 手冊探索古城、咖啡與伴手禮。</div></div>
+        <div class="item"><div class="time">約 14:30</div><div class="item-name">接駁前往峴港機場</div><div class="detail">Outo 憑證寫明班機起飛前 3 小時出發；CI790 17:30 起飛，建議抓 14:30。</div></div>
+        <div class="item"><div class="time">17:30–21:20</div><div class="item-name">CI790 峴港 → 台北桃園</div><div class="detail">抵達桃園後結束旅程。</div></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="included">
+  <div class="grid two">
+    <article class="card">
+      <h2 class="title">🎟 已包含項目</h2>
+      <div class="check"><span class="box"></span><div>峴港國際機場專人舉牌快速通關。</div></div>
+      <div class="check"><span class="box"></span><div>Viettel 5G SIM 卡，於峴港機場出境大廳依手冊領取。</div></div>
+      <div class="check"><span class="box"></span><div>峴港機場來回市區住宿接駁專車。</div></div>
+      <div class="check"><span class="box"></span><div>峴港街頭美食導覽 3 小時，含導遊、包車與 4–5 道料理。</div></div>
+      <div class="check"><span class="box"></span><div>峴港城市、順化、美山與會安相關導覽與門票。</div></div>
+      <div class="check"><span class="box"></span><div>會安夜遊秋盆河、精緻越料晚餐、會安印象秀 HIGH 座位。</div></div>
+      <div class="check"><span class="box"></span><div>自選時段按摩每人 1 次。</div></div>
+    </article>
+
+    <article class="card">
+      <h2 class="title">🗺 Outo 支援</h2>
+      <div class="check"><span class="box"></span><div>Outo 峴港會安私房自助探索地圖。</div></div>
+      <div class="check"><span class="box"></span><div>Outo 越南旅人自助攻略與必看行程手冊。</div></div>
+      <div class="check"><span class="box"></span><div>Outo 峴港會安在地特約商家優惠。</div></div>
+      <div class="check"><span class="box"></span><div>Outo 越南在地團隊中英文線上客服支援群組（LINE / Whatsapp）。</div></div>
+      <div class="check"><span class="box"></span><div>旅行業責任保險：意外給付最低 200 萬元，最高 20 萬元意外醫療費用。</div></div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="notes">
+  <div class="grid two">
+    <article class="card">
+      <h2 class="title">✅ 出發前核對</h2>
+      <div class="check"><span class="box"></span><div>若有簽證或電子簽證，務必列印，一人一份。</div></div>
+      <div class="check"><span class="box"></span><div>行前 3 天再次確認憑證、必看手冊、Outo 越南攻略與 LINE 群組資訊。</div></div>
+      <div class="check"><span class="box"></span><div>護照、護照影本、信用卡、美金／台幣緊急金。</div></div>
+      <div class="check"><span class="box"></span><div>歐式雙圓孔轉接頭、充電線、SIM 卡針、隨身小包。</div></div>
+      <div class="check"><span class="box"></span><div>防曬用品、泳衣、防水袋、常用藥、口罩與濕紙巾。</div></div>
+    </article>
+
+    <article class="card">
+      <h2 class="title">🆘 緊急聯絡</h2>
+      <div class="row"><span class="label">台灣駐外</span><span class="value">越南台北經濟文化辦事處<br>北越：(84) 0913-219-986<br>南越：(84) 0903-927-019</span></div>
+      <div class="row"><span class="label">Outo 合作夥伴</span><span class="value">Katherine (84) 0982-249-809</span></div>
+      <div class="row"><span class="label">Outo 代表</span><span class="value">Doanh (84) 0973-074-824</span></div>
+      <div class="row"><span class="label">其他</span><span class="value">contact@outo.co<br>IG @outo.journeys / FB Outo 奧拓</span></div>
+      <div class="note">行程中有任何臨時調整或問題，優先在 LINE 群組聯繫在地客服；若未即時回覆，標記熱線客服專線。</div>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer>Steven Journey Album · Vietnam coast notes</footer>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.tab').forEach(button => {
+    const active = button === tab;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', String(active));
+  });
+  document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+  document.getElementById(tab.dataset.target).classList.add('active');
+  tab.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => showTab(tab)));
+document.querySelectorAll('.day-head').forEach(head => head.addEventListener('click', () => {
+  const open = head.classList.toggle('open');
+  head.setAttribute('aria-expanded', String(open));
+  head.nextElementSibling.classList.toggle('open', open);
+}));
+</script>
+</body>
+</html>

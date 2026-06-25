@@ -161,6 +161,16 @@ main { padding: 31px 12px 44px; }
 .trip-card.yilan .trip-status { color: #fff0b8; border-color: rgba(255,233,159,.55); }
 .trip-card.yilan .trip-date { color: #276b73; }
 
+.trip-card.dad::after { background: linear-gradient(90deg, #0c6b73 0 35%, #d3a044 35% 68%, #c65a42 68%); }
+.trip-card.dad .trip-visual {
+  background:
+    radial-gradient(circle at 78% 17%, rgba(255,222,126,.42) 0 8%, transparent 8.5%),
+    linear-gradient(150deg, #073840, #16736e 55%, #5d9c73);
+}
+.trip-card.dad .trip-visual::after { content: "DA NANG   —   HOI AN"; }
+.trip-card.dad .trip-status { color: #ffe9ad; border-color: rgba(255,233,173,.56); }
+.trip-card.dad .trip-date { color: #0c6b73; }
+
 .trip-card:active { transform: translateY(1px); }
 .trip-card:focus-visible { outline: 3px solid rgba(198,147,59,.65); outline-offset: 3px; }
 
@@ -237,9 +247,9 @@ footer { padding: 0 16px 30px; color: #847d6d; font: 10px/1.5 Georgia, serif; te
 </header>
 
 <section class="summary" aria-label="旅行摘要">
-  <div class="stat"><strong>2</strong><span>Journeys</span></div>
-  <div class="stat"><strong>3</strong><span>Places</span></div>
-  <div class="stat"><strong>22</strong><span>Travelers</span></div>
+  <div class="stat"><strong>3</strong><span>Journeys</span></div>
+  <div class="stat"><strong>4</strong><span>Places</span></div>
+  <div class="stat"><strong>24</strong><span>Travelers</span></div>
 </section>
 
 <main>
@@ -257,6 +267,21 @@ footer { padding: 0 16px 30px; color: #847d6d; font: 10px/1.5 Georgia, serif; te
   <div class="trip-grid" id="archive-trips" role="tabpanel" hidden></div>
 
   <div id="trip-source" hidden>
+    <a class="trip-card dad" href="trips/2026-09-09-dad-vietnam/" data-start="2026-09-09" data-end="2026-09-13" aria-label="開啟 2026 DAD 越南中部旅遊計劃">
+      <div class="trip-visual">
+        <span class="trip-status">Upcoming Vietnam Trip</span>
+        <h3>DAD Vietnam<span>峴港 · 順化 · 會安 2026</span></h3>
+        <div class="route"><span>Taipei</span><i></i><span>Da Nang</span><i></i><span>Hoi An</span></div>
+      </div>
+      <div class="trip-info">
+        <div>
+          <div class="trip-date">2026.09.09 — 09.13</div>
+          <p class="trip-meta">越南 · 峴港、順化、會安<br>2 位旅人 · Outo 憑證 3813</p>
+        </div>
+        <span class="open-label">開啟計劃</span>
+      </div>
+    </a>
+
     <a class="trip-card yilan" href="trips/2026-08-08-yilan-family-trip/" data-start="2026-08-08" data-end="2026-08-09" aria-label="開啟 2026 宜蘭家族旅行計劃">
       <div class="trip-visual">
         <span class="trip-status">Upcoming Family Trip</span>
