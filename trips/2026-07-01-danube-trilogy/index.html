@@ -56,6 +56,9 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
 .reading-focus .t-detail,.reading-focus .attr-link,.reading-focus .rem-title,.reading-focus .em-row,.reading-focus .food-desc { font-size:19px; line-height:1.75; }
 .reading-focus .attr-en,.reading-focus .cl-data,.reading-focus .food-info,.reading-focus .tip-hl,.reading-focus .tip-warn { font-size:17px; line-height:1.7; }
 .reading-focus .cl-item,.reading-focus .em-title { font-size:19px; line-height:1.65; }
+.reading-focus .attr-desc,.reading-focus .hunt-desc,.reading-focus .hunt-intro,.reading-focus .statue-tip { font-size:19px; line-height:1.85; }
+.reading-focus .hunt-name { font-size:21px; line-height:1.45; }
+.reading-focus .hunt-loc { font-size:17px; line-height:1.6; }
 .reading-focus .tip-num { width:34px; height:34px; font-size:18px; }
 .reading-focus [style*="font-size:13px"] { font-size:19px !important; line-height:1.75 !important; }
 
@@ -154,6 +157,22 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
 .cruise-tl > div:nth-child(odd) { background:#f0f6f4; }
 .cruise-tl time { font-weight:900; color:var(--danube); }
 .cruise-tl b { color:#8c382c; }
+.attr-desc { margin-top:7px; color:var(--ink); font-size:13.5px; line-height:1.8; }
+.statue-tip { margin:9px 0; padding:10px 12px; border-left:4px solid var(--danube); border-radius:0 5px 5px 0; background:#e7f0ef; color:#27433f; font-size:13.5px; line-height:1.72; }
+.statue-tip b { color:var(--danube); }
+.statue-tip a { color:var(--paprika); font-weight:800; text-decoration:underline; cursor:pointer; }
+
+/* Bronze-statue treasure hunt */
+.hunt-intro { margin-bottom:4px; color:var(--ink); font-size:14px; line-height:1.8; }
+.hunt-item { display:grid; grid-template-columns:auto minmax(0,1fr); gap:13px; align-items:start; padding:15px 0; border-bottom:1px solid var(--line); }
+.hunt-item:last-of-type { border-bottom:0; }
+.hunt-check { width:24px; height:24px; margin-top:3px; accent-color:var(--gold); cursor:pointer; flex:none; }
+.hunt-name { color:var(--danube); font-family:Georgia,"Noto Serif TC",serif; font-size:16.5px; font-weight:700; line-height:1.4; }
+.hunt-name span { color:var(--muted); font:italic 12px/1.4 Georgia,serif; }
+.hunt-desc { margin-top:6px; color:var(--ink); font-size:13.5px; line-height:1.8; }
+.hunt-loc { display:inline-block; margin-top:8px; padding:5px 9px; border-radius:4px; background:#f3e9d2; color:#7a5a1e; font-size:12.5px; font-weight:750; line-height:1.5; }
+.hunt-check:checked + div { opacity:.55; }
+.hunt-check:checked + div .hunt-name { text-decoration:line-through; color:var(--muted); }
 
 @media (min-width:700px) { header { padding:14px 24px 11px; text-align:center; } header h1 { font-size:25px; } header h1 .title-zh { margin-left:5px; } header .sub { display:block; margin:4px auto 0; font-size:10px; } header .trip-dates { justify-content:center; margin:8px 0 -1px; } .tabs { justify-content:center; } .section { padding-top:22px; } }
 @media (max-width:390px) { body { font-size:15px; } .section { padding-inline:9px; } .card,.tip-card,.food-card { padding:15px 13px; } .info-row { grid-template-columns:82px minmax(0,1fr); gap:8px; } .day-hdr { padding-inline:11px; } }
@@ -184,6 +203,7 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
   <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="emergency" onclick="showTab('emergency', this)">🆘 緊急聯絡</button>
   <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="tips" onclick="showTab('tips', this)">💡 旅行小TIP</button>
   <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="food" onclick="showTab('food', this)">🍽 美食</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="statues" onclick="showTab('statues', this)">🗺 銅像尋寶</button>
 </div>
 
 <!-- ══════════════════════════════
@@ -484,11 +504,12 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
-      <div class="attr"><div class="attr-name">🏰 布達城堡（匈牙利國家美術館）</div><div class="attr-en">Buda Castle / Hungarian National Gallery</div><div class="attr-links"><a class="attr-link" href="https://www.mng.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Buda+Castle+Budapest" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">⛪ 馬提亞斯教堂</div><div class="attr-en">Matthias Church (Mátyás-templom)</div><div class="attr-links"><a class="attr-link" href="https://www.matyas-templom.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Matthias+Church+Budapest" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">🐟 漁夫堡（城市全景）</div><div class="attr-en">Fisherman's Bastion (Halászbástya)</div><div class="attr-links"><a class="attr-link" href="https://www.fishermansbastion.com" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Fishermans+Bastion+Budapest" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">⛓ 鏈橋（Széchenyi Lánchíd）</div><div class="attr-en">Chain Bridge</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szechenyi+Chain+Bridge+Budapest" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">🍺 廢墟酒吧區（晚間）</div><div class="attr-en">Ruin Bars – Erzsébetváros District</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 Szimpla Kert 位置</a></div></div>
+      <div class="attr"><div class="attr-name">🏰 布達城堡（匈牙利國家美術館）</div><div class="attr-en">Buda Castle / Hungarian National Gallery</div><div class="attr-desc">布達城堡是匈牙利歷代王宮所在，13 世紀始建，歷經鄂圖曼佔領與二戰摧毀後重建，鵝黃色巴洛克巨型宮殿橫亙城堡山頂，已列入世界文化遺產。今日宮內設有匈牙利國家美術館與布達佩斯歷史博物館，收藏哥德式到 19 世紀的匈牙利藝術。即使不入館，居高臨下俯瞰多瑙河與佩斯側天際線的視野，也值得專程上山。</div><div class="attr-links"><a class="attr-link" href="https://www.mng.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Buda+Castle+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">⛪ 馬提亞斯教堂</div><div class="attr-en">Matthias Church (Mátyás-templom)</div><div class="attr-desc">馬提亞斯教堂以彩色菱形琉璃瓦屋頂聞名，是城堡山最華麗的地標。教堂始建於 11 世紀，歷代匈牙利國王在此加冕，鄂圖曼時期一度被改為清真寺，19 世紀重新整修成今日的新哥德式樣貌。內部金碧輝煌、繪滿帶東方風情的壁畫，與外觀同樣令人驚艷，是了解匈牙利千年王權史的最佳一課。</div><div class="attr-links"><a class="attr-link" href="https://www.matyas-templom.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Matthias+Church+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🐟 漁夫堡（城市全景）</div><div class="attr-en">Fisherman's Bastion (Halászbástya)</div><div class="attr-desc">漁夫堡是七座白色尖塔組成的新羅馬式觀景迴廊，1902 年完工，七塔象徵建立匈牙利的七個馬扎爾部落，名稱則來自中世紀負責守衛這段城牆的漁夫公會。從迴廊望出去，多瑙河、鏈橋與對岸的國會大廈一覽無遺，是布達佩斯最經典的觀景與拍照地點。下層平台免費開放，登上塔樓則需另購門票。</div><div class="attr-links"><a class="attr-link" href="https://www.fishermansbastion.com" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Fishermans+Bastion+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">⛓ 鏈橋（Széchenyi Lánchíd）</div><div class="attr-en">Chain Bridge</div><div class="attr-desc">塞切尼鏈橋是橫跨多瑙河、連接布達與佩斯的第一座永久橋樑，1849 年通車，由匈牙利改革家塞切尼伯爵倡建，兩端各有一對石獅鎮守。它不只是交通要道，更是布達佩斯統一為一座城市的象徵。白天可步行過橋串聯兩岸景點，入夜後燈光點亮、倒映河面，是夜遊與多瑙河遊船時最上鏡的一座橋。</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szechenyi+Chain+Bridge+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🍺 廢墟酒吧區（晚間）</div><div class="attr-en">Ruin Bars – Erzsébetváros District</div><div class="attr-desc">廢墟酒吧是布達佩斯獨有的夜生活文化。2000 年代起，年輕人把第七區（昔日猶太區）廢棄的老屋與中庭，用二手家具、塗鴉與霓虹拼貼成風格混搭的酒吧，其中始祖 Szimpla Kert 最具代表性。斑駁牆面、舊浴缸沙發與懸吊的腳踏車構成超現實場景，氣氛輕鬆隨興，是體驗在地夜晚最不可錯過的一站。</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 Szimpla Kert 位置</a></div></div>
+      <div class="statue-tip">🗺 <b>順遊小銅像：</b>城堡山下的 <b>Várkert Bazár</b> 河畔欄杆藏著 🐰 <b>方格耳朵小兔子</b>，城堡花園一帶則有 🐲 <b>獨頭龍蘇蘇</b>；搭城堡纜車下山時不妨順道尋寶。<a onclick="showTab('statues', document.querySelector('.tab[aria-controls=statues]'))">→ 開啟銅像尋寶</a></div>
       <div class="reminders">
         <div class="rem-title">📌 今日提醒</div>
         <div class="rem"><div class="rem-dot">1</div><div>城堡山夏日正午非常熱，建議早上 9 點前出發，下午午休後再出動；帶足飲水</div></div>
@@ -510,6 +531,7 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
         <div class="optional-tag">⭐ Optional · 機動安排</div>
         <div class="attr-name" style="font-size:14px">🛍 艾喬里跳蚤市場（中歐最大）</div>
         <div class="attr-en">Ecseri Bolhapiac – Central Europe's Largest Flea Market</div>
+        <div class="attr-desc">艾喬里是中歐規模最大的跳蚤市場，從哈布斯堡時代的舊軍刀、共產時期的徽章獎章，到古董傢俱、銀器、老相機與黑膠唱片應有盡有。攤販沿著大棚一字排開，識貨的藏家清晨就來尋寶；就算不買，穿梭其間翻看匈牙利近百年的生活物件，也像逛一座露天歷史博物館。記得帶足現金、可大膽議價。</div>
         <div style="font-size:12px;color:#555;margin-top:7px;line-height:1.85">
           <b style="color:#e65100">📅 週六最佳時段：</b>08:00 入場，10:00 前離開可接聖安德烈<br>
           <b style="color:#e65100">⏱ 建議時程：</b>07:30 從公寓出發 → 08:00–10:00 逛市 → 10:40 抵達 Batthyány tér → 11:00 HÉV 往聖安德烈<br>
@@ -523,9 +545,9 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
         </div>
       </div>
       <div class="attr"><div class="attr-name">🚉 Batthyány tér 搭 HÉV H5 出發</div><div class="attr-en">Take HÉV suburban rail H5 from Batthyány tér</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Batthyany+ter+Budapest" target="_blank">📍 Batthyány tér</a></div></div>
-      <div class="attr"><div class="attr-name">🏘 聖安德烈老城區散步</div><div class="attr-en">Szentendre Old Town</div><div class="attr-links"><a class="attr-link" href="https://www.szentendre.hu" target="_blank">🌐 觀光官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szentendre+HEV+station" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">🏺 科瓦奇陶瓷博物館</div><div class="attr-en">Margit Kovács Ceramic Museum</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Margit+Kovacs+Ceramic+Museum+Szentendre" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">⛪ 塞爾維亞東正教教堂群</div><div class="attr-en">Serbian Orthodox Churches</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Serbian+Orthodox+Church+Szentendre" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🏘 聖安德烈老城區散步</div><div class="attr-en">Szentendre Old Town</div><div class="attr-desc">聖安德烈是多瑙河畔的巴爾幹風情小鎮，17 世紀塞爾維亞移民在此落腳，留下色彩繽紛的房舍與蜿蜒的石板巷弄。鎮上聚集了大量畫廊、手工藝坊與糖果博物館，是藝術家鍾愛的創作天堂。狹窄巷弄不時轉出教堂尖塔或河景，步調悠閒，最適合花一個上午隨意散步、喝杯咖啡、挑選伴手禮。</div><div class="attr-links"><a class="attr-link" href="https://www.szentendre.hu" target="_blank">🌐 觀光官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szentendre+HEV+station" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🏺 科瓦奇陶瓷博物館</div><div class="attr-en">Margit Kovács Ceramic Museum</div><div class="attr-desc">瑪格麗特·科瓦奇是 20 世紀匈牙利最重要的陶藝大師，這座博物館由她的舊居改建，完整收藏她從聖經人物、民間故事到女性與母親形象的陶塑作品。她的人物造型樸拙溫暖、帶著濃厚的匈牙利民俗色彩，被視為國寶級藝術。館不大卻精緻，是聖安德烈最值得入內細看的一站，陶藝迷千萬別錯過。</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Margit+Kovacs+Ceramic+Museum+Szentendre" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">⛪ 塞爾維亞東正教教堂群</div><div class="attr-en">Serbian Orthodox Churches</div><div class="attr-desc">聖安德烈最特別的人文印記，來自 17 世紀逃離鄂圖曼統治、移居此地的塞爾維亞人。他們在小鎮各處興建東正教教堂，其中以紅塔聞名的 Blagovestenska 教堂與主教座堂最具代表，巴洛克外觀下藏著金光閃閃的聖像屏。這些教堂讓小鎮飄著一股巴爾幹的東方氣息，與匈牙利其他地方截然不同。</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Serbian+Orthodox+Church+Szentendre" target="_blank">📍 地圖</a></div></div>
       <div class="reminders">
         <div class="rem-title">📌 今日提醒</div>
         <div class="rem"><div class="rem-dot">1</div><div>HÉV 單程 930 HUF / 人，注意：Budapest Card 不包含此段，需另購票（可在 Batthyány tér 站窗口購買）</div></div>
@@ -543,10 +565,10 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
-      <div class="attr"><div class="attr-name">🛒 Szimpla 農夫市集（週日限定）</div><div class="attr-en">Szimpla Farmers Market（Sun 09:00–14:00）</div><div class="attr-links"><a class="attr-link" href="https://szimpla.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">🏰 瓦伊達胡尼亞德城堡（免費）</div><div class="attr-en">Vajdahunyad Castle – free outdoor</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Vajdahunyad+Castle+Budapest" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">♨️ 塞切尼溫泉浴場</div><div class="attr-en">Széchenyi Thermal Bath</div><div class="attr-links"><a class="attr-link" href="https://www.szechenyibath.com" target="_blank">🌐 官網／購票</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szechenyi+Thermal+Bath+Budapest" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">🌳 城市公園（Városliget）</div><div class="attr-en">Budapest City Park</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Varosliget+City+Park+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🛒 Szimpla 農夫市集（週日限定）</div><div class="attr-en">Szimpla Farmers Market（Sun 09:00–14:00）</div><div class="attr-desc">每逢週日上午，知名廢墟酒吧 Szimpla Kert 會搖身一變成為農夫市集。在地小農把自家蜂蜜、起司、香腸、果醬與手工麵包擺進這座超現實的老屋中庭，現場還有熱食攤與現榨果汁。你可以一邊在斑駁塗鴉與舊家具間穿梭，一邊試吃採買，氣氛比觀光市場更道地放鬆，是體驗布達佩斯週日早晨的最佳去處。</div><div class="attr-links"><a class="attr-link" href="https://szimpla.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szimpla+Kert+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🏰 瓦伊達胡尼亞德城堡（免費）</div><div class="attr-en">Vajdahunyad Castle – free outdoor</div><div class="attr-desc">瓦伊達胡尼亞德城堡坐落在城市公園的湖畔，是 1896 年匈牙利建國千年博覽會的展品。建築師把全國各地經典建築的元素──羅馬、哥德、文藝復興到巴洛克──濃縮在這一組城堡裡，彷彿一本立體的匈牙利建築史。戶外庭園免費開放，城堡倒映湖面、冬季湖面結冰化為溜冰場，是公園裡最浪漫上鏡的角落。</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Vajdahunyad+Castle+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">♨️ 塞切尼溫泉浴場</div><div class="attr-en">Széchenyi Thermal Bath</div><div class="attr-desc">塞切尼是歐洲最大的藥用溫泉浴場之一，1913 年啟用的新巴洛克黃色宮殿建築裡，有 18 座室內外溫泉池與多間蒸氣桑拿。攝氏 38 度的露天大池熱氣蒸騰，常見當地長者泡在池裡下西洋棋，是布達佩斯最具代表性的畫面。泡湯兼賞建築，無論寒暑都療癒，記得自備泳衣與泳帽（現場亦可購買）。</div><div class="attr-links"><a class="attr-link" href="https://www.szechenyibath.com" target="_blank">🌐 官網／購票</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szechenyi+Thermal+Bath+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🌳 城市公園（Városliget）</div><div class="attr-en">Budapest City Park</div><div class="attr-desc">城市公園是布達佩斯最大的綠地，從象徵建國的英雄廣場一路向後延伸，園內串聯瓦伊達胡尼亞德城堡、塞切尼溫泉與人工湖。當地人在此野餐、慢跑、划船，夏夜常有音樂活動。公園入口的英雄廣場立有馬扎爾七部落首領雕像與千年紀念柱，氣勢恢宏且免費開放，是認識匈牙利歷史與市民日常的好起點。</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Varosliget+City+Park+Budapest" target="_blank">📍 地圖</a></div></div>
       <div class="hl">🍽️ 晚餐 Gettó Gulyás <span class="badge badge-book">⚠ 尚未訂位</span> – 建議 8 人提前訂位</div>
       <div class="reminders">
         <div class="rem-title">📌 今日提醒</div>
@@ -565,9 +587,10 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
-      <div class="attr"><div class="attr-name">🏛 中央大市場</div><div class="attr-en">Great Market Hall (Nagyvásárcsarnok)</div><div class="attr-links"><a class="attr-link" href="https://www.piaconline.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Great+Market+Hall+Budapest" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">🛍️ Váci Street 購物街</div><div class="attr-en">Váci utca Shopping Street</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Vaci+utca+Budapest" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">⛪ 聖史蒂芬大教堂</div><div class="attr-en">St. Stephen's Basilica (Szent István-bazilika)</div><div class="attr-links"><a class="attr-link" href="https://www.bazilika.biz" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=St+Stephens+Basilica+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🏛 中央大市場</div><div class="attr-en">Great Market Hall (Nagyvásárcsarnok)</div><div class="attr-desc">中央大市場是布達佩斯規模最大、最華麗的室內市場，1897 年落成，鋼骨結構與彩瓦屋頂出自艾菲爾事務所之手。一樓滿是匈牙利紅椒粉、薩拉米香腸、鵝肝醬與葡萄酒等在地食材，二樓則是熟食攤與手工藝伴手禮，能嚐到道地的 Lángos 炸麵餅。挑高明亮的空間逛起來舒服，是採買伴手禮與感受市井活力的首選。</div><div class="attr-links"><a class="attr-link" href="https://www.piaconline.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Great+Market+Hall+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🛍️ Váci Street 購物街</div><div class="attr-en">Váci utca Shopping Street</div><div class="attr-desc">瓦采街是布達佩斯最熱鬧的徒步購物街，從中央市場一路延伸到弗洛斯馬提廣場，兩側盡是品牌店、紀念品舖、咖啡館與百年老建築。街上不時有街頭藝人表演，氣氛悠閒。雖然觀光味較濃、價格偏高，但作為連接市場與市中心的散步動線十分順手，也適合在露天咖啡座歇腳，看人來人往的城市風景。</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Vaci+utca+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">⛪ 聖史蒂芬大教堂</div><div class="attr-en">St. Stephen's Basilica (Szent István-bazilika)</div><div class="attr-desc">聖史蒂芬大教堂是布達佩斯最大的教堂，以匈牙利首位國王、立國者聖伊什特萬命名，1905 年完工，96 公尺高的圓頂與國會大廈同高，象徵教權與政權並重。新古典立面莊嚴宏偉，內部金碧輝煌，最特別的聖物是供奉著聖伊什特萬右手的「聖右手」聖龕。登上圓頂觀景台，可 360 度俯瞰整個佩斯市區。</div><div class="attr-links"><a class="attr-link" href="https://www.bazilika.biz" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=St+Stephens+Basilica+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="statue-tip">🗺 <b>順遊小銅像：</b>傍晚步行前往碼頭時會經過 <b>Deák Ferenc tér</b>（附近藏著 🟥 <b>迷你魔術方塊</b>）與佩斯河岸的 <b>Vigadó tér</b>（電車欄杆上有 👑 <b>小公主</b>），白天逛 Váci 街時也順路，是全家拍照尋寶的好時機。<a onclick="showTab('statues', document.querySelector('.tab[aria-controls=statues]'))">→ 開啟銅像尋寶</a></div>
       <div class="attr"><div class="attr-name">🍽 18:30 晚餐 Parasztkonyha <span class="badge badge-book">⚠ 需訂 8 人位</span></div><div class="attr-en">Dinner – Parasztkonyha Restaurant</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Parasztkonyha+restaurant+Budapest" target="_blank">📍 地圖</a></div></div>
       <div class="attr">
         <div class="attr-name">🚢 20:45 多瑙河夜遊 <span class="badge badge-ok">✓ 已訂</span></div>
@@ -647,15 +670,17 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
       <div class="attr">
         <div class="attr-name">👑 熊布朗宮 <span class="badge badge-book">⚠ 建議預購票</span></div>
         <div class="attr-en">Schönbrunn Palace</div>
+        <div class="attr-desc">熊布朗宮是哈布斯堡王朝的夏季行宮，擁有 1,441 間廳室的鵝黃色巴洛克宮殿，曾是茜茜公主與法蘭茲·約瑟夫皇帝的居所，已列入世界遺產。宮內金碧輝煌的大廳、莫札特六歲御前演奏的鏡廳都是亮點；宮後的法式花園、海神噴泉與山丘上的凱旋門更是免費開放。是了解奧匈帝國昔日榮光最完整的一站，務必網路預購門票。</div>
         <div class="attr-links"><a class="attr-link" href="https://www.schoenbrunn.at/en" target="_blank">🌐 官網／購票</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Schonbrunn+Palace+Vienna" target="_blank">📍 地圖</a></div>
       </div>
-      <div class="attr"><div class="attr-name">🦁 熊布朗宮動物園（可選）</div><div class="attr-en">Tiergarten Schönbrunn</div><div class="attr-links"><a class="attr-link" href="https://www.zoovienna.at" target="_blank">🌐 官網</a></div></div>
+      <div class="attr"><div class="attr-name">🦁 熊布朗宮動物園（可選）</div><div class="attr-en">Tiergarten Schönbrunn</div><div class="attr-desc">熊布朗宮動物園創立於 1752 年，是全世界仍在營運中歷史最悠久的動物園，最初是皇室的私人珍奇收藏。園區保留了巴洛克時期的八角亭，與現代化的動物棲地並存，是大貓熊、北極熊與多種瀕危物種的家。它緊鄰熊布朗宮，動線上可順遊，對帶孩子的家庭尤其友善，是宮殿行程之外的加碼選擇。</div><div class="attr-links"><a class="attr-link" href="https://www.zoovienna.at" target="_blank">🌐 官網</a></div></div>
       <div class="attr">
         <div class="attr-name">🎡 普拉特公園 · 大摩天輪</div>
         <div class="attr-en">Prater Park · Wiener Riesenrad</div>
+        <div class="attr-desc">普拉特大摩天輪是維也納的城市象徵，1897 年為慶祝皇帝登基五十週年而建，曾是世界最高的摩天輪，也因電影《黑獄亡魂》的經典一幕而聞名。木造紅色車廂緩緩升至 65 公尺高空，整座維也納盡收眼底，傍晚夕陽時分景色最美。它就位在普拉特遊樂園入口，是維也納百年不墜的浪漫地標。</div>
         <div class="attr-links"><a class="attr-link" href="https://www.wienerriesenrad.com" target="_blank">🌐 摩天輪官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Wiener+Riesenrad+Prater+Vienna" target="_blank">📍 地圖</a></div>
       </div>
-      <div class="attr"><div class="attr-name">🌳 Prater 公園散步</div><div class="attr-en">Prater Green Promenade</div><div class="attr-links"><a class="attr-link" href="https://www.prater.at" target="_blank">🌐 官網</a></div></div>
+      <div class="attr"><div class="attr-name">🌳 Prater 公園散步</div><div class="attr-en">Prater Green Promenade</div><div class="attr-desc">普拉特原是皇室狩獵場，1766 年起對市民開放，如今是維也納最大的綠地公園。除了入口熱鬧的百年遊樂園，園內還有一條筆直、綿延數公里的綠蔭大道，兩側栗樹成林，是當地人跑步、騎車、野餐的後花園。離開遊樂園的喧囂往深處走，氣氛立刻轉為悠閒寧靜，最適合飯後散步消化、放慢旅行節奏。</div><div class="attr-links"><a class="attr-link" href="https://www.prater.at" target="_blank">🌐 官網</a></div></div>
       <div class="reminders">
         <div class="rem-title">📌 今日提醒</div>
         <div class="rem"><div class="rem-dot">1</div><div>熊布朗宮強烈建議網路預購，避免現場排隊；Grand Tour 約 55 分鐘，含 40 個宮殿廳室</div></div>
@@ -673,13 +698,14 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
-      <div class="attr"><div class="attr-name">🥩 納許市場（早上）</div><div class="attr-en">Naschmarkt – open Mon–Sat from 06:00</div><div class="attr-links"><a class="attr-link" href="https://www.wienernaschmarkt.eu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Naschmarkt+Vienna" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🥩 納許市場（早上）</div><div class="attr-en">Naschmarkt – open Mon–Sat from 06:00</div><div class="attr-desc">納許市場是維也納最大、最熱鬧的露天市場，已有上百年歷史。長長的攤位街上，從中東香料、橄欖、起司、醃漬物到鮮花一應俱全，後段聚集了大量餐館與小吃攤，土耳其、希臘到亞洲料理飄香。週六還會加開跳蚤市場。早上人潮較少時最好逛，找一家露天座位吃頓市場早餐，是體驗維也納日常的好方法。</div><div class="attr-links"><a class="attr-link" href="https://www.wienernaschmarkt.eu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Naschmarkt+Vienna" target="_blank">📍 地圖</a></div></div>
       <div class="attr">
         <div class="attr-name">🖼 上美景宮（克林姆「吻」）<span class="badge badge-book">⚠ 建議預購票</span></div>
         <div class="attr-en">Upper Belvedere – Klimt's "The Kiss"</div>
+        <div class="attr-desc">上美景宮是歐根親王的巴洛克夏宮，如今是奧地利美術館，鎮館之寶是克林姆的《吻》──那幅貼滿金箔、相擁親吻的戀人，是維也納分離派的代表作，也是全城最受歡迎的畫作。除了克林姆，館內還有席勒等奧地利大師的傑作。宮殿本身與對稱的法式花園同樣華麗，花園免費開放，可遠眺維也納市區的天際線。</div>
         <div class="attr-links"><a class="attr-link" href="https://www.belvedere.at/en" target="_blank">🌐 官網／購票</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Upper+Belvedere+Vienna" target="_blank">📍 地圖</a></div>
       </div>
-      <div class="attr"><div class="attr-name">🏛 維也納國家歌劇院（外觀）</div><div class="attr-en">Vienna State Opera – Wiener Staatsoper</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Vienna+State+Opera+Wiener+Staatsoper" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🏛 維也納國家歌劇院（外觀）</div><div class="attr-en">Vienna State Opera – Wiener Staatsoper</div><div class="attr-desc">維也納國家歌劇院是世界頂尖的歌劇殿堂，1869 年以莫札特的《唐·喬望尼》揭幕，新文藝復興立面典雅華麗，是維也納「音樂之都」的象徵。每年上演逾 350 場演出，陣容與製作享譽國際。即使不看表演，外觀已值得駐足；若想入內，可參加導覽，或購買平價站票，親身體驗這座金色殿堂的藝術氛圍。</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Vienna+State+Opera+Wiener+Staatsoper" target="_blank">📍 地圖</a></div></div>
       <div class="attr">
         <div class="attr-name">🍽 晚餐 Figlmüller（維也納炸豬排）<span class="badge badge-book">⚠ 尚未訂位</span></div>
         <div class="attr-en">Figlmüller Bäckerstraße</div>
@@ -1250,6 +1276,90 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
   </div>
 
 </div><!-- /food -->
+
+
+<!-- ══════════════════════════════
+     TAB 8: 銅像尋寶
+══════════════════════════════ -->
+<div class="section" id="statues">
+  <div class="card">
+    <div class="card-title"><span class="icon">🗺</span>布達佩斯小銅像尋寶</div>
+    <div class="hunt-intro">布達佩斯街頭藏著一群巴掌大的迷你銅像，多數出自烏克蘭裔藝術家 <b>Mihály Kolodko</b> 之手。它們躲在欄杆、橋墩與街角，向匈牙利的卡通、歷史與發明致敬。以下整理 6 座最經典、且大致落在我們行程動線上的銅像——勾選框會自動記住進度，全家一起把牠們找齊吧！</div>
+    <div class="hl">⚠️ 迷你銅像體積很小，偶爾會被移動、維修或被偷走。出發前請點下方地圖連結再次確認位置；找不到也別氣餒，這正是尋寶的樂趣。</div>
+
+    <div class="hunt-item">
+      <input class="hunt-check" type="checkbox" data-hunt="rabbit" aria-label="找到 方格耳朵小兔子">
+      <div>
+        <div class="hunt-name">🐰 方格耳朵的小兔子 <span>Kockás fülű nyúl</span></div>
+        <div class="hunt-desc">改編自匈牙利經典動畫的迷你銅兔，是 Kolodko 散落全城的迷你像中最受喜愛的一隻。牠蹲坐在多瑙河布達側、城堡山腳 Várkert Bazár 的石欄上，望向對岸的國會大廈。只有手掌大小，不仔細找很容易錯過——正是尋寶的醍醐味。</div>
+        <div class="hunt-loc">📍 布達城堡山下 Várkert Bazár 河畔欄杆 · Day 2 下山順路</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Kockás+fülű+nyúl+szobor+Várkert+Bazár+Budapest" target="_blank">📍 地圖</a></div>
+      </div>
+    </div>
+
+    <div class="hunt-item">
+      <input class="hunt-check" type="checkbox" data-hunt="susu" aria-label="找到 獨頭龍蘇蘇">
+      <div>
+        <div class="hunt-name">🐲 獨頭龍蘇蘇 <span>Süsü a sárkány</span></div>
+        <div class="hunt-desc">蘇蘇是匈牙利家喻戶曉的卡通角色——一隻善良、愛交朋友的獨頭龍。Kolodko 把牠縮成巴掌大的青銅像，藏在布達城堡花園（Várkert）一帶的角落。對看過卡通的當地人是滿滿回憶，對旅人則像一場與隱藏角色的捉迷藏。</div>
+        <div class="hunt-loc">📍 布達城堡花園 Várkert 周邊 · Day 2 順路</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Süsü+sárkány+szobor+Budapest" target="_blank">📍 地圖</a></div>
+      </div>
+    </div>
+
+    <div class="hunt-item">
+      <input class="hunt-check" type="checkbox" data-hunt="columbo" aria-label="找到 可倫坡與獵犬">
+      <div>
+        <div class="hunt-name">🕵️ 可倫坡與獵犬 <span>Columbo</span></div>
+        <div class="hunt-desc">影集《神探可倫坡》男主角 Peter Falk，傳說與一位匈牙利政治家同源。他穿著招牌風衣、牽著愛犬「Dog」的全身銅像，立在第 5 區的 Falk Miksa utca（街名正好與演員同姓）這條古董街上，鄰近國會大廈與瑪格麗特橋。是少數體積較大、比較好找的一座。</div>
+        <div class="hunt-loc">📍 第 5 區 Falk Miksa utca 古董街 · 近國會大廈</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Columbo+szobor+Falk+Miksa+utca+Budapest" target="_blank">📍 地圖</a></div>
+      </div>
+    </div>
+
+    <div class="hunt-item">
+      <input class="hunt-check" type="checkbox" data-hunt="rubik" aria-label="找到 迷你魔術方塊">
+      <div>
+        <div class="hunt-name">🟥 迷你魔術方塊 <span>Rubik-kocka</span></div>
+        <div class="hunt-desc">向匈牙利發明家 Ernő Rubik 致敬的迷你魔術方塊銅雕。魔術方塊 1974 年誕生於布達佩斯，是匈牙利最知名的發明之一。小方塊就藏在佩斯市中心（近 Deák Ferenc tér 一帶）的街角，找到它，等於替這趟旅程解開一道小謎題。</div>
+        <div class="hunt-loc">📍 佩斯市中心 · 近 Deák Ferenc tér</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Rubik+kocka+szobor+Kolodko+Budapest" target="_blank">📍 地圖</a></div>
+      </div>
+    </div>
+
+    <div class="hunt-item">
+      <input class="hunt-check" type="checkbox" data-hunt="tank" aria-label="找到 悲傷的小坦克">
+      <div>
+        <div class="hunt-name">🪖 悲傷的小坦克 <span>Szomorú tank</span></div>
+        <div class="hunt-desc">一輛生鏽、垂頭喪氣的迷你蘇聯 T-34 坦克，紀念 1956 年的匈牙利革命。它藏在第 8 區的 Corvin köz——當年市民以汽油彈對抗坦克的街壘舊址。小小一輛卻承載沉重歷史，是 Kolodko 作品中最具份量的一件，找到時心情也會跟著沉靜下來。</div>
+        <div class="hunt-loc">📍 第 8 區 Corvin köz · 1956 革命舊址</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Szomorú+tank+Corvin+köz+Budapest" target="_blank">📍 地圖</a></div>
+      </div>
+    </div>
+
+    <div class="hunt-item">
+      <input class="hunt-check" type="checkbox" data-hunt="princess" aria-label="找到 小公主">
+      <div>
+        <div class="hunt-name">👑 小公主 <span>Kiskirálylány（László Marton 作）</span></div>
+        <div class="hunt-desc">布達佩斯最著名、最可愛的銅像（出自 László Marton，非 Kolodko）。一位戴著報紙摺帽的小公主，俏皮地坐在佩斯河岸的電車軌道欄杆上，背景就是布達城堡。位置好找、高度也適合大小朋友合照，是全家尋寶最理想的第一站。</div>
+        <div class="hunt-loc">📍 佩斯河岸電車欄杆 · Vigadó tér 與 Eötvös tér 之間 · Day 5／遊船前順路</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Kiskirálylány+szobor+Budapest" target="_blank">📍 地圖</a></div>
+      </div>
+    </div>
+
+    <div class="hl" style="margin-top:14px">🔎 想找更多？布達佩斯目前有數十座 Kolodko 迷你像。可在 Google 地圖搜尋 <b>「Kolodko mini statues」</b> 或追蹤藝術家 IG <b>@kolodkoart</b> 取得最新地點。</div>
+    <div class="attr-links" style="margin-top:8px"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Kolodko+mini+statue+Budapest" target="_blank">📍 全部迷你像地圖</a></div>
+  </div>
+</div><!-- /statues -->
+
+<script>
+// Treasure-hunt checkboxes: remember found statues across reloads
+document.querySelectorAll('.hunt-check').forEach(box => {
+  const key = 'hunt-' + box.dataset.hunt;
+  box.checked = localStorage.getItem(key) === '1';
+  box.addEventListener('change', () => localStorage.setItem(key, box.checked ? '1' : '0'));
+});
+</script>
 
 <script>
 function showTab(id, el) {
