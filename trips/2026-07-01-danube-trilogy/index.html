@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#123b4a">
 <title>2026 · 多瑙三城</title>
 <style>
-:root { --danube:#123b4a; --danube-2:#1d5967; --paprika:#a8322d; --gold:#c6933b; --cream:#f7f0df; --paper:#fffdf7; --ink:#243236; --muted:#68777a; --line:#ded4bd; --green:#426b55; --shadow:0 10px 28px rgba(35,47,48,.11); }
+:root { --danube:#175462; --danube-2:#236778; --paprika:#a8322d; --gold:#b9863a; --cream:#f7f1e6; --paper:#fffef9; --ink:#272019; --muted:#675e51; --line:#e6dcc8; --green:#3f6a53; --shadow:0 6px 20px rgba(60,48,30,.10); }
 * { box-sizing:border-box; margin:0; padding:0; }
 html { background:var(--cream); scroll-behavior:smooth; }
-body { min-height:100vh; font-family:"Avenir Next","Noto Sans TC","PingFang TC",sans-serif; background-color:var(--cream); background-image:linear-gradient(rgba(18,59,74,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(18,59,74,.035) 1px,transparent 1px); background-size:24px 24px; color:var(--ink); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+body { min-height:100vh; font-family:"Avenir Next","Noto Sans TC","PingFang TC",sans-serif; background-color:var(--cream); background-image:radial-gradient(135% 70% at 50% 0,#fdf8ee 0%,rgba(253,248,238,0) 58%); background-attachment:fixed; color:var(--ink); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
 button,a { -webkit-tap-highlight-color:transparent; }
 button { font:inherit; }
 
@@ -36,7 +36,7 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
 .section { display:none; width:100%; max-width:620px; margin:0 auto; padding:16px 12px 34px; }
 .section.active { display:block; animation:section-in .28s ease both; }
 @keyframes section-in { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
-.card,.tip-card,.food-card { position:relative; margin-bottom:14px; padding:17px 15px; overflow:hidden; border:1px solid var(--line); border-radius:7px; background:var(--paper); box-shadow:var(--shadow); }
+.card,.tip-card,.food-card { position:relative; margin-bottom:16px; padding:20px 18px; overflow:hidden; border:1px solid var(--line); border-radius:11px; background:var(--paper); box-shadow:var(--shadow); }
 .card::before,.tip-card::before,.food-card::before { content:""; position:absolute; inset:0 auto 0 0; width:4px; background:linear-gradient(var(--paprika),var(--gold)); }
 .card-title,.tip-title { display:flex; align-items:center; gap:8px; margin-bottom:12px; color:var(--danube); font-family:Georgia,"Noto Serif TC",serif; font-size:17px; font-weight:700; line-height:1.35; }
 .card-title .icon { font-family:"Apple Color Emoji"; font-size:19px; }
@@ -64,7 +64,7 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
 .badge-ok { color:#28543c; background:#dcebdd; }
 .badge-book { color:#862722; background:#f3d9d3; }
 .badge-info { color:#174f62; background:#d8e9eb; }
-.info-row { display:grid; grid-template-columns:minmax(92px,.75fr) minmax(0,1.5fr); gap:12px; padding:10px 0; border-bottom:1px solid #e9e0ce; font-size:14px; }
+.info-row { display:grid; grid-template-columns:minmax(92px,.75fr) minmax(0,1.5fr); gap:12px; padding:11px 0; border-bottom:1px solid var(--line); font-size:15px; }
 .info-row:last-child { border-bottom:none; }
 .il { color:var(--muted); font-size:12px; font-weight:750; letter-spacing:.04em; }
 .iv { min-width:0; font-weight:650; text-align:right; overflow-wrap:anywhere; }
@@ -77,11 +77,11 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
 .map-btn,.attr-link,.food-link { display:inline-flex; align-items:center; min-height:36px; margin-top:7px; padding:7px 10px; border:1px solid #9fb9ba; border-radius:4px; background:#f7fbf9; color:#14536a; font-size:12px; font-weight:800; line-height:1.2; text-decoration:none; }
 
 /* Day accordion */
-.day-wrap { margin-bottom:13px; overflow:hidden; border:1px solid #c9bea8; border-radius:7px; background:var(--paper); box-shadow:var(--shadow); }
-.day-hdr { width:100%; min-height:66px; padding:12px 14px; border:0; background:linear-gradient(135deg,var(--danube),var(--danube-2)); color:#fff; cursor:pointer; user-select:none; display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:8px; align-items:center; text-align:left; font-size:15px; font-weight:850; }
+.day-wrap { margin-bottom:15px; overflow:hidden; border:1px solid var(--line); border-radius:11px; background:var(--paper); box-shadow:var(--shadow); }
+.day-hdr { width:100%; min-height:66px; padding:14px 16px; border:0; border-left:4px solid var(--gold); background:linear-gradient(180deg,#fffef9,#f4ecda); color:var(--danube); cursor:pointer; user-select:none; display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:8px; align-items:center; text-align:left; font-family:Georgia,"Noto Serif TC",serif; font-size:16.5px; font-weight:700; letter-spacing:.01em; }
 .day-hdr > div:first-child { min-width:0; }
-.day-hdr .day-label { margin-top:3px; color:#d3e4e1; font-size:11px; font-weight:600; line-height:1.4; }
-.day-hdr .arrow { font-size:12px; transition:transform .25s; }
+.day-hdr .day-label { margin-top:4px; color:var(--muted); font-family:"Avenir Next","Noto Sans TC",sans-serif; font-size:12px; font-weight:600; line-height:1.45; }
+.day-hdr .arrow { font-size:12px; color:var(--gold); transition:transform .25s; }
 .day-hdr.open .arrow { transform:rotate(180deg); }
 .day-body { display:none; padding:14px; background:var(--paper); }
 .day-body.open { display:block; animation:section-in .22s ease both; }
@@ -89,8 +89,8 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
 /* Attractions and reminders */
 .attr { padding:11px 0; border-bottom:1px dashed #d9cfbb; }
 .attr:last-of-type { border-bottom:none; }
-.attr-name { color:#293b3f; font-size:15px; font-weight:800; line-height:1.5; }
-.attr-en { margin-top:2px; color:#7b8584; font:italic 11px/1.45 Georgia,serif; }
+.attr-name { color:var(--ink); font-size:15.5px; font-weight:800; line-height:1.5; }
+.attr-en { margin-top:3px; color:var(--muted); font:italic 12px/1.5 Georgia,serif; }
 .attr-links,.food-links { display:flex; flex-wrap:wrap; gap:7px; margin-top:5px; }
 .reminders { margin-top:12px; padding:12px; border:1px solid #e4ca94; border-radius:6px; background:#fff5dc; }
 .rem-title { margin-bottom:5px; color:#885522; font-size:11px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
@@ -112,8 +112,7 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
 /* Language panel */
 .lang-btn { min-width:42px; min-height:36px; margin-left:auto; padding:5px 8px; flex:none; border:1px solid #b7c8c6; border-radius:4px; background:#e8f0ed; color:var(--danube); cursor:pointer; font-size:13px; font-weight:800; transition:background .2s,color .2s; }
 .lang-btn.active,.lang-btn:hover { border-color:var(--danube); background:var(--danube); color:#fff; }
-.day-hdr .lang-btn { margin:0; border-color:rgba(255,255,255,.45); background:rgba(255,255,255,.12); color:#fff; }
-.day-hdr .lang-btn.active,.day-hdr .lang-btn:hover { background:#fff8e9; color:var(--danube); }
+.day-hdr .lang-btn { margin:0; }
 .local-panel { display:none; margin-top:12px; padding:13px; border:1px solid #a9c1bf; border-radius:6px; background:#eef5f2; }
 .local-panel.show { display:block; }
 .local-header { margin-bottom:7px; color:#52716f; font-size:10px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
@@ -143,6 +142,18 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
 .food-tag-r { background:#dcebef; color:#155164; }.food-tag-s { background:#f4ded8; color:#8b322b; }.food-tag-m,.food-tag-in { background:#dfece0; color:#315d40; }.food-tag-b { background:#eadfea; color:#68436b; }.food-tag-warn { background:#f8e4bd; color:#89541f; }.food-tag-new { background:#f1d9d5; color:#96352f; }
 .food-info { display:flex; flex-direction:column; gap:2px; color:#657373; font-size:12px; line-height:1.55; }
 .food-desc { margin-top:9px; padding-top:9px; border-top:1px solid #e9e0ce; color:#354447; font-size:14px; line-height:1.72; }
+
+/* 7/6 Danube cruise highlight */
+.day-wrap.featured { border:1.5px solid var(--gold); box-shadow:0 10px 26px rgba(185,134,58,.20); }
+.day-wrap.featured .day-hdr { border-left-width:5px; background:linear-gradient(180deg,#fbf3df,#f3e6c6); }
+.day-wrap.featured .day-hdr .day-label { color:#8a6a2e; }
+.cruise-sub { margin:14px 0 6px; color:#776442; font-size:11px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+.cruise-tl { margin:6px 0; border:1px solid #d3ddda; border-radius:6px; overflow:hidden; }
+.cruise-tl > div { display:grid; grid-template-columns:58px 1fr; gap:10px; padding:8px 11px; font-size:13px; line-height:1.55; border-top:1px solid #e7eeeb; }
+.cruise-tl > div:first-child { border-top:0; }
+.cruise-tl > div:nth-child(odd) { background:#f0f6f4; }
+.cruise-tl time { font-weight:900; color:var(--danube); }
+.cruise-tl b { color:#8c382c; }
 
 @media (min-width:700px) { header { padding:14px 24px 11px; text-align:center; } header h1 { font-size:25px; } header h1 .title-zh { margin-left:5px; } header .sub { display:block; margin:4px auto 0; font-size:10px; } header .trip-dates { justify-content:center; margin:8px 0 -1px; } .tabs { justify-content:center; } .section { padding-top:22px; } }
 @media (max-width:390px) { body { font-size:15px; } .section { padding-inline:9px; } .card,.tip-card,.food-card { padding:15px 13px; } .info-row { grid-template-columns:82px minmax(0,1fr); gap:8px; } .day-hdr { padding-inline:11px; } }
@@ -547,9 +558,9 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
   </div>
 
   <!-- Day 5: 7/6 市場 + 遊船 -->
-  <div class="day-wrap">
+  <div class="day-wrap featured" id="day5">
     <div class="day-hdr" onclick="toggleDay(this)">
-      <div><div>Day 5 · 7/6 (一) 中央市場＋多瑙河遊船</div><div class="day-label">Great Market Hall · Danube Cruise 20:45 ✓</div></div>
+      <div><div>★ Day 5 · 7/6 (一) 中央市場＋多瑙河告別夜遊</div><div class="day-label">Great Market Hall · Danube Farewell Cruise 20:45 ✓</div></div>
       <button class="lang-btn" data-trans="day5" onclick="toggleLang(this,event)">🇭🇺</button>
       <span class="arrow">▼</span>
     </div>
@@ -557,7 +568,7 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
       <div class="attr"><div class="attr-name">🏛 中央大市場</div><div class="attr-en">Great Market Hall (Nagyvásárcsarnok)</div><div class="attr-links"><a class="attr-link" href="https://www.piaconline.hu" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Great+Market+Hall+Budapest" target="_blank">📍 地圖</a></div></div>
       <div class="attr"><div class="attr-name">🛍️ Váci Street 購物街</div><div class="attr-en">Váci utca Shopping Street</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Vaci+utca+Budapest" target="_blank">📍 地圖</a></div></div>
       <div class="attr"><div class="attr-name">⛪ 聖史蒂芬大教堂</div><div class="attr-en">St. Stephen's Basilica (Szent István-bazilika)</div><div class="attr-links"><a class="attr-link" href="https://www.bazilika.biz" target="_blank">🌐 官網</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=St+Stephens+Basilica+Budapest" target="_blank">📍 地圖</a></div></div>
-      <div class="attr"><div class="attr-name">🍽 18:30 晚餐 Parasztkonyha</div><div class="attr-en">Dinner – Parasztkonyha Restaurant</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Parasztkonyha+restaurant+Budapest" target="_blank">📍 地圖</a></div></div>
+      <div class="attr"><div class="attr-name">🍽 18:30 晚餐 Parasztkonyha <span class="badge badge-book">⚠ 需訂 8 人位</span></div><div class="attr-en">Dinner – Parasztkonyha Restaurant</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Parasztkonyha+restaurant+Budapest" target="_blank">📍 地圖</a></div></div>
       <div class="attr">
         <div class="attr-name">🚢 20:45 多瑙河夜遊 <span class="badge badge-ok">✓ 已訂</span></div>
         <div class="attr-en">Danube Cruise – Legenda City Cruises</div>
@@ -570,6 +581,28 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
           <a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Jane+Haining+rakpart+Budapest" target="_blank">📍 碼頭位置</a>
         </div>
       </div>
+
+      <div class="cruise-sub">⏱ 當晚時間軸 · Hotel → Cruise</div>
+      <div class="cruise-tl">
+        <div><time>白天</time><div>布達佩斯最後白天：城堡山／漁夫堡白天俯瞰多瑙河，晚上從船上仰望同框，對比震撼。</div></div>
+        <div><time>18:30</time><div>前往 Parasztkonyha 晚餐，<b>目標 19:30 前用餐完畢</b>。</div></div>
+        <div><time>19:55</time><div>飯店 Király u. 19 步行出發：沿 Király utca 往南 → Deák Ferenc tér → 多瑙河，約 18–20 分鐘。</div></div>
+        <div><time>20:15</time><div>抵達碼頭 Jane Haining rakpart 7（伊麗莎白橋北側）排隊；週一人潮少。</div></div>
+        <div><time>20:35</time><div>登船直奔<b>上層露天甲板右舷</b>（面向佩斯）：國會大廈＋鏈子橋＋布達城堡同框；向工作人員索取中文語音導覽耳機。</div></div>
+        <div><time>20:45</time><div>遊船出發！伊麗莎白橋 → 鏈子橋 → 瑪格麗特橋來回，全程約 1 小時。</div></div>
+        <div><time>21:45</time><div>遊船結束，Váci utca 與河岸夜景就在旁邊，可續攤小酌收尾。</div></div>
+      </div>
+
+      <div class="cruise-sub">🌅 船上光線四階段 · 20:45 班次精華</div>
+      <div class="cruise-tl">
+        <div><time>20:45</time><div>日落餘暉：天空橙紅，城市輪廓清晰，拍城堡剪影最佳時機。</div></div>
+        <div><time>21:00</time><div><b>藍調時刻（最美）</b>：天空深藍漸層、城市燈光同步亮起，最難複製的 15 分鐘——務必在船上而非碼頭等候。</div></div>
+        <div><time>21:15</time><div>黃昏轉夜：國會大廈、鏈子橋、布達城堡燈光全開，河面倒影漸明。</div></div>
+        <div><time>21:30</time><div>完全夜景：燈光最銳利，國會大廈金黃倒影在黑色河面上最為壯觀。</div></div>
+      </div>
+
+      <div class="hl">🍽 晚餐 <b>Parasztkonyha</b>（Október 6. u. 3，碼頭步行 5 分鐘）· 週一 17:00–23:00 · 4.8★。<b>立即電話／Google 訂 8 人位、指定 18:30 入座</b>。招牌：紅酒燉牛肉、釀高麗菜、古拉什湯。<br>📞 +36 70 858 8663</div>
+      <div class="hl">🚶 飯店 → 碼頭步行 18–20 分鐘（7 月夏夜最舒適）。<b>雨天備案：</b>Bolt 叫車約 5–8 分鐘、€4–6／輛、建議叫 2 輛；Legenda 船內設玻璃艙室，下雨照常開船。</div>
       <div class="hl">⚠️ 請再次向 Legenda 確認確切碼頭位置（Jane Haining rakpart 7 附近，Elizabeth Bridge 旁）</div>
       <div class="reminders">
         <div class="rem-title">📌 今日提醒</div>
