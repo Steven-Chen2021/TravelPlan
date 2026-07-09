@@ -141,6 +141,7 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
 .tip-hl { margin-top:9px; padding:9px 11px; border-left:4px solid var(--green); border-radius:0 5px 5px 0; background:#e9f2e8; color:#31533d; font-size:13px; line-height:1.65; }
 .food-city-hdr { display:flex; align-items:center; gap:8px; margin:3px 0 12px; padding:12px 14px; border-radius:6px; color:#fff; font-family:Georgia,"Noto Serif TC",serif; font-size:18px; font-weight:700; box-shadow:var(--shadow); }
 .food-city-hdr.hu { background:linear-gradient(135deg,#8e2926,var(--paprika)); }
+.food-city-hdr.sk { background:linear-gradient(135deg,#1d5d8f,#b6383f); }
 .food-city-hdr.at { background:linear-gradient(135deg,var(--danube),#1e6471); }
 .food-cat-lbl { margin:18px 0 7px 3px; color:#776442; font-size:11px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
 .food-name { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:8px; padding-right:38px; color:var(--danube); font-family:Georgia,"Noto Serif TC",serif; font-size:16px; font-weight:700; }
@@ -206,8 +207,9 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
     <div class="trip-dates" aria-label="行程日期摘要">
       <div class="date-chip">出發 7/1</div>
       <div class="date-chip">布達佩斯 7/2–7/7</div>
-      <div class="date-chip">維也納 7/7–7/10</div>
-      <div class="date-chip">返台 7/11</div>
+      <div class="date-chip">維也納 7/7–7/11</div>
+      <div class="date-chip">布拉提斯拉瓦 7/10</div>
+      <div class="date-chip">返台 7/12</div>
     </div>
   </div>
 </header>
@@ -217,7 +219,7 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
   <button class="tab active" type="button" role="tab" aria-selected="true" aria-controls="immigration" onclick="showTab('immigration', this)">📋 入境文件</button>
   <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="transport" onclick="showTab('transport', this)">🚆 交通路線</button>
   <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="itinerary" onclick="showTab('itinerary', this)">🗺 每日行程</button>
-  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="transfer" onclick="showTab('transfer', this)">🚐 機場接送</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="transfer" onclick="showTab('transfer', this)">✈️ 回程航班</button>
   <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="emergency" onclick="showTab('emergency', this)">🆘 緊急聯絡</button>
   <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="tips" onclick="showTab('tips', this)">💡 旅行小TIP</button>
   <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="food" onclick="showTab('food', this)">🍽 美食</button>
@@ -235,8 +237,8 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
     <div class="info-row"><span class="il">去程起飛</span><span class="iv">2026/07/01 (三) 23:40 <br>桃園機場 第一航廈</span></div>
     <div class="info-row"><span class="il">去程抵達</span><span class="iv">2026/07/02 (四) 06:35 <br>維也納 Schwechat T3</span></div>
     <div class="info-row"><span class="il">回程航班</span><span class="iv">CI064 · 維也納→台北</span></div>
-    <div class="info-row"><span class="il">回程起飛</span><span class="iv">2026/07/10 (五) 11:15 <br>維也納 Schwechat T1A</span></div>
-    <div class="info-row"><span class="il">回程抵達</span><span class="iv">2026/07/11 (六) 05:30 <br>桃園機場 第一航廈</span></div>
+    <div class="info-row"><span class="il">回程起飛</span><span class="iv">2026/07/11 (六) 11:15 <br>維也納 Schwechat T1A</span></div>
+    <div class="info-row"><span class="il">回程抵達</span><span class="iv">2026/07/12 (日) 05:30 <br>桃園機場 第一航廈</span></div>
     <div class="info-row"><span class="il">託運行李</span><span class="iv">每人 2 件（含機票）</span></div>
   </div>
 
@@ -251,7 +253,7 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
     <div class="info-row"><span class="il">維也納</span><span class="iv">Antonigasse 1<br>1180 Wien, Austria</span></div>
     <div class="info-row"><span class="il">訂房編號</span><span class="iv">6568272860 (Booking.com)</span></div>
     <div class="info-row"><span class="il">入住</span><span class="iv">7/7 (二) 14:00 起</span></div>
-    <div class="info-row"><span class="il">退房</span><span class="iv">7/10 (五) 11:00 前</span></div>
+    <div class="info-row"><span class="il">退房</span><span class="iv">請確認是否延住至 7/11；若無延住需另找 7/10 晚住宿</span></div>
   </div>
 
   <div class="card">
@@ -266,7 +268,7 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
     <div class="card-title"><span class="icon">📋</span>入境文件核對清單</div>
     <div class="hl">入境申根區首站為<b>維也納</b>，清關在此辦理</div>
     <div class="cl-item"><div class="cl-box"></div><div><div>有效護照（餘效 6 個月以上）</div><div class="cl-data">所有同行成員，各自備妥</div></div></div>
-    <div class="cl-item"><div class="cl-box"></div><div><div>回程機票（CI064 訂位確認）</div><div class="cl-data">7/10 11:15 維也納→台北</div></div></div>
+    <div class="cl-item"><div class="cl-box"></div><div><div>回程機票（CI064 改期後訂位確認）</div><div class="cl-data">7/11 11:15 維也納→台北，7/12 05:30 抵達</div></div></div>
     <div class="cl-item"><div class="cl-box"></div><div><div>布達佩斯住宿確認書</div><div class="cl-data">Király utca 19 · 訂單 #6515930123</div></div></div>
     <div class="cl-item"><div class="cl-box"></div><div><div>維也納住宿確認書</div><div class="cl-data">Antonigasse 1 · 訂單 #6568272860</div></div></div>
     <div class="cl-item"><div class="cl-box"></div><div><div>旅遊保險（建議備妥）</div><div class="cl-data">含醫療與緊急撤離保障</div></div></div>
@@ -450,16 +452,14 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🚐</span>Leg 8 · 公寓 → VIE 機場 <span class="badge badge-ok">✓ 已訂</span><button class="lang-btn" data-trans="leg8" onclick="toggleLang(this,event)">🇩🇪</button></div>
+    <div class="card-title"><span class="icon">🚕</span>Leg 8 · 公寓 → VIE 機場 <span class="badge badge-book">需重排</span><button class="lang-btn" data-trans="leg8" onclick="toggleLang(this,event)">🇩🇪</button></div>
     <div class="transport">
-      <div class="t-route">Elife Transfer · Klook PTM726822</div>
+      <div class="t-route">原機場接送已取消 · 改自行叫車 / 旅館協助叫車</div>
       <div class="t-detail">
-        <b>接車時間：</b>2026/07/10 (五) 07:30<br>
-        <b>接車地點：</b>Antonigasse 1, 1180 Wien<br>
-        <b>車型：</b>9 人座廂型車（最多 8 人 / 6 件行李）<br>
-        <b>供應商：</b>Elife Transfer · +1-800-814-4204<br>
-        <b>等候時間：</b>指定時間起 15 分鐘<br>
-        ⚠️ 前一天司機會電話確認，請確保手機可接國際來電
+        <b>航班：</b>2026/07/11 (六) 11:15 CI064 · VIE T1A<br>
+        <b>建議出發：</b>07:30 前後從 Antonigasse 1 出發，目標 08:15–08:30 抵達機場<br>
+        <b>建議方式：</b>8 人有行李時叫 2 台計程車 / Bolt，或請住宿方協助預約大型車<br>
+        <b>備注：</b>原機場接送已取消，不再等待司機電話確認
       </div>
       <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Vienna+International+Airport+VIE" target="_blank">📍 VIE 維也納機場</a>
     </div>
@@ -788,27 +788,184 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
         <div class="rem-title">📌 今日提醒</div>
         <div class="rem"><div class="rem-dot">1</div><div>美泉宮務必早出門，且不要把花園走太滿；後面還有市場、教堂與百水公寓</div></div>
         <div class="rem"><div class="rem-dot">2</div><div>Naschmarkt 和卡爾教堂可步行銜接，是今天最順的市中心段落</div></div>
-        <div class="rem"><div class="rem-dot">3</div><div>百水公寓是住宅，以外觀拍照為主；明天 07:30 接車，今晚用完餐後盡早回公寓整理行李</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>百水公寓是住宅，以外觀拍照為主；明天改成布拉提斯拉瓦一日遊，今晚先確認 7/10 晚住宿與 7/11 叫車安排</div></div>
       </div>
     </div>
   </div>
 
-  <!-- Day 9: 7/10 返程 -->
+  <!-- Day 9: 7/10 布拉提斯拉瓦 -->
   <div class="day-wrap">
     <div class="day-hdr" onclick="toggleDay(this)">
-      <div><div>Day 9 · 7/10 (五) 返回台灣</div><div class="day-label">Airport Transfer 07:30 · CI064 11:15</div></div>
-      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇩🇪</button>
+      <div><div>Day 9 · 7/10 (五) 布拉提斯拉瓦一日遊</div><div class="day-label">Bratislava Old Town · Castle Option · Slovak Wine</div></div>
+      <button class="lang-btn" data-trans="day9" onclick="toggleLang(this,event)">🇸🇰</button>
       <span class="arrow">▼</span>
     </div>
     <div class="day-body">
-      <div class="attr"><div class="attr-name">🚐 07:30 Elife Transfer 接車 <span class="badge badge-ok">✓ 已訂</span></div><div class="attr-en">Pickup: Antonigasse 1, 1180 Wien</div><div style="font-size:12px;color:#444;margin-top:4px">Klook 訂單 PTM726822 · 前一天司機電話確認</div></div>
-      <div class="attr"><div class="attr-name">✈ 11:15 CI064 起飛</div><div class="attr-en">Vienna Schwechat T1A → Taipei Taoyuan T1</div><div style="font-size:12px;color:#444;margin-top:4px">抵達台北：7/11 (六) 05:30</div></div>
-      <div class="hl">⚠️ 請確認兩個房間都沒有遺留物品，退房前拍照存證</div>
+      <div class="hl">因台灣颱風影響，CI064 延後一天；7/10 改成布拉提斯拉瓦一日遊，7/11 同時間從維也納返台。原機場接送已取消。</div>
+      <div class="attr">
+        <div class="attr-name">🚆 10:00 從 Antonigasse 出發 → 12:00 抵達 Bratislava Hlavná Stanica</div>
+        <div class="attr-en">Antonigasse 1 → Wien Westbahnhof / REX → Bratislava Main Station</div>
+        <div class="attr-desc">購買 ÖBB Bratislava Ticket，約 €19/人，8 人合計約 €152；票券含維也納往返布拉提斯拉瓦，以及布拉提斯拉瓦市區公車 / 電車全日券。抵達後可搭公車 93 或電車 1 號進老城區。</div>
+        <div class="attr-links"><a class="attr-link" href="https://www.oebb.at" target="_blank">🌐 ÖBB</a><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Bratislava+Hlavna+Stanica" target="_blank">📍 Bratislava Hlavná Stanica</a></div>
+      </div>
+      <div class="hl">三個版本摘要先放在這裡；下方把所有可能景點都列成獨立卡片，當天可依天氣、體力、午餐等待時間自由混搭。</div>
+      <div class="attr">
+        <div class="attr-name">🟢 版本 A · 老城區輕鬆漫步（不上城堡山）</div>
+        <div class="attr-en">Easy Old Town Walk · lowest effort</div>
+        <div class="attr-desc">12:30 主廣場 → 13:15 聖米迦勒城門 → 13:45 Michalská 街 → 14:15 午餐（U Sedliaka / Zylinder）→ 15:45 Čumil → 16:00 樞機主教宮 → 16:30 Hviezdoslavovo 廣場 → 17:15 多瑙河畔 → 17:45 白酒休息 → 18:45 回車站。</div>
+      </div>
+      <div class="attr">
+        <div class="attr-name">⭐ 版本 B · 老城區 + 布拉提斯拉瓦城堡（推薦）</div>
+        <div class="attr-en">Recommended balanced route</div>
+        <div class="attr-desc">12:30 主廣場 → 13:00 聖米迦勒城門 + Michalská 街 → 13:30 步行上城堡山 → 13:45 午餐（Bratislava Flagship / Prazdroj）→ 15:15 城堡外觀與花園 → 16:15 聖馬丁教堂 → 16:45 Čumil + 老城巷弄 → 17:30 Hviezdoslavovo 咖啡 / 白酒 → 18:45 回車站。</div>
+      </div>
+      <div class="attr">
+        <div class="attr-name">🔵 版本 C · 城堡 + UFO 觀景台 + 藍色教堂</div>
+        <div class="attr-en">Full route · most walking and timing control</div>
+        <div class="attr-desc">12:30 主廣場 → 12:50 聖米迦勒城門 → 13:15 快速午餐（Bratislava Flagship）→ 14:30 布拉提斯拉瓦城堡 → 15:30 下山到 UFO 橋 → 15:45 UFO 觀景台 → 16:45 多瑙河畔 → 17:30 藍色教堂內部 → 18:15 白酒休息 → 18:45 回車站。</div>
+      </div>
+
+      <div class="cruise-sub">7/10 景點資料庫 · 可自由調配</div>
+
+      <div class="attr">
+        <div class="attr-name">🏛 Hlavné námestie 主廣場 <span class="badge badge-info">A/B/C 起點</span></div>
+        <div class="attr-en">Main Square · Roland Fountain · Old Town Hall</div>
+        <div class="attr-desc">布拉提斯拉瓦老城的核心廣場，適合作為第一個集合與判斷體力的點。Roland 噴泉、舊市政廳、彩色立面與露天咖啡座都集中在這裡；若天氣熱或有人累，可以先坐下喝水再決定要不要上城堡山。</div>
+        <div class="statue-tip"><b>費用評估：</b>廣場、Roland 噴泉與外觀拍照免費。若臨時想進舊市政廳 / 城市博物館，成人票通常約 €8–10；本行程建議先以外觀與廣場休息為主。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>Hlavné námestie 是布拉提斯拉瓦老城最適合開始的一站，因為它不是單一建築，而是一個把城市歷史、日常生活和觀光動線都壓縮在一起的小舞台。廣場中央的 Roland 噴泉、舊市政廳的塔樓、周圍帶有巴洛克和新藝術風格的立面、露天咖啡座與紀念品店，都讓這裡成為判斷今天節奏的最佳起點。抵達後先不要急著衝景點，可以用 10 分鐘看大家狀態：如果天氣熱、有人走得慢，就把今天調成版本 A；如果大家精神好，再往城門和城堡方向推進。</p><h4>停留方式</h4><p>建議停留 20 到 30 分鐘。版本 A 可以在廣場坐久一點，喝水、拍照、看街頭表演；版本 B/C 則把它當作方向定位點，從這裡辨認聖米迦勒城門、舊市政廳和往城堡方向的出口。拍照時不要只拍噴泉，也可以把彩色建築立面和窄巷入口一起拍進去，會更有老城氣氛。8 人同行時，這裡也適合先約好「如果走散就回噴泉旁集合」。</p><h4>有趣歷史故事</h4><p>Roland 噴泉常被說成是中世紀騎士 Roland 的形象，但在布拉提斯拉瓦的地方記憶裡，它也和城市守護、消防與市民自治有關。傳說每到跨年午夜，噴泉上的騎士會轉身向舊市政廳致意，守護城市新的一年。這類傳說未必是歷史事實，卻很適合作為旅途中記住廣場的方式：這不是普通的拍照點，而是老城居民把災難、節慶、政治和日常市場生活都放在同一個空間裡的地方。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Hlavné+námestie+Bratislava" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">🚪 聖米迦勒城門 Michael's Gate <span class="badge badge-info">A/B/C</span></div>
+        <div class="attr-en">Michalská brána</div>
+        <div class="attr-desc">老城唯一保留下來的中世紀城門，外觀免費，是從老城核心往城堡方向走時最自然的節點。若時間充裕可登塔；若採版本 B/C，建議外觀拍照後繼續往 Michalská 街和城堡方向移動。</div>
+        <div class="statue-tip"><b>費用評估：</b>外觀與穿越城門免費。若登塔 / 參觀武器博物館，成人票抓約 €6–8；版本 C 不建議入內，版本 A 時間充裕再考慮。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>聖米迦勒城門是布拉提斯拉瓦老城最有「進城」儀式感的地方，也是舊城防系統中唯一保存下來的主要城門。今天看起來像一座優雅的塔門，但它原本是防禦城市、控制商旅進出與收取關稅的重要節點。從主廣場走到這裡，會明顯感覺街道變窄、視線被塔樓收束，這正是中世紀城門的空間效果。它非常適合放在 A/B/C 三個版本的前段，因為不需要繞路，外觀也足夠有代表性。</p><h4>停留方式</h4><p>若只看外觀，10 到 15 分鐘即可。站在門洞下方往兩側看，可以想像過去城牆、護城設施和商旅動線。若版本 A 當天很輕鬆，可以考慮登塔，從高處看老城屋頂和街道走向；若版本 B/C 想保留體力給城堡、UFO 或藍色教堂，建議外觀拍照後沿 Michalská 街繼續前進。這裡人流多，8 人合照可退到街道稍遠處，把塔樓完整收入畫面。</p><h4>有趣歷史故事</h4><p>聖米迦勒城門附近有一個很有趣的小細節：門下街面上可以找到「零公里」標記，標出布拉提斯拉瓦到世界各城市的距離。這個現代小標記和古老城門放在一起很有意思，因為城門本來就是城市和外界連接的邊界。過去人們從這裡進城，可能是商人、士兵、朝聖者，也可能是帶著消息和貨物的旅人；今天遊客站在同一個位置看世界距離，等於用另一種方式延續了「城市入口」的角色。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Michael%27s+Gate+Bratislava" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">🏘 Michalská 街漫步 <span class="badge badge-info">A/B/C</span></div>
+        <div class="attr-en">Michalská ulica</div>
+        <div class="attr-desc">老城最漂亮、最順路的街道之一，串起主廣場、城門與往城堡方向的動線。街道尺度小、轉角多，很適合邊走邊拍；版本 B/C 可以把它當成上城堡前的暖身路段。</div>
+        <div class="statue-tip"><b>費用評估：</b>街道漫步與外觀拍照免費。花費只會來自咖啡、冰淇淋、紀念品或臨時進店；若趕版本 B/C，建議不要在這段消費停太久。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>Michalská 街不是一個需要買票的景點，而是布拉提斯拉瓦老城最能讓人「進入城市節奏」的街道。它從聖米迦勒城門往老城內延伸，兩側有老屋、餐廳、小店與窄巷入口，適合慢走、拍照，也適合觀察這座城市從中世紀防禦城鎮轉為奧匈時代城市生活空間的變化。對 7/10 當天來說，它是 A/B/C 都會經過的彈性路段：版本 A 可以慢慢逛；版本 B/C 則把它當作往城堡山方向移動的漂亮過場。</p><h4>停留方式</h4><p>建議用 15 到 25 分鐘，不需要每家店都停。走路時可以留意建築立面、窗框、拱門和街道彎曲的方式，這些比單一招牌更能呈現老城質感。若午餐還早，可以在這段找咖啡或冰淇淋；若午餐時間已到，就不要停太久，直接往 Flagship、Prazdroj、U Sedliaka 或 Zylinder 移動。這裡路面可能有石板，長輩走路要放慢，避免邊拍照邊踩空。</p><h4>有趣歷史故事</h4><p>布拉提斯拉瓦在德語中曾稱 Pressburg，在匈牙利語中稱 Pozsony，這種多語城市身分在 Michalská 街一帶特別容易感受到。歷史上，這裡不是單一民族城市，而是德語、匈牙利語、斯洛伐克語和猶太社群交錯生活的地方。許多音樂家和貴族、商人、學生曾穿梭於老城街道，城市文化也因此帶有中歐混合感。走這條街時，可以把它想成一條城市記憶的走廊：同一段石板路，曾服務防禦、貿易、音樂、餐飲和今天的旅行。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Michalská+ulica+Bratislava" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">⛰ 步行上城堡山 <span class="badge badge-book">B/C 體力點</span></div>
+        <div class="attr-en">Old Town → Bratislava Castle uphill walk</div>
+        <div class="attr-desc">從老城往城堡上坡約 15 分鐘，是版本 B/C 的主要體力門檻。好處是沿路能看到老城屋頂和多瑙河方向；若當天太熱、有人膝蓋不適或午餐拖太久，可以放棄城堡，改回版本 A。</div>
+        <div class="statue-tip"><b>費用評估：</b>步行路線與沿途視野免費。若中途改搭計程車 / Bolt 上城堡山，需另估短程車資；8 人通常要 2 台車。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>從老城步行上城堡山，本身就是一段景點。它不是單純的交通移動，而是讓人理解布拉提斯拉瓦地形的最好方式：老城在下方，多瑙河在旁邊，城堡站在高處控制視野。這段路約 15 分鐘上坡，對體力普通的人不算困難，但在夏天、飯後或帶長輩同行時，會成為今天是否採用版本 B/C 的關鍵判斷點。若大家走到城門已經很累，就不要勉強上坡，改走版本 A 會更舒服。</p><h4>停留方式</h4><p>上坡前先補水，確認鞋子和膝蓋狀況。走法可以分成兩段：第一段從老城離開，慢慢進入較安靜的坡道；第二段接近城堡時，找視野好的地方停 2 到 3 分鐘拍照。版本 B 可以把這段當成慢走體驗，停幾次看屋頂和河景；版本 C 則不要在上坡路段花太多時間，因為後面還有 UFO 和藍色教堂。若下雨或地面濕，這段石板路要放慢，寧可少排一個景點也不要趕路。</p><h4>有趣歷史故事</h4><p>城堡山的意義來自「看得遠」。在中世紀與近代早期，高地不只是漂亮風景，而是軍事、行政和象徵權力的位置。想像過去守衛從高處看多瑙河船隻、老城屋頂和通往奧地利方向的道路，就能理解為什麼城堡會在這裡。今天遊客上坡是為了拍照，但古代人上坡可能是辦公、守城、送信或接受統治權威。這段短短的坡路，實際上把日常老城和政治軍事中心連在一起。走上去再回頭看，會發現剛剛穿過的老城街道突然變成一張城市地圖，這種視角轉換就是這段路最值得保留的理由。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Old+Town+to+Bratislava+Castle+walk" target="_blank">📍 路線</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">🏰 布拉提斯拉瓦城堡 <span class="badge badge-info">B/C 核心</span></div>
+        <div class="attr-en">Bratislava Castle · exterior and garden</div>
+        <div class="attr-desc">城堡外觀與花園免費，是看多瑙河、老城、奧地利方向視野的最佳點。版本 B 建議把它當下午主景點；版本 C 則控制停留時間，外觀、花園與視野完成即可。</div>
+        <div class="statue-tip"><b>費用評估：</b>城堡外觀、庭院、花園與觀景平台免費。若進入城堡內的歷史博物館，成人票抓約 €14；一日遊時間有限，除非遇雨或大家特別想看展，否則不建議入內。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>布拉提斯拉瓦城堡是城市最重要的天際線符號，也是版本 B 和 C 的核心。它的價值不只是城堡本體，而是站在平台上能一次看懂城市結構：老城在山腳，多瑙河橫向切過，UFO 橋連到對岸，遠方還能感受到奧地利邊境方向。若只在老城走，布拉提斯拉瓦會像一座小巧可愛的古城；上城堡後，才會看到它作為多瑙河交通節點與邊境城市的尺度。</p><h4>停留方式</h4><p>外觀、花園和平台抓 45 到 60 分鐘最剛好。若版本 B，這裡可以慢慢走，拍城堡立面、花園和河景；若版本 C，建議不進博物館，把時間留給 UFO 和藍色教堂。城堡博物館本身可看斯洛伐克歷史，但對一日遊來說時間成本高。拍照時，除了拍白色城堡外觀，也要往平台邊走，拍多瑙河、老城屋頂和橋，這些照片更能說明為什麼城堡重要。</p><h4>有趣歷史故事</h4><p>這座城堡所在的山丘很早就有人類活動，因為它控制多瑙河與周邊道路。近代歷史中，城堡曾歷經輝煌、火災、荒廢和修復。最有趣的是，它今天看起來整齊潔白、像童話城堡，但這種形象其實是長期重建後的結果。歷史上的城堡不是永遠優雅，而是軍事堡壘、王室倉庫、行政場所、廢墟和國家象徵不斷轉換。站在城堡前，可以把它想成斯洛伐克歷史的「修復版封面」：外表簡潔，背後卻是多層政治變動。這也是為什麼它很適合排在午餐後，讓大家用一個高處視角，把上午走過的老城重新理解一次。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Bratislava+Castle" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">⛪ 聖馬丁教堂 St. Martin's Cathedral <span class="badge badge-info">B</span></div>
+        <div class="attr-en">Katedrála svätého Martina</div>
+        <div class="attr-desc">城堡山腳的哥德式教堂，曾是匈牙利國王加冕場所。版本 B 從城堡下山後接這裡最順；版本 C 若時間緊，可只在外觀短停，把時間留給 UFO 與藍色教堂。</div>
+        <div class="statue-tip"><b>費用評估：</b>外觀免費。一般入內多為免費或小額捐獻制，但遇特殊展覽、導覽、音樂活動或管制時可能另計；本行程可先當外觀短停。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>聖馬丁教堂位在城堡山腳，是理解布拉提斯拉瓦政治歷史時非常重要的一站。它外觀不像維也納大教堂那樣華麗壓迫，卻承載了更具地方關鍵性的故事：布拉提斯拉瓦曾是匈牙利王國加冕城市，這座教堂就是加冕儀式的重要場所。若版本 B 從城堡下山，接到聖馬丁教堂非常順；若版本 C 時間緊，可以外觀短停，把內部參觀留給下次。</p><h4>停留方式</h4><p>外觀抓 15 到 25 分鐘即可，若入內則再加時間。看點包括哥德式尖拱、教堂量體與城堡山之間的關係，以及塔頂象徵王冠記憶的元素。這裡適合用來解釋「為什麼布拉提斯拉瓦不只是斯洛伐克首都，也曾是匈牙利王國歷史舞台」。8 人同行時，可以先在外面集合說明，再決定是否入內，避免進出教堂時隊伍分散。</p><h4>有趣歷史故事</h4><p>16 到 19 世紀間，多位匈牙利國王和王后在布拉提斯拉瓦加冕，原因和鄂圖曼帝國壓力、匈牙利政治中心轉移有關。當時城市還常被稱為 Pressburg 或 Pozsony。加冕儀式不只是宗教活動，也是政治宣示：新君主在教堂接受儀式後，會通過城市空間展現合法性。今天我們只是短暫停留，但如果想像街道上擠滿貴族、士兵、市民和儀式隊伍，這座相對低調的教堂就會突然變得很有重量。它也提醒我們，布拉提斯拉瓦的歷史不是單一國家的故事，而是中歐王國、帝國和民族身分互相交錯的結果。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=St+Martin%27s+Cathedral+Bratislava" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">🕳 Čumil 下水道人雕像 <span class="badge badge-info">A/B</span></div>
+        <div class="attr-en">Man at Work statue</div>
+        <div class="attr-desc">老城最有名的街頭裝置藝術，適合當作輕鬆拍照點。位置在老城巷弄內，與主廣場、Hviezdoslavovo 廣場都能順路銜接；傳說摸頭會帶來好運。</div>
+        <div class="statue-tip"><b>費用評估：</b>完全免費，只有拍照排隊時間成本。若當天人太多，不值得為了合照等太久，拍外觀即可。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>Čumil 是布拉提斯拉瓦最有名的街頭雕像，中文常叫「下水道人」或「Man at Work」。它不是古蹟，也不是宏偉建築，卻非常適合放進一日遊，因為它代表了老城比較幽默、輕鬆、親人的一面。走完城堡、教堂和廣場後，這種小雕像能讓行程不只停留在歷史重量，也有城市日常的玩心。版本 A 和 B 都很適合順路找它；版本 C 如果時間很緊，可以視動線決定是否略過。</p><h4>停留方式</h4><p>抓 10 到 15 分鐘即可。雕像很低，常有人排隊拍照，也要注意旁邊行人和車流。拍照可以用低角度，讓他像從地面探出頭；也可以讓同行者蹲在旁邊互動。這類景點不值得大幅繞路，但如果從主廣場、餐廳或 Hviezdoslavovo 廣場經過，就很值得停一下。8 人同行時，建議分批拍，不要整團卡在街角太久。</p><h4>有趣歷史故事</h4><p>Čumil 是 1990 年代老城更新後出現的公共藝術之一。關於他的解讀很多：有人說他是在工作時偷懶探頭看路人，有人說他只是好奇地觀察城市，有人則把他當成布拉提斯拉瓦從嚴肅社會主義城市轉向輕鬆觀光城市的象徵。最有趣的是，他後來太受歡迎，也太低調，曾經有車輛差點撞到或忽略他，所以旁邊還設置了提醒標誌。這讓他從一件雕像變成真正會影響街道生活的小角色。對家庭旅行來說，它也是很好的節奏轉換點，讓長輩和小孩都能用輕鬆方式記住這座城市。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Čumil+Bratislava" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">🏛 Primates' Palace 樞機主教宮 <span class="badge badge-info">A</span></div>
+        <div class="attr-en">Primate's Palace</div>
+        <div class="attr-desc">粉色新古典主義宮殿，外觀免費，離老城主動線不遠。版本 A 很適合加入，因為不上城堡時，可以用它補足建築與歷史層次；版本 B/C 若時間不足可略過。</div>
+        <div class="statue-tip"><b>費用評估：</b>外觀與廣場拍照免費。若入內看鏡廳、掛毯與宮殿空間，成人票抓約 €3–5；版本 A 可考慮，版本 B/C 通常不建議入內。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>樞機主教宮是版本 A 很適合加入的建築景點，因為它位在老城範圍內，不需要上坡，也能補足「除了廣場和街道之外，布拉提斯拉瓦還有正式宮殿空間」這個層次。粉色立面、新古典主義比例和安靜的院落感，和主廣場的熱鬧形成對比。它不像城堡那樣高調，但很能代表 18 世紀貴族、教會與外交政治在老城裡留下的痕跡。</p><h4>停留方式</h4><p>如果只看外觀和拍照，15 到 20 分鐘即可。版本 A 不上城堡時，可以把它當成下午的歷史建築重點；版本 B/C 若時間不足，則可略過。觀察重點是建築的對稱感、淡粉色立面、入口和廣場尺度。若有人對歷史或室內展覽有興趣，可再查是否開放參觀，但一日遊不建議把它排成硬性入內點，否則會壓縮其他戶外動線。</p><h4>有趣歷史故事</h4><p>這座宮殿最有名的故事和拿破崙時代有關。1805 年，奧地利在奧斯特里茨戰役後失利，法國與奧地利在布拉提斯拉瓦簽署《普雷斯堡和約》，地點就與樞機主教宮密切相關。這份和約對神聖羅馬帝國和中歐政治秩序都有深遠影響。今天站在粉色宮殿前，很難想像這個優雅空間曾經見證歐洲強權談判。這也讓它成為一個很好的提醒：小城市裡的漂亮宮殿，有時藏著大歷史的轉折。若當天選輕鬆版，這裡可以取代城堡成為歷史重點，少走上坡也不會讓行程只剩逛街。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Primate%27s+Palace+Bratislava" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">🎭 Hviezdoslavovo námestie 廣場 <span class="badge badge-info">A/B 休息點</span></div>
+        <div class="attr-en">Slovak National Theatre area</div>
+        <div class="attr-desc">寬闊、好走、有咖啡館與斯洛伐克國家劇院的廣場，適合當下午休息點。版本 A 可以在這裡轉往多瑙河畔；版本 B 可把它當白酒 / 咖啡收尾，再抓時間回車站。</div>
+        <div class="statue-tip"><b>費用評估：</b>廣場、劇院外觀與散步免費。若進咖啡館或喝白酒，抓每人約 €4–8；若臨時看劇院演出則需另買票，不建議放入當天主行程。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>Hviezdoslavovo námestie 是布拉提斯拉瓦老城最適合休息和收尾的開闊廣場之一。和主廣場相比，這裡更長、更像散步大道，周邊有劇院、咖啡館、餐廳和通往河畔的動線。版本 A 可以把它放在多瑙河畔散步前，版本 B 可以在城堡與老城巷弄後把它當成咖啡或白酒休息點。它的價值不是「必拍一張照片」，而是讓整天行程有一個舒服的緩衝。</p><h4>停留方式</h4><p>建議抓 20 到 40 分鐘，依體力調整。若大家累了，就在附近找座位補水、吃甜點或喝白酒；若還有精神，可從這裡往多瑙河畔走。廣場上的斯洛伐克國家劇院外觀值得一看，街道寬度也比老城窄巷舒展，適合長輩放慢腳步。這裡也是很好的決策點：若時間接近 18:00，就不要再衝遠景點，改準備回車站。</p><h4>有趣歷史故事</h4><p>廣場名稱來自斯洛伐克詩人 Pavol Országh Hviezdoslav，他是斯洛伐克文學的重要人物。把一座城市中心廣場命名給詩人，本身就很有意思，因為它顯示城市記憶不只屬於國王、將軍和宗教人物，也屬於語言和文學。這裡附近的劇院、咖啡館和散步大道，也讓人想到中歐城市常見的公共生活：人們不只是工作和通勤，也在廣場散步、談話、看戲、等待朋友。把這裡當休息點，其實很貼近在地城市使用方式。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Hviezdoslavovo+námestie+Bratislava" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">🌊 多瑙河畔散步 <span class="badge badge-info">A/C</span></div>
+        <div class="attr-en">Danube riverside walk</div>
+        <div class="attr-desc">沿河看 UFO 橋、城堡山輪廓與城市水岸，是把老城節奏轉成開闊風景的好選項。版本 A 可安排 17:15 左右慢走；版本 C 從 UFO 下來後沿河回老城方向最順。</div>
+        <div class="statue-tip"><b>費用評估：</b>河畔散步與拍照免費。若沿途買飲料、冰淇淋或進河畔酒吧，抓每人約 €3–8；時間不足時可只走短段。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>多瑙河畔散步是把布拉提斯拉瓦從「老城小巷」拉回「多瑙河城市」的關鍵段落。前面看主廣場、城門和教堂，容易覺得這只是一座小巧古城；走到河邊後，才會看到城市和水路、橋梁、對岸新區以及城堡山之間的關係。版本 A 可把它當午後放鬆散步，版本 C 則適合從 UFO 下來後沿河回老城方向，形成一條視野開闊的收尾路線。</p><h4>停留方式</h4><p>建議抓 20 到 40 分鐘，不必走完整段。若風大、太曬或下雨，就縮短河畔，回老城咖啡館休息。拍照時可以把 UFO 橋、城堡山和河面一起拍進去，這比只拍水面更能表現布拉提斯拉瓦的地理特色。8 人同行時，河畔比窄巷更適合分散走，但仍要約好下一個集合點，例如回到 Hviezdoslavovo 廣場或某個橋下入口。</p><h4>有趣歷史故事</h4><p>多瑙河對布拉提斯拉瓦的意義很深。它既是交通路線，也是邊界、貿易通道和文化交流帶。歷史上，沿河城市常因水路而繁榮，也因軍事和政治變動而敏感。布拉提斯拉瓦離奧地利很近，站在河邊其實能感受到它作為邊境城市的特殊位置。冷戰時期，多瑙河與周邊邊界也帶有更強的政治意味；今天遊客輕鬆散步、看船和拍照，反而能感受到歐洲邊界變得開放後的日常平靜。這段散步也很適合當作版本轉換點，累了就回老城，不累再接 UFO 或白酒休息。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Danube+riverfront+Bratislava" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">🛸 UFO 橋與觀景台 <span class="badge badge-book">C 加碼</span></div>
+        <div class="attr-en">Most SNP · UFO Observation Deck</div>
+        <div class="attr-desc">版本 C 的主要加碼點，95 公尺高空可 360 度看城市、城堡與多瑙河。若天氣晴、能見度好，值得上去；若雲層低、風大或時間被午餐壓縮，就只看橋外觀即可。</div>
+        <div class="statue-tip"><b>費用評估：</b>橋下外觀與河畔拍照免費。UFO 觀景台成人票抓約 €11.90–13；若在上方餐廳用餐，部分門票規則可能可折抵或另有低消，出發前以官網為準。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>UFO 橋與觀景台是版本 C 的現代城市加碼點。它和老城、城堡、教堂完全不同，代表的是 20 世紀後半的工程、現代化和城市更新。橋本身連接老城側與對岸 Petržalka 區，觀景台則像飛碟一樣停在橋塔上方。若天氣好，從上面可以看到多瑙河、城堡、老城、住宅區與周邊平原，是理解布拉提斯拉瓦全貌的快速方式。</p><h4>停留方式</h4><p>如果只看橋外觀，15 分鐘即可；若上觀景台，至少抓 45 到 60 分鐘，包含走路、買票、電梯和拍照。版本 C 可以安排 15:45 左右上去，但要看午餐和城堡是否準時。若能見度差、雲層低或風太大，就不建議勉強花錢上觀景台，改把時間留給藍色教堂或河畔散步。拍照時，除了城市全景，也可以拍橋的結構線條，和老城建築形成強烈對比。</p><h4>有趣歷史故事</h4><p>Most SNP，也就是常被稱為 UFO 橋的橋，建於社會主義時期，是當時現代工程的象徵。但它的建設也有爭議，因為新橋與道路工程改變了老城邊緣，部分歷史街區和猶太社群相關空間在城市改造中消失。這讓 UFO 不只是漂亮觀景台，也是一個很好的討論點：城市現代化常帶來便利和視野，但也可能犧牲歷史紋理。站在觀景台看老城時，可以同時看到美景和城市選擇留下的痕跡。這種複雜感反而讓它比普通景觀塔更有意思，因為它同時代表進步、爭議和城市記憶。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=UFO+Observation+Deck+Bratislava" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">💙 藍色教堂 Blue Church <span class="badge badge-book">C 周五亮點</span></div>
+        <div class="attr-en">Church of St. Elizabeth</div>
+        <div class="attr-desc">Art Nouveau 粉藍色教堂，是版本 C 的周五限定亮點。外觀全天可看，內部周五 17:30–19:00 開放，若時間剛好、大家體力足，值得排進最後一段。</div>
+        <div class="statue-tip"><b>費用評估：</b>外觀免費。若開放入內，通常免費或小額捐獻；若遇彌撒、活動或關閉，只看外觀即可，不建議為入內壓縮回程時間。</div>
+        <details class="attr-more"><summary><span class="more-open">📖 展開完整介紹</span><span class="more-close">📖 收合介紹</span></summary><div class="more-body"><h4>景點定位</h4><p>藍色教堂正式名稱是聖伊麗莎白教堂，是布拉提斯拉瓦最容易讓人一眼記住的建築之一。它不像哥德式教堂那樣高聳陰影，也不像巴洛克教堂那樣金碧輝煌，而是用柔和粉藍色、圓潤線條和新藝術風格裝飾，呈現非常夢幻的氣質。版本 C 把它放在 17:30，是因為周五傍晚有機會入內；如果當天只看外觀，它仍然值得短停。</p><h4>停留方式</h4><p>若只看外觀，20 分鐘即可；若要等 17:30 入內，建議預留 30 到 45 分鐘。外觀拍照適合站在街對面，把藍色立面和屋頂裝飾完整收進畫面。入內時請保持安靜，因為它不是單純觀光設施，也仍是宗教空間。版本 C 若前面 UFO 花太久，就要判斷是否還有足夠時間到這裡並在 18:45 前回車站；不要為了入內而壓縮回程。</p><h4>有趣歷史故事</h4><p>藍色教堂建於 20 世紀初，常被歸入匈牙利分離派或中歐新藝術風格脈絡。最有趣的是，它的顏色和造型讓很多人覺得像童話建築，但它其實和聖伊麗莎白相關，帶有宗教與慈善象徵。聖伊麗莎白在中歐傳統中常與照顧貧者、奉獻和玫瑰奇蹟故事相連。也因此，這座教堂的柔和藍色不只是「可愛」，還讓嚴肅的宗教建築呈現出溫柔、照顧和安慰的感覺，和老城的城門、城堡形成很好的對比。若當天走到這裡，會像從石板老城進入另一種童話場景，是很適合當旅程最後記憶點的地方。</p></div></details>
+        <div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Blue+Church+Bratislava" target="_blank">📍 地圖</a></div>
+      </div>
+
+      <div class="attr">
+        <div class="attr-name">🍷 最後一杯斯洛伐克白酒 <span class="badge badge-info">A/B/C 收尾</span></div>
+        <div class="attr-en">Devín · Grüner Veltliner · Welschriesling</div>
+        <div class="attr-desc">如果回程時間還夠，可在主廣場、Hviezdoslavovo 廣場或餐廳附近坐下喝一杯。想嘗在地風味先問 Devín；想清爽百搭選 Grüner Veltliner；搭重口味料理可試 Frankovka Modrá 或 Dunaj 紅酒。</div>
+        <div class="statue-tip"><b>費用評估：</b>非景點門票，屬彈性消費。普通杯裝葡萄酒約 €3–6/杯，餐廳或酒吧依地點可能更高；若時間接近 18:45，建議直接取消。</div>
+      </div>
       <div class="reminders">
         <div class="rem-title">📌 今日提醒</div>
-        <div class="rem"><div class="rem-dot">1</div><div>07:30 準時在 Antonigasse 1 門口等候，司機僅等候 15 分鐘；建議 07:20 前下樓</div></div>
-        <div class="rem"><div class="rem-dot">2</div><div>VIE 機場 T1A 出境（注意：去程是 T3 入境，回程是 T1A 出境），請提前確認登機門</div></div>
-        <div class="rem"><div class="rem-dot">3</div><div>記得保留部分 HUF / EUR 現金或使用完畢；購買伴手禮剩餘外幣限額注意</div></div>
+        <div class="rem"><div class="rem-dot">1</div><div>Bratislava Ticket 當天可在 ÖBB 官網、App 或 Wien Hbf 售票機購買；不用預約固定班次。</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>斯洛伐克使用歐元，老城可刷卡但小餐廳仍建議準備現金；8 人午餐建議先現場確認座位。</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>18:45 是最晚建議出發回車站時間；若選 Modrá Hviezda 晚餐，需改搭更晚班次並提前訂位。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 10: 7/11 返程 -->
+  <div class="day-wrap">
+    <div class="day-hdr" onclick="toggleDay(this)">
+      <div><div>Day 10 · 7/11 (六) 返回台灣</div><div class="day-label">Self-arranged Airport Transfer · CI064 11:15</div></div>
+      <button class="lang-btn" data-trans="day10" onclick="toggleLang(this,event)">🇩🇪</button>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="attr"><div class="attr-name">🚕 07:30 前後自行前往 VIE 機場 <span class="badge badge-book">需安排</span></div><div class="attr-en">Antonigasse 1 → Vienna International Airport</div><div class="attr-desc">原機場接送已取消。8 人與行李建議前一晚預約 2 台計程車 / Bolt，或請住宿方協助安排大型車；目標 08:15–08:30 抵達 VIE。</div><div class="attr-links"><a class="attr-link" href="https://www.google.com/maps/search/?api=1&query=Antonigasse+1+1180+Wien+to+Vienna+International+Airport" target="_blank">📍 路線</a></div></div>
+      <div class="attr"><div class="attr-name">✈ 11:15 CI064 起飛</div><div class="attr-en">Vienna Schwechat T1A → Taipei Taoyuan T1</div><div class="attr-desc">抵達台北：7/12 (日) 05:30。去程在 T3 入境，回程在 T1A 出境，航廈不同。</div></div>
+      <div class="hl">⚠️ 退房與 7/10 晚住宿需重新確認；若維也納公寓未延住，請把 7/10 晚住宿確認書加入文件清單。</div>
+      <div class="reminders">
+        <div class="rem-title">📌 今日提醒</div>
+        <div class="rem"><div class="rem-dot">1</div><div>前一晚先確認叫車方式、車輛數與行李量；不要再等待原接送司機電話。</div></div>
+        <div class="rem"><div class="rem-dot">2</div><div>VIE 機場 T1A 出境，請提前確認中華航空櫃檯與登機門。</div></div>
+        <div class="rem"><div class="rem-dot">3</div><div>出門前確認護照、錢包、藥品、充電器、退稅文件與房間物品。</div></div>
       </div>
     </div>
   </div>
@@ -817,53 +974,38 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
 
 
 <!-- ══════════════════════════════
-     TAB 4: 機場接送
+     TAB 4: 回程航班
 ══════════════════════════════ -->
 <div class="section" id="transfer">
   <div class="card">
-    <div class="card-title"><span class="icon">🚐</span>維也納機場接送 <span class="badge badge-ok">✓ 已訂</span><button class="lang-btn" data-trans="transfer" onclick="toggleLang(this,event)">🇩🇪</button></div>
-    <div class="info-row"><span class="il">訂單號</span><span class="iv">PTM726822 (Klook)</span></div>
-    <div class="info-row"><span class="il">預訂人</span><span class="iv">Chen Li Jen</span></div>
-    <div class="info-row"><span class="il">服務商</span><span class="iv">Elife Transfer</span></div>
-    <div class="info-row"><span class="il">接車時間</span><span class="iv">2026/07/10 (五) <b>07:30</b></span></div>
-    <div class="info-row"><span class="il">接車地點</span><span class="iv">Antonigasse 1, 1180 Wien<br>（維也納 18 區公寓門口）</span></div>
-    <div class="info-row"><span class="il">目的地</span><span class="iv">維也納國際機場 VIE</span></div>
-    <div class="info-row"><span class="il">車型</span><span class="iv">9 人座廂型車</span></div>
-    <div class="info-row"><span class="il">乘客上限</span><span class="iv">8 人</span></div>
-    <div class="info-row"><span class="il">行李上限</span><span class="iv">6 件（標準 24 吋計）</span></div>
-    <div class="info-row"><span class="il">免費等候</span><span class="iv">15 分鐘</span></div>
-    <div class="info-row"><span class="il">退款政策</span><span class="iv">接送前 24 小時免費取消</span></div>
-    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Antonigasse+1+1180+Wien" target="_blank">📍 接車地點</a>
-    &nbsp;
-    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Vienna+International+Airport+VIE" target="_blank">📍 VIE 機場</a>
+    <div class="card-title"><span class="icon">✈️</span>回程航班與機場移動 <span class="badge badge-book">需自行安排</span><button class="lang-btn" data-trans="transfer" onclick="toggleLang(this,event)">🇩🇪</button></div>
+    <div class="info-row"><span class="il">航班</span><span class="iv">CI064 China Airlines</span></div>
+    <div class="info-row"><span class="il">起飛</span><span class="iv">2026/07/11 (六) <b>11:15</b></span></div>
+    <div class="info-row"><span class="il">出發航廈</span><span class="iv">維也納 Schwechat <b>T1A</b></span></div>
+    <div class="info-row"><span class="il">抵達</span><span class="iv">2026/07/12 (日) 05:30<br>桃園機場 第一航廈</span></div>
+    <div class="info-row"><span class="il">移動方式</span><span class="iv">原接送已取消；改自行叫車 / Bolt / 計程車</span></div>
+    <div class="info-row"><span class="il">建議出發</span><span class="iv">07:30 前後從 Antonigasse 1 出發</span></div>
+    <div class="info-row"><span class="il">建議抵達</span><span class="iv">08:15–08:30 抵達 VIE</span></div>
+    <div class="hl">請注意：去程在 T3 入境，<b>回程在 T1A 出境</b>，航廈不同！</div>
+    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Antonigasse+1+1180+Wien+to+Vienna+International+Airport" target="_blank">📍 公寓 → VIE 路線</a>
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">📞</span>聯絡資訊</div>
-    <div class="info-row"><span class="il">供應商電話</span><span class="iv">+1-800-814-4204</span></div>
-    <div class="info-row"><span class="il">供應商信箱</span><span class="iv">support@elifelimo.com</span></div>
+    <div class="card-title"><span class="icon">🚕</span>叫車提醒</div>
     <div class="info-row"><span class="il">預訂人電話</span><span class="iv">+886 0952576371</span></div>
-    <div class="hl">⚠️ 前一天（7/9）當地供應商會電話確認接車資訊，請確保手機開啟國際漫遊可接聽</div>
+    <div class="info-row"><span class="il">人數</span><span class="iv">8 人</span></div>
+    <div class="info-row"><span class="il">建議</span><span class="iv">前一晚預約 2 台車，或請住宿方協助安排大型車</span></div>
+    <div class="hl">⚠️ 原機場接送已取消；請勿再依舊訂單等待接送。</div>
   </div>
 
   <div class="card">
     <div class="card-title"><span class="icon">🧳</span>行李注意事項</div>
     <div style="font-size:13px;line-height:1.8">
-      <div>· 標準行李（≤24 吋）= 1 件</div>
-      <div>· 大型行李（24–28 吋）= 2 件計</div>
-      <div>· 超大行李（≥28 吋）= 3 件計</div>
-      <div>· 此車限 6 件（標準計算），8 人請提前確認行李數</div>
-      <div style="margin-top:8px;color:#c62828;font-weight:600">⚠ 若行李件數超過限制，司機有權拒絕服務且不退款</div>
+      <div>· 8 人同行建議不要只叫 1 台車，除非已確認大型車可放全部行李</div>
+      <div>· 若叫 2 台車，先分配乘客、行李、護照文件負責人</div>
+      <div>· 出門前確認退稅單、行動電源、藥品與登機證資料</div>
+      <div style="margin-top:8px;color:#c62828;font-weight:600">⚠ 7/10 晚住宿與 7/11 退房時間需要重新確認</div>
     </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="icon">✈️</span>回程航班資訊</div>
-    <div class="info-row"><span class="il">航班</span><span class="iv">CI064 China Airlines</span></div>
-    <div class="info-row"><span class="il">起飛</span><span class="iv">2026/07/10 (五) <b>11:15</b></span></div>
-    <div class="info-row"><span class="il">出發航廈</span><span class="iv">維也納 Schwechat <b>T1A</b></span></div>
-    <div class="info-row"><span class="il">抵達</span><span class="iv">2026/07/11 (六) 05:30<br>桃園機場 第一航廈</span></div>
-    <div class="hl">請注意：去程在 T3 入境，<b>回程在 T1A 出境</b>，航廈不同！</div>
   </div>
 </div><!-- /transfer -->
 
@@ -910,8 +1052,8 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
     <div class="card-title"><span class="icon">✈️</span>航空公司緊急聯絡</div>
     <div class="info-row"><span class="il">中華航空</span><span class="iv">+886-2-412-9000（台灣）</span></div>
     <div class="info-row"><span class="il">訂位代號</span><span class="iv">ESNYU5</span></div>
-    <div class="info-row"><span class="il">機場接送</span><span class="iv">Elife Transfer<br>+1-800-814-4204</span></div>
-    <div class="info-row"><span class="il">Klook 訂單</span><span class="iv">PTM726822</span></div>
+    <div class="info-row"><span class="il">回程移動</span><span class="iv">原機場接送已取消<br>7/11 請自行叫車或請住宿方協助安排</span></div>
+    <div class="info-row"><span class="il">回程航班</span><span class="iv">CI064 · 7/11 11:15 · VIE T1A</span></div>
   </div>
 
   <div class="card">
@@ -1397,6 +1539,112 @@ header .date-chip { flex:none; padding:3px 7px; border:1px solid rgba(241,206,13
     </div>
   </div>
 
+  <!-- ═══ 布拉提斯拉瓦 ═══ -->
+  <div class="food-city-hdr sk" style="margin-top:20px">🇸🇰 布拉提斯拉瓦美食（Day 9 Review）</div>
+
+  <div class="food-cat-lbl">🍽 午餐首選與備案</div>
+
+  <div class="food-card">
+    <div class="food-name">
+      Bratislava Flagship
+      <span class="food-tag food-tag-r">推薦午餐</span>
+      <span class="food-tag food-tag-in">版本 B/C</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Námestie SNP 8</span>
+      <span>💰 約 €15–22/人</span>
+      <span>👥 容量大，8 人最容易成功</span>
+    </div>
+    <div class="food-desc">最適合這次 8 人一日遊的午餐首選：空間大、翻桌快、位置在老城核心，若選版本 B 或 C，不想把時間耗在等位上，優先考慮這間。必點可看 Bryndzové halušky、麵包碗蒜香湯、自製香腸；也有斯洛伐克葡萄酒與啤酒。</div>
+    <div class="food-note">我的建議：若大家還沒決定版本，先把這間當預設午餐點；到現場若人潮太多，再切 U Sedliaka / Prazdroj。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Bratislava+Flagship+Námestie+SNP+8" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-card">
+    <div class="food-name">
+      Zylinder Café & Restaurant
+      <span class="food-tag food-tag-r">氣氛最好</span>
+      <span class="food-tag food-tag-new">版本 A</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Hviezdoslavovo / Ventúrska 一帶</span>
+      <span>⏰ 週一–六 11:00–23:00，週日 11:00–22:00</span>
+      <span>💰 約 €18–28/人</span>
+    </div>
+    <div class="food-desc">Pressburg / 奧匈帝國風格餐廳，適合想把午餐吃得有氣氛一點的版本 A。料理比 Flagship 更精緻，價格也較高；8 人建議提前訂位。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.zylinder.sk/en/" target="_blank">🌐 官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Zylinder+Cafe+Restaurant+Bratislava" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-card">
+    <div class="food-name">
+      U Sedliaka
+      <span class="food-tag food-tag-r">在地平價</span>
+      <span class="food-tag food-tag-new">版本 A</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Obchodná 55</span>
+      <span>💰 約 €12–18/人</span>
+      <span>🍷 Grüner Veltliner / Frankovka Modrá</span>
+    </div>
+    <div class="food-desc">偏在地、價格較友善，適合版本 A 的輕鬆老城路線。若大家想吃傳統斯洛伐克料理但不想太觀光，這間可以列入第一備案。8 人仍建議先電話或現場確認座位。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=U+Sedliaka+Obchodná+55+Bratislava" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-card">
+    <div class="food-name">
+      Prazdroj
+      <span class="food-tag food-tag-r">順路備案</span>
+      <span class="food-tag food-tag-warn">版本 B</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Obchodná 52</span>
+      <span>💰 約 €12–18/人</span>
+      <span>🍺 斯洛伐克料理、捷克啤酒</span>
+    </div>
+    <div class="food-desc">老城核心、份量較足，適合版本 B 若 Flagship 人太多時改用。氣氛比 Zylinder 樸實，優點是價格與位置都穩，適合作為「不想等位」的備案。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Prazdroj+Obchodná+52+Bratislava" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-card">
+    <div class="food-name">
+      Modrá Hviezda
+      <span class="food-tag food-tag-r">晚餐才適合</span>
+      <span class="food-tag food-tag-warn">需訂位</span>
+    </div>
+    <div class="food-info">
+      <span>📍 Beblavého 14，城堡山腳</span>
+      <span>⏰ 週二–五 17:30–22:00，週六–日 12:00–22:00</span>
+      <span>💰 約 €22–35/人</span>
+    </div>
+    <div class="food-desc">評價高、很有斯洛伐克地窖餐廳氣氛，但週五 17:30 才開門，不適合午餐。若大家願意把布拉提斯拉瓦拉到晚餐後再回維也納，這間才值得排；需要提前訂位，且餐廳說訂位需等店家確認才算成立。</div>
+    <div class="food-links">
+      <a class="food-link" href="https://modrahviezda.sk/" target="_blank">🌐 官網</a>
+      <a class="food-link" href="https://www.google.com/maps/search/?api=1&query=Modrá+Hviezda+Beblavého+14+Bratislava" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+
+  <div class="food-cat-lbl">🍷 斯洛伐克葡萄酒速查</div>
+  <div class="food-card">
+    <div class="food-name">
+      點酒建議
+      <span class="food-tag food-tag-b">Wine</span>
+    </div>
+    <div class="food-info">
+      <span>白酒首選：Devín、Grüner Veltliner、Welschriesling</span>
+      <span>紅酒可試：Dunaj、Frankovka Modrá</span>
+    </div>
+    <div class="food-desc">若只想簡單點一杯，優先試 Devín（斯洛伐克獨有白酒）或 Grüner Veltliner（清爽百搭）。紅酒可問 Dunaj 或 Frankovka Modrá；搭重口味肉類會比白酒更合適。</div>
+  </div>
+
   <!-- ═══ 維也納 ═══ -->
   <div class="food-city-hdr at" style="margin-top:20px">🇦🇹 維也納美食</div>
 
@@ -1608,7 +1856,8 @@ document.querySelectorAll('.day-hdr').forEach(hdr => {
     '2026-07-07':'Day 6 · 7/7',
     '2026-07-08':'Day 7 · 7/8',
     '2026-07-09':'Day 8 · 7/9',
-    '2026-07-10':'Day 9 · 7/10'
+    '2026-07-10':'Day 9 · 7/10',
+    '2026-07-11':'Day 10 · 7/11'
   };
   const targetLabel = dayByDate[todayKey];
   const itineraryTab = document.querySelector('.tab[aria-controls="itinerary"]');
@@ -1676,15 +1925,15 @@ const langData = {
        ['Fährt diese Linie zum Stephansplatz?','這條線到史蒂芬廣場嗎？'],
        ['Wo kaufe ich ein Ticket?','在哪裡買票？']] },
   'leg8':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Flughafen Wien (VIE)',
-    p:[['Unser Transfer kommt um 7:30 Uhr.','我們的接送7:30來'],
-       ['Wo ist Terminal 1A für China Airlines?','中華航空的1A航廈在哪裡？'],
-       ['Wir warten auf unseren Fahrer.','我們在等我們的司機']] },
+    p:[['Wir brauchen ein Taxi zum Flughafen Wien.','我們需要計程車到維也納機場'],
+       ['Wir sind acht Personen mit Gepäck.','我們有8個人和行李'],
+       ['Wo ist Terminal 1A für China Airlines?','中華航空的1A航廈在哪裡？']] },
   // Immigration
   'imm-flight':{ flag:'🇩🇪', head:'Einreise · Auf Deutsch', dest:'Einreise Wien',
     p:[['Wir kommen aus Taiwan mit Flug CI063.','我們從台灣搭CI063來'],
        ['Wir sind eine Reisegruppe von 8 Personen.','我們是8人旅遊團'],
-       ['Wir bleiben 9 Nächte in Österreich und Ungarn.','我們在奧匈住9晚'],
-       ['Rückflug: CI064 am 10. Juli um 11:15.','回程：7月10日CI064 11:15']] },
+       ['Wir bleiben 10 Nächte in Österreich, Ungarn und der Slowakei.','我們在奧地利、匈牙利與斯洛伐克停留10晚'],
+       ['Rückflug: CI064 am 11. Juli um 11:15.','回程：7月11日CI064 11:15']] },
   'imm-accomm':{ flag:'🇩🇪🇭🇺', head:'住宿 Unterkunft / Szállás', dest:'',
     p:[['🇩🇪 Wien: Antonigasse 1, 1180 Wien','維也納公寓地址'],
        ['🇩🇪 Budapest: Király utca 19, 1075 Budapest','布達佩斯公寓地址'],
@@ -1734,8 +1983,15 @@ const langData = {
        ['Wo ist der Naschmarkt?','納許市場在哪裡？'],
        ['Wie komme ich zur Karlskirche?','我要怎麼去卡爾教堂？'],
        ['Wo ist das Hundertwasserhaus?','百水公寓在哪裡？']] },
-  'day9':{ flag:'🇩🇪', head:'Abreise · Auf Deutsch', dest:'Terminal 1A – Flughafen Wien',
-    p:[['Unser Fahrer holt uns um 7:30 Uhr ab.','我們的司機7:30來接'],
+  'day9':{ flag:'🇸🇰', head:'Bratislava · Slovensky', dest:'Staré Mesto / Hlavná stanica',
+    p:[['Dobrý deň.','您好'],
+       ['Kde je Staré Mesto?','老城區在哪裡？'],
+       ['Máte stôl pre osem osôb?','有8個人的座位嗎？'],
+       ['Kde je hlavná stanica?','中央車站在哪裡？'],
+       ['Ďakujem.','謝謝']] },
+  'day10':{ flag:'🇩🇪', head:'Abreise · Auf Deutsch', dest:'Terminal 1A – Flughafen Wien',
+    p:[['Wir brauchen ein Taxi zum Flughafen Wien.','我們需要計程車到維也納機場'],
+       ['Wir sind acht Personen mit Gepäck.','我們有8個人和行李'],
        ['Wo ist Terminal 1A für China Airlines?','中華航空的1A航廈在哪裡？'],
        ['Wir fliegen mit China Airlines CI064.','我們搭CI064'],
        ['Wo ist der Check-in-Schalter?','報到櫃台在哪裡？']] },
@@ -1753,8 +2009,8 @@ const langData = {
        ['🇭🇺 Budapest: Király utca 19, 1075','布達佩斯公寓'],
        ['🇭🇺 A Király utca 19-ben lakom.','我住在Király街19號']] },
   'transfer':{ flag:'🇩🇪', head:'Auf Deutsch', dest:'Flughafen Wien – T1A',
-    p:[['Unser Transfer von Elife kommt um 7:30 Uhr.','Elife司機7:30來接我們'],
-       ['Bitte warten Sie – unser Fahrer ist unterwegs.','請等一下，我們的司機在路上'],
+    p:[['Wir brauchen ein Taxi zum Flughafen Wien.','我們需要計程車到維也納機場'],
+       ['Wir sind acht Personen mit Gepäck.','我們有8個人和行李'],
        ['Wo ist Terminal 1A?','1A航廈在哪裡？']] },
 };
 
