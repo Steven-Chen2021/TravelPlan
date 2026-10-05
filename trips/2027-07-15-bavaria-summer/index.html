@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#174f7c">
+<meta name="description" content="2027 Munich, Garmisch-Partenkirchen and Augsburg travel plan for Steven Journey Album.">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<title>2027 · 巴伐利亞夏日</title>
+<style>
+:root {
+  --alpine:#174f7c;
+  --sky:#2f78a8;
+  --pine:#3f6f55;
+  --snow:#eef4f6;
+  --paper:#fffdf8;
+  --ink:#22343d;
+  --muted:#667780;
+  --pretzel:#b5642f;
+  --gold:#d1a54a;
+  --line:#d3dbe0;
+  --shadow:0 14px 32px rgba(23,64,92,.13);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { background:#e9eff2; }
+body {
+  min-height:100vh;
+  color:var(--ink);
+  font-family:"Avenir Next","Noto Sans TC","PingFang TC",sans-serif;
+  background:
+    linear-gradient(90deg, rgba(23,79,124,.04) 1px, transparent 1px),
+    linear-gradient(rgba(23,79,124,.04) 1px, transparent 1px),
+    linear-gradient(180deg,#f2f6f7,#e8eef1 58%,#dfe8ec);
+  background-size:24px 24px,24px 24px,100% 100%;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; -webkit-tap-highlight-color:transparent; }
+.hero {
+  position:relative;
+  overflow:hidden;
+  padding:16px 14px 22px;
+  color:#f7fbff;
+  background:linear-gradient(135deg,#0f3556,var(--alpine) 55%,#3f87b5);
+  border-bottom:4px solid var(--gold);
+}
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.1;
+  background:
+    linear-gradient(135deg, transparent 75%, #fff 75%) 0 0/28px 28px,
+    linear-gradient(225deg, transparent 75%, #fff 75%) 0 0/28px 28px,
+    linear-gradient(315deg, transparent 75%, #fff 75%) 0 0/28px 28px,
+    linear-gradient(45deg, transparent 75%, #fff 75%) 0 0/28px 28px;
+}
+.hero::after {
+  content:"MÜNCHEN · ZUGSPITZE · AUGSBURG";
+  position:absolute;
+  right:-8px;
+  bottom:6px;
+  color:rgba(255,255,255,.09);
+  font:900 20px/1 Georgia,serif;
+  letter-spacing:2px;
+  white-space:nowrap;
+}
+.hero-inner, main, footer { width:min(100%,760px); margin-inline:auto; }
+.back { position:relative; z-index:1; display:inline-flex; margin-bottom:14px; color:#f6dc98; font-size:12px; font-weight:900; text-decoration:none; }
+h1 { position:relative; z-index:1; max-width:640px; font:800 clamp(34px,10vw,58px)/.94 Georgia,"Noto Serif TC",serif; letter-spacing:-.04em; }
+h1 span { display:block; margin-top:8px; color:#f6dc98; font:900 12px/1.4 "Avenir Next",sans-serif; letter-spacing:.16em; text-transform:uppercase; }
+.chips { position:relative; z-index:1; display:flex; gap:7px; flex-wrap:wrap; margin-top:14px; }
+.chip { padding:6px 8px; border:1px solid rgba(246,220,152,.5); border-radius:4px; background:rgba(0,0,0,.16); color:#fff8e6; font-size:11px; font-weight:900; }
+.tabs {
+  position:sticky;
+  top:0;
+  z-index:5;
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:9px 10px;
+  border-bottom:1px solid var(--line);
+  background:rgba(238,244,246,.94);
+  backdrop-filter:blur(10px);
+}
+.tab { flex:0 0 auto; min-height:42px; padding:9px 12px; border:1px solid var(--line); border-radius:6px; color:var(--alpine); background:var(--paper); font-size:12px; font-weight:900; cursor:pointer; }
+.tab.active { color:#fff; border-color:var(--alpine); background:linear-gradient(135deg,var(--alpine),var(--sky)); box-shadow:0 8px 18px rgba(23,79,124,.18); }
+.tab:focus-visible,a:focus-visible,.day-head:focus-visible,.readable:focus-visible { outline:3px solid rgba(209,165,74,.65); outline-offset:2px; }
+main { padding:14px 10px 36px; }
+.section { display:none; animation:in .18s ease both; }
+.section.active { display:block; }
+@keyframes in { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+.grid { display:grid; gap:12px; }
+.card, .day {
+  position:relative;
+  overflow:hidden;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:rgba(255,253,248,.95);
+  box-shadow:var(--shadow);
+}
+.card::after {
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:4px;
+  background:linear-gradient(90deg,var(--alpine),#fff 50%,var(--sky));
+}
+.readable { position:relative; cursor:zoom-in; outline:none; transition:box-shadow .2s ease, background .2s ease; }
+.readable::before {
+  content:"A+";
+  position:absolute;
+  z-index:2;
+  top:10px;
+  right:10px;
+  min-width:32px;
+  padding:4px 6px;
+  border:1px solid #b8cad6;
+  border-radius:5px;
+  color:var(--alpine);
+  background:#f1f8fd;
+  font-size:10px;
+  line-height:1.2;
+  font-weight:950;
+  text-align:center;
+}
+.readable.focus { cursor:zoom-out; background:#fffefa; box-shadow:0 0 0 2px var(--alpine),0 18px 38px rgba(23,79,124,.2); }
+.readable.focus::before { content:"A−"; color:#fff; border-color:var(--pretzel); background:var(--pretzel); }
+.readable.focus .row,.readable.focus .check,.readable.focus .note,.readable.focus .detail { font-size:19px; line-height:1.78; }
+.readable.focus .title,.readable.focus .item-name { font-size:22px; }
+.readable.focus .label,.readable.focus .time { font-size:13px; }
+.title { margin-bottom:12px; padding-right:40px; color:var(--alpine); font:800 21px/1.2 Georgia,"Noto Serif TC",serif; }
+.row { display:grid; grid-template-columns:98px minmax(0,1fr); gap:9px; padding:10px 0; border-top:1px dashed #cfd9df; }
+.row:first-of-type { border-top:0; }
+.label { color:#9a5a32; font-size:11px; font-weight:950; letter-spacing:.04em; }
+.value { color:var(--ink); font-size:13px; line-height:1.58; font-weight:720; }
+.note { margin-top:10px; padding:11px; border:1px dashed #d4b773; border-radius:7px; color:#6b5630; background:#fff8e3; font-size:12px; line-height:1.7; }
+.links { display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
+.btn { display:inline-flex; min-height:38px; align-items:center; padding:8px 10px; border:1px solid #b8cad6; border-radius:6px; color:var(--alpine); background:#f4f9fc; font-size:12px; font-weight:900; text-decoration:none; }
+.stay-strip { display:grid; grid-template-columns:2fr 6fr 6fr; gap:4px; margin:4px 0 12px; }
+.stay-strip span { padding:9px 6px; border-radius:5px; color:#fff; font-size:11px; font-weight:900; text-align:center; line-height:1.35; }
+.stay-strip span:nth-child(1) { background:var(--alpine); }
+.stay-strip span:nth-child(2) { background:var(--pine); }
+.stay-strip span:nth-child(3) { background:var(--pretzel); }
+.timeline { display:grid; gap:12px; }
+.day { padding:0; }
+.day-head { width:100%; min-height:66px; display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; padding:12px; border:0; color:#fff; background:linear-gradient(135deg,var(--alpine),var(--sky)); text-align:left; cursor:pointer; }
+.day.gap .day-head { background:linear-gradient(135deg,#2f5f48,var(--pine)); }
+.day.aug .day-head { background:linear-gradient(135deg,#8b4a22,var(--pretzel)); }
+.num { display:grid; width:34px; height:34px; place-items:center; border:1px solid rgba(255,255,255,.52); border-radius:50%; color:#f6dc98; font:900 13px/1 Georgia,serif; }
+.day-head strong { display:block; font-size:15px; line-height:1.32; }
+.day-head small { display:block; margin-top:4px; color:#e0eef7; font-size:11px; line-height:1.4; }
+.arrow { transition:transform .22s; }
+.day-head.open .arrow { transform:rotate(180deg); }
+.day-body { display:none; padding:14px; background:var(--paper); }
+.day-body.open { display:block; }
+.item { position:relative; padding:0 0 13px 18px; border-left:2px solid #c9d6de; }
+.item:last-child { padding-bottom:0; }
+.item::before { content:""; position:absolute; left:-6px; top:4px; width:10px; height:10px; border-radius:50%; background:var(--alpine); }
+.item.idea::before { background:#fff; border:2px solid var(--gold); }
+.time { color:#9a5a32; font-size:11px; font-weight:950; letter-spacing:.05em; }
+.tag { display:inline-block; margin-left:5px; padding:1px 5px; border-radius:3px; color:#7a5a12; background:#fbecc4; font-size:10px; font-weight:900; }
+.tag.fixed { color:#fff; background:var(--pine); }
+.item-name { margin-top:3px; color:var(--alpine); font-size:16px; font-weight:950; line-height:1.35; }
+.detail { margin-top:4px; color:#56666e; font-size:13px; line-height:1.72; }
+.check { display:grid; grid-template-columns:auto 1fr; gap:9px; padding:10px 0; border-top:1px dashed #cfd9df; font-size:13px; line-height:1.62; }
+.check:first-of-type { border-top:0; }
+.box { width:17px; height:17px; margin-top:2px; border:2px solid var(--pine); border-radius:4px; }
+.legend { display:flex; flex-wrap:wrap; gap:12px; margin:0 3px 12px; color:var(--muted); font-size:11px; font-weight:800; }
+.legend i { display:inline-block; width:10px; height:10px; margin-right:5px; border-radius:50%; vertical-align:-1px; }
+footer { padding:0 14px 28px; color:#6e7c84; font:10px/1.5 Georgia,serif; text-align:center; letter-spacing:.08em; text-transform:uppercase; }
+@media (min-width:680px) {
+  .hero { padding:26px 28px 34px; }
+  main { padding-top:20px; }
+  .grid.two { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:380px) {
+  .row { grid-template-columns:84px minmax(0,1fr); }
+  .card { padding:13px; }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <a class="back" href="../../">← Steven Journey Album</a>
+    <h1>Bavaria Summer <span>München · Garmisch · Augsburg 2027</span></h1>
+    <div class="chips" aria-label="行程摘要">
+      <span class="chip">7/15–7/29</span>
+      <span class="chip">14 nights</span>
+      <span class="chip">8 travelers</span>
+      <span class="chip">3 bases</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="巴伐利亞旅行章節">
+  <button class="tab active" type="button" role="tab" aria-selected="true" data-target="overview">📌 總覽</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" data-target="daily">🗓 每日</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" data-target="stays">🏨 住宿</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" data-target="discuss">💬 待討論</button>
+</nav>
+
+<main>
+<section class="section active" id="overview">
+  <div class="grid two">
+    <article class="card">
+      <h2 class="title">🗺 行程骨架</h2>
+      <div class="stay-strip" aria-hidden="true"><span>慕尼黑<br>2 晚</span><span>加爾米施<br>6 晚</span><span>奧格斯堡<br>6 晚</span></div>
+      <div class="row"><span class="label">慕尼黑 · 2 晚</span><span class="value"><b>7/15 四 入住－7/17 六 退房</b><br>Rioca Munich Posto 3</span></div>
+      <div class="row"><span class="label">GP · 6 晚</span><span class="value"><b>7/17 六 入住－7/23 五 退房</b><br>Bader Suites – Apartments</span></div>
+      <div class="row"><span class="label">奧格斯堡 · 6 晚</span><span class="value"><b>7/23 五 入住－7/29 四 退房</b><br>Lexapartments zentral 101qm</span></div>
+      <div class="note">三段住宿日期銜接，沒有空檔也沒有重疊。航班尚未訂，抵達與離開的時間等航班確定後再補上。</div>
+    </article>
+
+    <article class="card">
+      <h2 class="title">✈️ 交通（待訂）</h2>
+      <div class="row"><span class="label">去程</span><span class="value">台北 → 慕尼黑 MUC<br>需在 7/15 抵達（慕尼黑住宿 15:00 起可入住）</span></div>
+      <div class="row"><span class="label">慕尼黑 → GP</span><span class="value">7/17 六 · 區域火車約 1 小時 20 分</span></div>
+      <div class="row"><span class="label">GP → 奧格斯堡</span><span class="value">7/23 五 · 火車約 2 小時，通常在慕尼黑轉車</span></div>
+      <div class="row"><span class="label">回程</span><span class="value">7/29 四 奧格斯堡 → 慕尼黑機場 → 台北<br>奧格斯堡住宿 10:00 前退房</span></div>
+      <div class="note">GP 的住宿有免費停車位，若 GP 這段改為租車，往返新天鵝堡等郊區景點會比較方便。詳見「待討論」。</div>
+    </article>
+  </div>
+
+  <div class="grid two" style="margin-top:12px">
+    <article class="card">
+      <h2 class="title">⏰ 免費取消期限</h2>
+      <div class="check"><span class="box"></span><div><b>2027/5/23 23:59</b> · 奧格斯堡 Lexapartments。過了期限取消需付全額。</div></div>
+      <div class="check"><span class="box"></span><div><b>約 2027/7/3</b> · GP Bader Suites（入住前 14 天）。過了期限取消需付 90%。第二間公寓的期限請以另一張收據為準。</div></div>
+      <div class="check"><span class="box"></span><div><b>2027/7/13 23:59</b> · 慕尼黑 Rioca。過了期限取消需付首晚房費 €130。</div></div>
+    </article>
+
+    <article class="card">
+      <h2 class="title">💶 住宿費用</h2>
+      <div class="row"><span class="label">慕尼黑</span><span class="value">€532 · 由住宿方收款；入住前 1 天預收首晚房費</span></div>
+      <div class="row"><span class="label">GP 公寓 A</span><span class="value">約 €1,946.26，於住宿現場付款；另有城市稅約 TWD 2,658</span></div>
+      <div class="row"><span class="label">GP 公寓 B</span><span class="value">金額見另一張收據（待補）</span></div>
+      <div class="row"><span class="label">奧格斯堡</span><span class="value">€2,222（含清潔費 €158），由 Booking.com 自動扣款<br>另收 €500 押金，抵達前 7 天收取，退房後 7 天內退還</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="daily">
+  <div class="legend"><span><i style="background:var(--alpine)"></i>已訂／固定</span><span><i style="background:#fff;border:2px solid var(--gold)"></i>建議，待討論</span></div>
+  <div class="timeline">
+    <article class="day">
+      <button class="day-head open" type="button" aria-expanded="true"><span class="num">1</span><span><strong>7/15 星期四 · 抵達慕尼黑</strong><small>Rioca Munich Posto 3 · 15:00 起入住</small></span><span class="arrow">▼</span></button>
+      <div class="day-body open">
+        <div class="item idea"><div class="time">時間依航班</div><div class="item-name">抵達慕尼黑機場 → 住宿</div><div class="detail">可搭 S-Bahn 進市區再轉 U-Bahn，或 8 人包一台大車直達。</div></div>
+        <div class="item"><div class="time">15:00–23:30 <span class="tag fixed">已訂</span></div><div class="item-name">入住 Rioca Munich Posto 3</div><div class="detail">2 間高級單房公寓，地址 Baierbrunner Str. 38, 81379 München。早餐需另付 €19.50／人。</div></div>
+        <div class="item idea"><div class="time">傍晚 <span class="tag">建議</span></div><div class="item-name">瑪利亞廣場散步 · 啤酒屋晚餐</div><div class="detail">第一天輕鬆走走，調整時差。</div></div>
+      </div>
+    </article>
+
+    <article class="day">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">2</span><span><strong>7/16 星期五 · 慕尼黑市區</strong><small>全日自由</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">上午 <span class="tag">建議</span></div><div class="item-name">瑪利亞廣場 · 新市政廳 · 聖母教堂 · 穀物市場</div><div class="detail">新市政廳的鐘琴表演夏季 11:00、12:00 各有一場（出發前再確認）。</div></div>
+        <div class="item idea"><div class="time">下午 <span class="tag">建議</span></div><div class="item-name">慕尼黑王宮 或 英國花園</div><div class="detail">可去英國花園看 Eisbach 河上的衝浪，再到中國塔啤酒花園。另一個選擇是寧芬堡宮。</div></div>
+      </div>
+    </article>
+
+    <article class="day gap">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">3</span><span><strong>7/17 星期六 · 移動到 GP</strong><small>11:00 前退房 · 15:00 起入住 Bader Suites</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item"><div class="time">11:00 前 <span class="tag fixed">已訂</span></div><div class="item-name">慕尼黑退房</div></div>
+        <div class="item idea"><div class="time">中午 <span class="tag">建議</span></div><div class="item-name">慕尼黑中央車站 → 加爾米施-帕滕基興</div><div class="detail">區域火車約 1 小時 20 分。若決定租車，可在慕尼黑取車。</div></div>
+        <div class="item"><div class="time">15:00–22:00 <span class="tag fixed">已訂</span></div><div class="item-name">入住 Bader Suites – Apartments（2 間雙臥室公寓）</div><div class="detail">地址 Alpspitzstraße 13。記得事先告知住宿預計抵達時間。公寓有廚房，可以去超市採買。</div></div>
+      </div>
+    </article>
+
+    <article class="day gap">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">4</span><span><strong>7/18 星期日 · 楚格峰</strong><small>德國最高峰 2,962 m</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">齒軌列車上山 · 艾布湖纜車下山</div><div class="detail">一早看天氣預報，晴天就上山；把這天和其他 GP 行程對調也很容易。下山後可在艾布湖環湖散步。</div></div>
+      </div>
+    </article>
+
+    <article class="day gap">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">5</span><span><strong>7/19 星期一 · 帕特納赫峽谷</strong><small>GP 在地健行</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">上午 <span class="tag">建議</span></div><div class="item-name">帕特納赫峽谷 Partnachklamm</div><div class="detail">從奧運滑雪跳台出發步行即可抵達，峽谷內潮濕，請帶防水外套。</div></div>
+        <div class="item idea"><div class="time">下午 <span class="tag">建議</span></div><div class="item-name">帕滕基興老街 · Ludwigstraße</div><div class="detail">看彩繪壁畫房子，晚上回公寓自己煮。</div></div>
+      </div>
+    </article>
+
+    <article class="day gap">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">6</span><span><strong>7/20 星期二 · 新天鵝堡</strong><small>需事先預約入場時段</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">新天鵝堡 · 高天鵝堡 · 瑪麗安橋</div><div class="detail">開車約 1 小時，大眾運輸較麻煩。城堡入場券有時段，夏季很搶手，開放預約後要盡早訂。回程可順路去維斯教堂。</div></div>
+      </div>
+    </article>
+
+    <article class="day gap">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">7</span><span><strong>7/21 星期三 · 林德霍夫宮與上阿默高</strong><small>GP 近郊</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">埃塔爾修道院 → 上阿默高 → 林德霍夫宮</div><div class="detail">三個點都在 GP 北邊，車程不遠。上阿默高以彩繪房子和木雕聞名。</div></div>
+      </div>
+    </article>
+
+    <article class="day gap">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">8</span><span><strong>7/22 星期四 · 彈性日</strong><small>雨天備案或補行程</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">米滕瓦爾德 或 阿爾卑斯峰 AlpspiX 觀景台</div><div class="detail">米滕瓦爾德是小提琴小鎮，搭火車約 20 分鐘。若前幾天楚格峰沒上去，這天補上。</div></div>
+      </div>
+    </article>
+
+    <article class="day aug">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">9</span><span><strong>7/23 星期五 · 移動到奧格斯堡</strong><small>10:00 前退房 · 15:00 起入住 Lexapartments</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item"><div class="time">10:00 前 <span class="tag fixed">已訂</span></div><div class="item-name">GP 退房</div></div>
+        <div class="item idea"><div class="time">白天 <span class="tag">建議</span></div><div class="item-name">GP → 奧格斯堡</div><div class="detail">火車約 2 小時，經慕尼黑轉車。若有租車，可在這天或抵達奧格斯堡後還車。</div></div>
+        <div class="item"><div class="time">15:00–22:00 <span class="tag fixed">已訂</span></div><div class="item-name">入住 Lexapartments（2 間三臥室公寓）</div><div class="detail">地址 Am Bogen 6，一樓。自助入住，鑰匙放在鑰匙盒，請事先與房東聯絡：+49 1575 8247524。</div></div>
+      </div>
+    </article>
+
+    <article class="day aug">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">10</span><span><strong>7/24 星期六 · 奧格斯堡老城</strong><small>德國最古老的城市之一</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">富格爾社區 · 市政廳金色大廳 · 奧格斯堡大教堂</div><div class="detail">富格爾社區是世界最古老、至今仍在使用的社會住宅。晚上可去 Augsburger Puppenkiste 看木偶劇（需預約）。</div></div>
+      </div>
+    </article>
+
+    <article class="day aug">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">11</span><span><strong>7/25 星期日 · 烏爾姆一日遊</strong><small>火車約 45 分鐘</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">烏爾姆大教堂 · 漁夫區</div><div class="detail">烏爾姆大教堂有世界最高的教堂尖塔，可爬到頂端觀景。</div></div>
+      </div>
+    </article>
+
+    <article class="day aug">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">12</span><span><strong>7/26 星期一 · 浪漫之路小鎮</strong><small>訥德林根 或 羅騰堡</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">訥德林根 Nördlingen</div><div class="detail">建在隕石坑中的圓形古城，城牆可以完整走一圈。若想去更有名的羅騰堡，單程較遠，要早出發。</div></div>
+      </div>
+    </article>
+
+    <article class="day aug">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">13</span><span><strong>7/27 星期二 · 慕尼黑再訪</strong><small>火車約 30–45 分鐘</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">BMW Welt · 奧林匹克公園 或 德意志博物館</div><div class="detail">補第一段來不及去的慕尼黑景點。</div></div>
+      </div>
+    </article>
+
+    <article class="day aug">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">14</span><span><strong>7/28 星期三 · 自由日</strong><small>購物 · 整理行李</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">Ingolstadt Village 購物村 或 留在奧格斯堡休息</div><div class="detail">最後一天輕鬆一點，晚上整理行李。</div></div>
+      </div>
+    </article>
+
+    <article class="day">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">15</span><span><strong>7/29 星期四 · 返程</strong><small>10:00 前退房 · 前往慕尼黑機場</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item"><div class="time">10:00 前 <span class="tag fixed">已訂</span></div><div class="item-name">奧格斯堡退房</div><div class="detail">鑰匙依房東指示放回鑰匙盒。</div></div>
+        <div class="item idea"><div class="time">時間依航班</div><div class="item-name">奧格斯堡 → 慕尼黑機場 MUC</div><div class="detail">開車約 1 小時；搭火車需要轉車，時間較長。8 人可考慮包車。</div></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="stays">
+  <div class="grid">
+    <article class="card">
+      <h2 class="title">🏙 慕尼黑 · Rioca Munich Posto 3</h2>
+      <div class="row"><span class="label">日期</span><span class="value">2027/7/15 四 – 7/17 六 · 2 晚</span></div>
+      <div class="row"><span class="label">入住／退房</span><span class="value">15:00–23:30 ／ 07:00–11:00</span></div>
+      <div class="row"><span class="label">房型</span><span class="value">2 間高級單房公寓 · 8 位成人</span></div>
+      <div class="row"><span class="label">地址</span><span class="value">Baierbrunner Str. 38, 81379 München</span></div>
+      <div class="row"><span class="label">電話</span><span class="value">+49 89 264810048</span></div>
+      <div class="row"><span class="label">訂單</span><span class="value">Booking.com 5377736735 · 訂房人 CHEN LI Jen</span></div>
+      <div class="row"><span class="label">費用</span><span class="value">€532（含稅），由住宿方收款，只收卡、不收現金</span></div>
+      <div class="row"><span class="label">早餐</span><span class="value">不含，€19.50／人／天</span></div>
+      <div class="row"><span class="label">取消</span><span class="value">2027/7/13 23:59 前免費；之後收首晚房費 €130</span></div>
+      <div class="links"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Rioca+Munich+Posto+3+Baierbrunner+Str+38" target="_blank" rel="noopener">📍 地圖</a></div>
+    </article>
+
+    <article class="card">
+      <h2 class="title">🏔 加爾米施-帕滕基興 · Bader Suites</h2>
+      <div class="row"><span class="label">日期</span><span class="value">2027/7/17 六 – 7/23 五 · 6 晚</span></div>
+      <div class="row"><span class="label">入住／退房</span><span class="value">15:00–22:00 ／ 07:00–10:00</span></div>
+      <div class="row"><span class="label">房型</span><span class="value">2 間豪華雙臥室公寓（各 4 位成人）<br>有山景、陽台、廚房、洗碗機</span></div>
+      <div class="row"><span class="label">地址</span><span class="value">Alpspitzstraße 13, 82467 Garmisch-Partenkirchen</span></div>
+      <div class="row"><span class="label">電話</span><span class="value">+49 8821 6869560</span></div>
+      <div class="row"><span class="label">公寓 A</span><span class="value">Booking.com 5111781986 · 住客 Chen Sharon<br>約 €1,946.26，於住宿現場付款</span></div>
+      <div class="row"><span class="label">公寓 B</span><span class="value">另一張收據（訂單號與金額待補）</span></div>
+      <div class="row"><span class="label">停車</span><span class="value">免費私人停車場，不需預約</span></div>
+      <div class="row"><span class="label">取消</span><span class="value">入住前 14 天（約 7/3）前免費；之後收 90%</span></div>
+      <div class="note">請事先告知住宿預計抵達時間。</div>
+      <div class="links"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Bader+Suites+Alpspitzstra%C3%9Fe+13+Garmisch-Partenkirchen" target="_blank" rel="noopener">📍 地圖</a></div>
+    </article>
+
+    <article class="card">
+      <h2 class="title">🏛 奧格斯堡 · Lexapartments zentral 101qm</h2>
+      <div class="row"><span class="label">日期</span><span class="value">2027/7/23 五 – 7/29 四 · 6 晚</span></div>
+      <div class="row"><span class="label">入住／退房</span><span class="value">15:00–22:00 ／ 10:00 前</span></div>
+      <div class="row"><span class="label">房型</span><span class="value">2 間三臥室公寓（一間為套房）</span></div>
+      <div class="row"><span class="label">地址</span><span class="value">Am Bogen 6（一樓）, 86152 Augsburg</span></div>
+      <div class="row"><span class="label">電話</span><span class="value">+49 1575 8247524</span></div>
+      <div class="row"><span class="label">訂單</span><span class="value">Booking.com 5315450808 · 訂房人 CHEN LI Jen</span></div>
+      <div class="row"><span class="label">費用</span><span class="value">€2,222（房價 €1,928.97 ＋ 稅 €135.03 ＋ 清潔費 €158），由 Booking.com 自動扣款</span></div>
+      <div class="row"><span class="label">押金</span><span class="value">€500 損壞押金，抵達前 7 天以信用卡收取，退房後 7 天內退還</span></div>
+      <div class="row"><span class="label">入住方式</span><span class="value">自助入住，鑰匙放在鑰匙盒</span></div>
+      <div class="row"><span class="label">取消</span><span class="value">2027/5/23 23:59 前免費；之後需付全額</span></div>
+      <div class="links"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Am+Bogen+6+86152+Augsburg" target="_blank" rel="noopener">📍 地圖</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="discuss">
+  <div class="grid two">
+    <article class="card">
+      <h2 class="title">💬 需要決定</h2>
+      <div class="check"><span class="box"></span><div><b>航班</b>：7/15 幾點抵達慕尼黑、7/29 幾點起飛？決定第一天和最後一天能安排多少行程。</div></div>
+      <div class="check"><span class="box"></span><div><b>GP 段是否租車</b>：8 人需要 2 台車或 1 台 9 人座。新天鵝堡、林德霍夫宮開車比較方便；只坐火車的話可以排 GP 周邊行程。</div></div>
+      <div class="check"><span class="box"></span><div><b>移動日的行李</b>：8 人帶大行李搭火車要不要改包車？</div></div>
+      <div class="check"><span class="box"></span><div><b>奧格斯堡一日遊</b>：烏爾姆、訥德林根、羅騰堡、慕尼黑、購物村，選哪幾個？</div></div>
+      <div class="check"><span class="box"></span><div><b>分組活動</b>：住兩間公寓，是否有幾天分成兩組各自行動？</div></div>
+    </article>
+
+    <article class="card">
+      <h2 class="title">✅ 待辦</h2>
+      <div class="check"><span class="box"></span><div>補上 GP 公寓 B 的訂單號、金額與取消期限。</div></div>
+      <div class="check"><span class="box"></span><div>訂機票。</div></div>
+      <div class="check"><span class="box"></span><div>新天鵝堡開放預約後馬上訂入場時段。</div></div>
+      <div class="check"><span class="box"></span><div>5/23 前最後確認奧格斯堡住宿，之後不能免費取消。</div></div>
+      <div class="check"><span class="box"></span><div>抵達前通知 Bader Suites 與 Lexapartments 預計抵達時間。</div></div>
+      <div class="check"><span class="box"></span><div>信用卡額度：奧格斯堡會預收 €500 押金。</div></div>
+      <div class="note">德國緊急電話：112（警察、消防、救護）。</div>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer>Steven Journey Album · Alpine summer notes</footer>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.tab').forEach(button => {
+    const active = button === tab;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', String(active));
+  });
+  document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+  document.getElementById(tab.dataset.target).classList.add('active');
+  tab.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => showTab(tab)));
+document.querySelectorAll('.day-head').forEach(head => head.addEventListener('click', () => {
+  const open = head.classList.toggle('open');
+  head.setAttribute('aria-expanded', String(open));
+  head.nextElementSibling.classList.toggle('open', open);
+}));
+
+function toggleRead(block) {
+  const on = !block.classList.contains('focus');
+  document.querySelectorAll('.readable.focus').forEach(item => {
+    if (item !== block) {
+      item.classList.remove('focus');
+      item.setAttribute('aria-pressed', 'false');
+    }
+  });
+  block.classList.toggle('focus', on);
+  block.setAttribute('aria-pressed', String(on));
+}
+
+document.querySelectorAll('.card,.day-body').forEach(block => {
+  block.classList.add('readable');
+  block.setAttribute('tabindex', '0');
+  block.setAttribute('aria-pressed', 'false');
+  block.addEventListener('click', event => {
+    if (!event.target.closest('a,button')) toggleRead(block);
+  });
+  block.addEventListener('keydown', event => {
+    if (event.target === block && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      toggleRead(block);
+    }
+  });
+});
+</script>
+</body>
+</html>
