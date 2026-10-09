@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#174f7c">
-<meta name="description" content="2027 Munich, Garmisch-Partenkirchen and Augsburg travel plan for Steven Journey Album.">
+<meta name="description" content="2027 Munich and Garmisch-Partenkirchen travel plan, then Augsburg (Huang family) and Prague (Chen family), for Steven Journey Album.">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <title>2027 · 巴伐利亞夏日</title>
 <style>
@@ -18,6 +18,7 @@
   --muted:#667780;
   --pretzel:#b5642f;
   --gold:#d1a54a;
+  --prague:#8a2f45;
   --line:#d3dbe0;
   --shadow:0 14px 32px rgba(23,64,92,.13);
 }
@@ -55,7 +56,7 @@ a { color:inherit; -webkit-tap-highlight-color:transparent; }
     linear-gradient(45deg, transparent 75%, #fff 75%) 0 0/28px 28px;
 }
 .hero::after {
-  content:"MÜNCHEN · ZUGSPITZE · AUGSBURG";
+  content:"MÜNCHEN · ZUGSPITZE · AUGSBURG · PRAHA";
   position:absolute;
   right:-8px;
   bottom:6px;
@@ -141,12 +142,21 @@ main { padding:14px 10px 36px; }
 .stay-strip span { padding:9px 6px; border-radius:5px; color:#fff; font-size:11px; font-weight:900; text-align:center; line-height:1.35; }
 .stay-strip span:nth-child(1) { background:var(--alpine); }
 .stay-strip span:nth-child(2) { background:var(--pine); }
-.stay-strip span:nth-child(3) { background:var(--pretzel); }
+.stay-strip .split { display:grid; gap:4px; }
+.stay-strip .split span:first-child { background:var(--pretzel); }
+.stay-strip .split span:last-child { background:var(--prague); }
+.family { display:inline-block; margin-right:4px; padding:1px 6px; border-radius:3px; color:#fff; font-size:10px; font-weight:900; vertical-align:1px; }
+.family.huang { background:var(--pretzel); }
+.family.chen { background:var(--prague); }
+.split-intro { margin:0 3px 12px; padding:11px 12px; border-left:4px solid var(--alpine); border-radius:6px; color:var(--ink); background:rgba(255,253,248,.9); font-size:12px; line-height:1.65; font-weight:720; }
+.split-intro.huang { border-color:var(--pretzel); }
+.split-intro.chen { border-color:var(--prague); }
 .timeline { display:grid; gap:12px; }
 .day { padding:0; }
 .day-head { width:100%; min-height:66px; display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; padding:12px; border:0; color:#fff; background:linear-gradient(135deg,var(--alpine),var(--sky)); text-align:left; cursor:pointer; }
 .day.gap .day-head { background:linear-gradient(135deg,#2f5f48,var(--pine)); }
 .day.aug .day-head { background:linear-gradient(135deg,#8b4a22,var(--pretzel)); }
+.day.prg .day-head { background:linear-gradient(135deg,#5e1d2f,var(--prague)); }
 .num { display:grid; width:34px; height:34px; place-items:center; border:1px solid rgba(255,255,255,.52); border-radius:50%; color:#f6dc98; font:900 13px/1 Georgia,serif; }
 .day-head strong { display:block; font-size:15px; line-height:1.32; }
 .day-head small { display:block; margin-top:4px; color:#e0eef7; font-size:11px; line-height:1.4; }
@@ -184,19 +194,22 @@ footer { padding:0 14px 28px; color:#6e7c84; font:10px/1.5 Georgia,serif; text-a
 <header class="hero">
   <div class="hero-inner">
     <a class="back" href="../../">← Steven Journey Album</a>
-    <h1>Bavaria Summer <span>München · Garmisch · Augsburg 2027</span></h1>
+    <h1>Bavaria Summer <span>München · Garmisch · Augsburg / Praha 2027</span></h1>
     <div class="chips" aria-label="行程摘要">
-      <span class="chip">7/15–7/29</span>
-      <span class="chip">14 nights</span>
+      <span class="chip">7/15–7/30</span>
       <span class="chip">8 travelers</span>
-      <span class="chip">3 bases</span>
+      <span class="chip">7/23 起分兩路</span>
+      <span class="chip">黃家 → Augsburg</span>
+      <span class="chip">陳家 → Praha</span>
     </div>
   </div>
 </header>
 
 <nav class="tabs" role="tablist" aria-label="巴伐利亞旅行章節">
   <button class="tab active" type="button" role="tab" aria-selected="true" data-target="overview">📌 總覽</button>
-  <button class="tab" type="button" role="tab" aria-selected="false" data-target="daily">🗓 每日</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" data-target="daily">🗓 共同 7/15–22</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" data-target="huang">🥨 黃家 · 奧格斯堡</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" data-target="chen">🏰 陳家 · 布拉格</button>
   <button class="tab" type="button" role="tab" aria-selected="false" data-target="stays">🏨 住宿</button>
   <button class="tab" type="button" role="tab" aria-selected="false" data-target="discuss">💬 待討論</button>
 </nav>
@@ -206,29 +219,32 @@ footer { padding:0 14px 28px; color:#6e7c84; font:10px/1.5 Georgia,serif; text-a
   <div class="grid two">
     <article class="card">
       <h2 class="title">🗺 行程骨架</h2>
-      <div class="stay-strip" aria-hidden="true"><span>慕尼黑<br>2 晚</span><span>加爾米施<br>6 晚</span><span>奧格斯堡<br>6 晚</span></div>
-      <div class="row"><span class="label">慕尼黑 · 2 晚</span><span class="value"><b>7/15 四 入住－7/17 六 退房</b><br>Rioca Munich Posto 3</span></div>
-      <div class="row"><span class="label">GP · 6 晚</span><span class="value"><b>7/17 六 入住－7/23 五 退房</b><br>Bader Suites – Apartments</span></div>
-      <div class="row"><span class="label">奧格斯堡 · 6 晚</span><span class="value"><b>7/23 五 入住－7/29 四 退房</b><br>Lexapartments zentral 101qm</span></div>
-      <div class="note">三段住宿日期銜接，沒有空檔也沒有重疊。航班尚未訂，抵達與離開的時間等航班確定後再補上。</div>
+      <div class="stay-strip" aria-hidden="true"><span>慕尼黑<br>2 晚</span><span>加爾米施<br>6 晚</span><div class="split"><span>黃家 · 奧格斯堡 6 晚</span><span>陳家 · 布拉格 7 晚</span></div></div>
+      <div class="row"><span class="label">慕尼黑 · 2 晚</span><span class="value"><b>7/15 四 入住－7/17 六 退房</b><br>Rioca Munich Posto 3 · 8 人</span></div>
+      <div class="row"><span class="label">GP · 6 晚</span><span class="value"><b>7/17 六 入住－7/23 五 退房</b><br>Bader Suites – Apartments · 8 人</span></div>
+      <div class="row"><span class="label">奧格斯堡 · 6 晚</span><span class="value"><span class="family huang">黃家 4 人</span><b>7/23 五 入住－7/29 四 退房</b><br>Lexapartments zentral 101qm</span></div>
+      <div class="row"><span class="label">布拉格 · 7 晚</span><span class="value"><span class="family chen">陳家 4 人</span><b>7/23 五 入住－7/30 五 退房</b><br>住宿待訂</span></div>
+      <div class="note">前段 7/15–7/23 八個人一起走慕尼黑與 GP；7/23 GP 退房後分兩路：黃家到奧格斯堡、7/29 從慕尼黑回台，陳家到布拉格、7/30 從布拉格回台。</div>
     </article>
 
     <article class="card">
       <h2 class="title">✈️ 交通（待訂）</h2>
-      <div class="row"><span class="label">去程</span><span class="value">台北 → 慕尼黑 MUC<br>需在 7/15 抵達（慕尼黑住宿 15:00 起可入住）</span></div>
+      <div class="row"><span class="label">去程</span><span class="value">台北 → 慕尼黑 MUC（8 人）<br>需在 7/15 抵達（慕尼黑住宿 15:00 起可入住）</span></div>
       <div class="row"><span class="label">慕尼黑 → GP</span><span class="value">7/17 六 · 區域火車約 1 小時 20 分</span></div>
-      <div class="row"><span class="label">GP → 奧格斯堡</span><span class="value">7/23 五 · 火車約 2 小時，通常在慕尼黑轉車</span></div>
-      <div class="row"><span class="label">回程</span><span class="value">7/29 四 奧格斯堡 → 慕尼黑機場 → 台北<br>奧格斯堡住宿 10:00 前退房</span></div>
-      <div class="note">GP 的住宿有免費停車位，若 GP 這段改為租車，往返新天鵝堡等郊區景點會比較方便。詳見「待討論」。</div>
+      <div class="row"><span class="label">GP → 奧格斯堡</span><span class="value"><span class="family huang">黃家</span>7/23 五 · 火車約 2 小時，通常在慕尼黑轉車</span></div>
+      <div class="row"><span class="label">GP → 布拉格</span><span class="value"><span class="family chen">陳家</span>7/23 五 · 先搭火車回慕尼黑，再轉火車或巴士到布拉格，全程約 7 小時，幾乎是一整天</span></div>
+      <div class="row"><span class="label">回程</span><span class="value"><span class="family huang">黃家</span>7/29 四 奧格斯堡 → 慕尼黑機場 MUC → 台北<br><span class="family chen">陳家</span>7/30 五 布拉格機場 PRG → 台北</span></div>
+      <div class="note">兩家回程機場不同，機票要分開訂：黃家 MUC 進出，陳家 MUC 進、PRG 出（開口機票）。</div>
     </article>
   </div>
 
   <div class="grid two" style="margin-top:12px">
     <article class="card">
       <h2 class="title">⏰ 免費取消期限</h2>
-      <div class="check"><span class="box"></span><div><b>2027/5/23 23:59</b> · 奧格斯堡 Lexapartments。過了期限取消需付全額。</div></div>
+      <div class="check"><span class="box"></span><div><b>2027/5/23 23:59</b> · <span class="family huang">黃家</span>奧格斯堡 Lexapartments。過了期限取消需付全額。目前訂了 2 間三臥室公寓，只剩 4 人入住，記得在期限前決定要不要減為 1 間。</div></div>
       <div class="check"><span class="box"></span><div><b>約 2027/7/3</b> · GP Bader Suites（入住前 14 天）。過了期限取消需付 90%。第二間公寓的期限請以另一張收據為準。</div></div>
       <div class="check"><span class="box"></span><div><b>2027/7/13 23:59</b> · 慕尼黑 Rioca。過了期限取消需付首晚房費 €130。</div></div>
+      <div class="check"><span class="box"></span><div><span class="family chen">陳家</span>布拉格住宿尚未訂，訂好後補上期限。</div></div>
     </article>
 
     <article class="card">
@@ -236,7 +252,8 @@ footer { padding:0 14px 28px; color:#6e7c84; font:10px/1.5 Georgia,serif; text-a
       <div class="row"><span class="label">慕尼黑</span><span class="value">€532 · 由住宿方收款；入住前 1 天預收首晚房費</span></div>
       <div class="row"><span class="label">GP 公寓 A</span><span class="value">約 €1,946.26，於住宿現場付款；另有城市稅約 TWD 2,658</span></div>
       <div class="row"><span class="label">GP 公寓 B</span><span class="value">金額見另一張收據（待補）</span></div>
-      <div class="row"><span class="label">奧格斯堡</span><span class="value">€2,222（含清潔費 €158），由 Booking.com 自動扣款<br>另收 €500 押金，抵達前 7 天收取，退房後 7 天內退還</span></div>
+      <div class="row"><span class="label">奧格斯堡</span><span class="value"><span class="family huang">黃家</span>€2,222（含清潔費 €158），由 Booking.com 自動扣款<br>另收 €500 押金，抵達前 7 天收取，退房後 7 天內退還<br>訂房與扣款用的是 CHEN LI Jen 的卡，費用要和黃家另外結算</span></div>
+      <div class="row"><span class="label">布拉格</span><span class="value"><span class="family chen">陳家</span>待訂</span></div>
     </article>
   </div>
 </section>
@@ -306,12 +323,20 @@ footer { padding:0 14px 28px; color:#6e7c84; font:10px/1.5 Georgia,serif; text-a
       </div>
     </article>
 
+    <div class="split-intro">7/23 GP 退房後分兩路 → 請切到 <b>🥨 黃家 · 奧格斯堡</b> 或 <b>🏰 陳家 · 布拉格</b> 分頁。</div>
+  </div>
+</section>
+
+<section class="section" id="huang">
+  <div class="split-intro huang"><span class="family huang">黃家 4 人</span>7/23 從 GP 到奧格斯堡住 6 晚，7/29 從慕尼黑機場回台北。前 8 天和陳家一起，見「共同」分頁。</div>
+  <div class="legend"><span><i style="background:var(--alpine)"></i>已訂／固定</span><span><i style="background:#fff;border:2px solid var(--gold)"></i>建議，待討論</span></div>
+  <div class="timeline">
     <article class="day aug">
-      <button class="day-head" type="button" aria-expanded="false"><span class="num">9</span><span><strong>7/23 星期五 · 移動到奧格斯堡</strong><small>10:00 前退房 · 15:00 起入住 Lexapartments</small></span><span class="arrow">▼</span></button>
-      <div class="day-body">
+      <button class="day-head open" type="button" aria-expanded="true"><span class="num">9</span><span><strong>7/23 星期五 · GP → 奧格斯堡</strong><small>10:00 前退房 · 15:00 起入住 Lexapartments</small></span><span class="arrow">▼</span></button>
+      <div class="day-body open">
         <div class="item"><div class="time">10:00 前 <span class="tag fixed">已訂</span></div><div class="item-name">GP 退房</div></div>
-        <div class="item idea"><div class="time">白天 <span class="tag">建議</span></div><div class="item-name">GP → 奧格斯堡</div><div class="detail">火車約 2 小時，經慕尼黑轉車。若有租車，可在這天或抵達奧格斯堡後還車。</div></div>
-        <div class="item"><div class="time">15:00–22:00 <span class="tag fixed">已訂</span></div><div class="item-name">入住 Lexapartments（2 間三臥室公寓）</div><div class="detail">地址 Am Bogen 6，一樓。自助入住，鑰匙放在鑰匙盒，請事先與房東聯絡：+49 1575 8247524。</div></div>
+        <div class="item idea"><div class="time">白天 <span class="tag">建議</span></div><div class="item-name">GP → 奧格斯堡</div><div class="detail">火車約 2 小時，經慕尼黑轉車；可以和陳家一起搭到慕尼黑再分開。若有租車，可在這天或抵達奧格斯堡後還車。</div></div>
+        <div class="item"><div class="time">15:00–22:00 <span class="tag fixed">已訂</span></div><div class="item-name">入住 Lexapartments</div><div class="detail">地址 Am Bogen 6，一樓。自助入住，鑰匙放在鑰匙盒，請事先與房東聯絡：+49 1575 8247524。</div></div>
       </div>
     </article>
 
@@ -354,7 +379,76 @@ footer { padding:0 14px 28px; color:#6e7c84; font:10px/1.5 Georgia,serif; text-a
       <button class="day-head" type="button" aria-expanded="false"><span class="num">15</span><span><strong>7/29 星期四 · 返程</strong><small>10:00 前退房 · 前往慕尼黑機場</small></span><span class="arrow">▼</span></button>
       <div class="day-body">
         <div class="item"><div class="time">10:00 前 <span class="tag fixed">已訂</span></div><div class="item-name">奧格斯堡退房</div><div class="detail">鑰匙依房東指示放回鑰匙盒。</div></div>
-        <div class="item idea"><div class="time">時間依航班</div><div class="item-name">奧格斯堡 → 慕尼黑機場 MUC</div><div class="detail">開車約 1 小時；搭火車需要轉車，時間較長。8 人可考慮包車。</div></div>
+        <div class="item idea"><div class="time">時間依航班</div><div class="item-name">奧格斯堡 → 慕尼黑機場 MUC</div><div class="detail">開車約 1 小時；搭火車需要轉車，時間較長。4 人可叫一台大車直達。</div></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="chen">
+  <div class="split-intro chen"><span class="family chen">陳家 4 人</span>7/23 從 GP 經慕尼黑到布拉格住 7 晚，7/30 從布拉格機場回台北。前 8 天和黃家一起，見「共同」分頁。</div>
+  <div class="legend"><span><i style="background:var(--alpine)"></i>已訂／固定</span><span><i style="background:#fff;border:2px solid var(--gold)"></i>建議，待討論</span></div>
+  <div class="timeline">
+    <article class="day prg">
+      <button class="day-head open" type="button" aria-expanded="true"><span class="num">9</span><span><strong>7/23 星期五 · GP → 布拉格</strong><small>10:00 前 GP 退房 · 長途移動日</small></span><span class="arrow">▼</span></button>
+      <div class="day-body open">
+        <div class="item"><div class="time">10:00 前 <span class="tag fixed">已訂</span></div><div class="item-name">GP 退房</div></div>
+        <div class="item idea"><div class="time">上午 <span class="tag">建議</span></div><div class="item-name">GP → 慕尼黑中央車站</div><div class="detail">區域火車約 1 小時 20 分，可以和黃家一起搭到慕尼黑再分開。</div></div>
+        <div class="item idea"><div class="time">中午–傍晚 <span class="tag">建議</span></div><div class="item-name">慕尼黑 → 布拉格</div><div class="detail">火車或 FlixBus 約 5–6 小時，班次不多，確定日期後先查好時刻、提早訂位。若 GP 段有租車，跨國甲地租乙地還的費用通常很高，建議在德國還車。</div></div>
+        <div class="item idea"><div class="time">晚上 <span class="tag">建議</span></div><div class="item-name">入住布拉格住宿</div><div class="detail">住宿待訂，建議住老城區或小城區，步行就能到主要景點。</div></div>
+      </div>
+    </article>
+
+    <article class="day prg">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">10</span><span><strong>7/24 星期六 · 布拉格老城</strong><small>舊城廣場 · 查理大橋</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">上午 <span class="tag">建議</span></div><div class="item-name">舊城廣場 · 天文鐘 · 提恩教堂</div><div class="detail">天文鐘整點有使徒報時，可登上舊市政廳塔樓看廣場全景。</div></div>
+        <div class="item idea"><div class="time">下午 <span class="tag">建議</span></div><div class="item-name">查理大橋 · 猶太區</div><div class="detail">傍晚的查理大橋人比較少，橋上看城堡夕陽很漂亮。</div></div>
+      </div>
+    </article>
+
+    <article class="day prg">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">11</span><span><strong>7/25 星期日 · 布拉格城堡區</strong><small>城堡 · 黃金巷 · 小城區</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">上午 <span class="tag">建議</span></div><div class="item-name">布拉格城堡 · 聖維特大教堂 · 黃金巷</div><div class="detail">城堡區範圍大，早點進場避開人潮；門票組合依想看的範圍選。</div></div>
+        <div class="item idea"><div class="time">下午 <span class="tag">建議</span></div><div class="item-name">小城區 · 聖尼古拉教堂 · 列儂牆</div><div class="detail">從城堡一路往下走回查理大橋，晚上可以找家捷克餐廳吃烤豬膝。</div></div>
+      </div>
+    </article>
+
+    <article class="day prg">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">12</span><span><strong>7/26 星期一 · 庫特納霍拉一日遊</strong><small>火車約 1 小時</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">人骨教堂 · 聖芭芭拉大教堂</div><div class="detail">世界遺產小鎮，人骨教堂在 Sedlec 站附近，再搭接駁或步行到舊城區的聖芭芭拉大教堂。</div></div>
+      </div>
+    </article>
+
+    <article class="day prg">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">13</span><span><strong>7/27 星期二 · 契斯基庫倫洛夫</strong><small>單程約 3 小時，要早出發</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">契斯基庫倫洛夫 Český Krumlov</div><div class="detail">伏爾塔瓦河彎上的童話小鎮，城堡與彩繪塔是重點。單程較遠，可以搭早班巴士，或考慮在當地住一晚。</div></div>
+      </div>
+    </article>
+
+    <article class="day prg">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">14</span><span><strong>7/28 星期三 · 布拉格慢遊</strong><small>伏爾塔瓦河 · 佩特任山</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">上午 <span class="tag">建議</span></div><div class="item-name">佩特任山 · 觀景塔</div><div class="detail">搭纜車上山，觀景塔俯瞰整個布拉格。</div></div>
+        <div class="item idea"><div class="time">下午 <span class="tag">建議</span></div><div class="item-name">伏爾塔瓦河遊船 · 跳舞的房子</div><div class="detail">遊船約 1 小時；晚上可以聽一場教堂音樂會。</div></div>
+      </div>
+    </article>
+
+    <article class="day prg">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">15</span><span><strong>7/29 星期四 · 自由日</strong><small>購物 · 整理行李</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item idea"><div class="time">全日 <span class="tag">建議</span></div><div class="item-name">高堡 Vyšehrad 或 補前幾天沒去的地方</div><div class="detail">高堡人少、視野好；下午買伴手禮、整理行李。</div></div>
+      </div>
+    </article>
+
+    <article class="day ">
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">16</span><span><strong>7/30 星期五 · 返程</strong><small>布拉格退房 · 前往布拉格機場 PRG</small></span><span class="arrow">▼</span></button>
+      <div class="day-body">
+        <div class="item"><div class="time">上午</div><div class="item-name">布拉格退房</div><div class="detail">退房時間依住宿而定。</div></div>
+        <div class="item idea"><div class="time">時間依航班</div><div class="item-name">布拉格 → 布拉格機場 PRG</div><div class="detail">市區到機場開車約 30 分鐘，可搭機場巴士或叫車。</div></div>
       </div>
     </article>
   </div>
@@ -393,17 +487,28 @@ footer { padding:0 14px 28px; color:#6e7c84; font:10px/1.5 Georgia,serif; text-a
 
     <article class="card">
       <h2 class="title">🏛 奧格斯堡 · Lexapartments zentral 101qm</h2>
+      <div class="row"><span class="label">入住</span><span class="value"><span class="family huang">黃家 4 人</span></span></div>
       <div class="row"><span class="label">日期</span><span class="value">2027/7/23 五 – 7/29 四 · 6 晚</span></div>
       <div class="row"><span class="label">入住／退房</span><span class="value">15:00–22:00 ／ 10:00 前</span></div>
       <div class="row"><span class="label">房型</span><span class="value">2 間三臥室公寓（一間為套房）</span></div>
       <div class="row"><span class="label">地址</span><span class="value">Am Bogen 6（一樓）, 86152 Augsburg</span></div>
       <div class="row"><span class="label">電話</span><span class="value">+49 1575 8247524</span></div>
-      <div class="row"><span class="label">訂單</span><span class="value">Booking.com 5315450808 · 訂房人 CHEN LI Jen</span></div>
+      <div class="row"><span class="label">訂單</span><span class="value">Booking.com 5315450808 · 訂房人 CHEN LI Jen（陳家代訂）</span></div>
       <div class="row"><span class="label">費用</span><span class="value">€2,222（房價 €1,928.97 ＋ 稅 €135.03 ＋ 清潔費 €158），由 Booking.com 自動扣款</span></div>
       <div class="row"><span class="label">押金</span><span class="value">€500 損壞押金，抵達前 7 天以信用卡收取，退房後 7 天內退還</span></div>
       <div class="row"><span class="label">入住方式</span><span class="value">自助入住，鑰匙放在鑰匙盒</span></div>
       <div class="row"><span class="label">取消</span><span class="value">2027/5/23 23:59 前免費；之後需付全額</span></div>
+      <div class="note">訂單是 2 間三臥室公寓，現在入住的是黃家 4 人，可考慮在 5/23 前減為 1 間。入住人姓名也建議改成黃家成員，方便和房東聯絡。</div>
       <div class="links"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Am+Bogen+6+86152+Augsburg" target="_blank" rel="noopener">📍 地圖</a></div>
+    </article>
+
+    <article class="card">
+      <h2 class="title">🏰 布拉格 · 住宿待訂</h2>
+      <div class="row"><span class="label">入住</span><span class="value"><span class="family chen">陳家 4 人</span></span></div>
+      <div class="row"><span class="label">日期</span><span class="value">2027/7/23 五 – 7/30 五 · 7 晚</span></div>
+      <div class="row"><span class="label">需求</span><span class="value">4 人，2 間臥室的公寓較方便；7/23 抵達時間偏晚，要能晚入住或自助入住</span></div>
+      <div class="row"><span class="label">區域</span><span class="value">老城區 Staré Město 或小城區 Malá Strana，步行可到主要景點</span></div>
+      <div class="note">訂好後補上地址、訂單號、費用與取消期限。</div>
     </article>
   </div>
 </section>
@@ -412,28 +517,30 @@ footer { padding:0 14px 28px; color:#6e7c84; font:10px/1.5 Georgia,serif; text-a
   <div class="grid two">
     <article class="card">
       <h2 class="title">💬 需要決定</h2>
-      <div class="check"><span class="box"></span><div><b>航班</b>：7/15 幾點抵達慕尼黑、7/29 幾點起飛？決定第一天和最後一天能安排多少行程。</div></div>
-      <div class="check"><span class="box"></span><div><b>GP 段是否租車</b>：8 人需要 2 台車或 1 台 9 人座。新天鵝堡、林德霍夫宮開車比較方便；只坐火車的話可以排 GP 周邊行程。</div></div>
-      <div class="check"><span class="box"></span><div><b>移動日的行李</b>：8 人帶大行李搭火車要不要改包車？</div></div>
-      <div class="check"><span class="box"></span><div><b>奧格斯堡一日遊</b>：烏爾姆、訥德林根、羅騰堡、慕尼黑、購物村，選哪幾個？</div></div>
-      <div class="check"><span class="box"></span><div><b>分組活動</b>：住兩間公寓，是否有幾天分成兩組各自行動？</div></div>
+      <div class="check"><span class="box"></span><div><b>航班</b>：7/15 幾點抵達慕尼黑？回程黃家 7/29 MUC、陳家 7/30 PRG 各幾點起飛？</div></div>
+      <div class="check"><span class="box"></span><div><b>GP 段是否租車</b>：8 人需要 2 台車或 1 台 9 人座。新天鵝堡、林德霍夫宮開車比較方便；只坐火車的話可以排 GP 周邊行程。7/23 兩家分頭，車要在德國還。</div></div>
+      <div class="check"><span class="box"></span><div><b>7/23 移動日</b>：陳家 GP → 布拉格約 7 小時，要搭火車還是巴士？黃家要不要一起到慕尼黑再分開？</div></div>
+      <div class="check"><span class="box"></span><div><span class="family huang">黃家</span><b>奧格斯堡一日遊</b>：烏爾姆、訥德林根、羅騰堡、慕尼黑、購物村，選哪幾個？</div></div>
+      <div class="check"><span class="box"></span><div><span class="family chen">陳家</span><b>布拉格近郊</b>：庫特納霍拉、契斯基庫倫洛夫要不要都去？庫倫洛夫是否住一晚？</div></div>
     </article>
 
     <article class="card">
       <h2 class="title">✅ 待辦</h2>
       <div class="check"><span class="box"></span><div>補上 GP 公寓 B 的訂單號、金額與取消期限。</div></div>
-      <div class="check"><span class="box"></span><div>訂機票。</div></div>
+      <div class="check"><span class="box"></span><div>訂機票：黃家 TPE ⇄ MUC；陳家 TPE → MUC、PRG → TPE。</div></div>
+      <div class="check"><span class="box"></span><div><span class="family chen">陳家</span>訂布拉格住宿 7/23–7/30。</div></div>
+      <div class="check"><span class="box"></span><div><span class="family chen">陳家</span>訂 7/23 慕尼黑 → 布拉格的火車或巴士。</div></div>
       <div class="check"><span class="box"></span><div>新天鵝堡開放預約後馬上訂入場時段。</div></div>
-      <div class="check"><span class="box"></span><div>5/23 前最後確認奧格斯堡住宿，之後不能免費取消。</div></div>
+      <div class="check"><span class="box"></span><div><span class="family huang">黃家</span>5/23 前確認奧格斯堡住宿：是否減為 1 間公寓、入住人改名，之後不能免費取消。</div></div>
       <div class="check"><span class="box"></span><div>抵達前通知 Bader Suites 與 Lexapartments 預計抵達時間。</div></div>
-      <div class="check"><span class="box"></span><div>信用卡額度：奧格斯堡會預收 €500 押金。</div></div>
-      <div class="note">德國緊急電話：112（警察、消防、救護）。</div>
+      <div class="check"><span class="box"></span><div>奧格斯堡房費 €2,222 與 €500 押金都刷 CHEN LI Jen 的卡，和黃家結算。</div></div>
+      <div class="note">德國、捷克緊急電話都是 112（警察、消防、救護）。捷克使用克朗 CZK，不是歐元。</div>
     </article>
   </div>
 </section>
 </main>
 
-<footer>Steven Journey Album · Alpine summer notes</footer>
+<footer>Steven Journey Album · Alpine summer notes · Huang &amp; Chen</footer>
 
 <script>
 function showTab(tab) {
