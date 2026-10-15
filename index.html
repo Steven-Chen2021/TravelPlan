@@ -203,6 +203,15 @@ main { padding: 31px 12px 44px; }
 .trip-card.bavaria .trip-visual::after { content: "MÜNCHEN   —   ALPEN"; }
 .trip-card.bavaria .trip-status { color: #f6dc98; border-color: rgba(246,220,152,.55); }
 .trip-card.bavaria .trip-date { color: #174f7c; }
+.trip-card.osaka::after { background: linear-gradient(90deg, #1f2340 0 45%, #b3741c 45% 70%, #8a3b5c 70%); }
+.trip-card.osaka .trip-visual {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(226,162,74,.5) 0 7%, transparent 7.5%),
+    linear-gradient(150deg, #11142a, #1f2340 55%, #3a3560);
+}
+.trip-card.osaka .trip-visual::after { content: "TENNOJI   —   ABENO"; }
+.trip-card.osaka .trip-status { color: #f2cf94; border-color: rgba(242,207,148,.55); }
+.trip-card.osaka .trip-date { color: #8a3b5c; }
 .trip-card:active { transform: translateY(1px); }
 .trip-card:focus-visible { outline: 3px solid rgba(198,147,59,.65); outline-offset: 3px; }
 
@@ -279,9 +288,9 @@ footer { padding: 0 16px 30px; color: #847d6d; font: 10px/1.5 Georgia, serif; te
 </header>
 
 <section class="summary" aria-label="旅行摘要">
-  <div class="stat"><strong>6</strong><span>Journeys</span></div>
-  <div class="stat"><strong>10</strong><span>Places</span></div>
-  <div class="stat"><strong>36</strong><span>Travelers</span></div>
+  <div class="stat"><strong>7</strong><span>Journeys</span></div>
+  <div class="stat"><strong>11</strong><span>Places</span></div>
+  <div class="stat"><strong>38</strong><span>Travelers</span></div>
 </section>
 
 <main>
@@ -299,6 +308,20 @@ footer { padding: 0 16px 30px; color: #847d6d; font: 10px/1.5 Georgia, serif; te
   <div class="trip-grid" id="archive-trips" role="tabpanel" hidden></div>
 
   <div id="trip-source" hidden>
+    <a class="trip-card osaka" href="trips/2026-12-10-osaka-birthday/" data-start="2026-12-10" data-end="2026-12-13" data-archive aria-label="開啟 2026 大阪冬日旅行計劃">
+      <div class="trip-visual">
+        <span class="trip-status">Journey Archive</span>
+        <h3>Osaka Winter<span>大阪冬日 · 2026</span></h3>
+        <div class="route"><span>Taipei</span><i></i><span>Kansai</span><i></i><span>Tennoji</span></div>
+      </div>
+      <div class="trip-info">
+        <div>
+          <div class="trip-date">2026.12.10 — 12.13</div>
+          <p class="trip-meta">日本 · 大阪<br>2 位旅人 · 紅葉與冬季燈飾</p>
+        </div>
+        <span class="open-label">開啟計劃</span>
+      </div>
+    </a>
     <a class="trip-card bavaria" href="trips/2027-07-15-bavaria-summer/" data-start="2027-07-15" data-end="2027-07-30" aria-label="開啟 2027 巴伐利亞夏日旅行計劃">
       <div class="trip-visual">
         <span class="trip-status">Upcoming Alpine Summer</span>
@@ -408,10 +431,10 @@ function localDate(value) {
 }
 
 const upcoming = trips
-  .filter(trip => localDate(trip.dataset.end) >= today)
+  .filter(trip => !('archive' in trip.dataset) && localDate(trip.dataset.end) >= today)
   .sort((a, b) => localDate(a.dataset.start) - localDate(b.dataset.start));
 const archive = trips
-  .filter(trip => localDate(trip.dataset.end) < today)
+  .filter(trip => 'archive' in trip.dataset || localDate(trip.dataset.end) < today)
   .sort((a, b) => localDate(b.dataset.end) - localDate(a.dataset.end));
 
 function renderTrips(panel, items, emptyTitle, emptyText) {

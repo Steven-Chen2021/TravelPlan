@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1f2340">
+<meta name="description" content="2026 大阪生日旅行，12月10日至12月13日，住大阪萬豪都酒店，大阪紅葉、冬季燈飾與 57 樓生日晚餐。">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<title>2026 · 大阪生日密旅</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow column read top to bottom like a pocket itinerary; each day is a timeline whose rail is the hotel tower (floor numbers as markers). */
+:root {
+  --night: #1f2340;      /* Osaka winter sky seen from 57F */
+  --ground: #f4f3f8;     /* page, cool frost */
+  --surface: #ffffff;
+  --ink: #23243a;
+  --muted: #676a82;
+  --line: #dcdbe7;
+  --candle: #b3741c;     /* birthday candle gold, the one accent */
+  --candle-soft: #f6ead6;
+  --secret: #8a3b5c;     /* used only for "keep it secret" notes */
+  --secret-soft: #f6e6ed;
+  --display: "Shippori Mincho", "Noto Serif TC", "Songti TC", serif;
+  --body: "Noto Sans TC", "PingFang TC", "Hiragino Sans", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --night: #0d0f20; --ground: #15172a; --surface: #1d2036; --ink: #ecebf5; --muted: #a2a4bd;
+    --line: #2f3350; --candle: #e2a24a; --candle-soft: #3a2f1f; --secret: #e08aae; --secret-soft: #3a2232;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --night: #0d0f20; --ground: #15172a; --surface: #1d2036; --ink: #ecebf5; --muted: #a2a4bd;
+  --line: #2f3350; --candle: #e2a24a; --candle-soft: #3a2f1f; --secret: #e08aae; --secret-soft: #3a2232;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.back { color: #c9c7d9; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-decoration: none; }
+.back:hover { color: #f3efe6; }
+.back:focus-visible { outline: 2px solid var(--candle); outline-offset: 3px; }
+body { background: var(--ground); color: var(--ink); font: 400 15px/1.7 var(--body); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 680px; margin: 0 auto; padding-block: 0 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+header { background: var(--night); color: #f3efe6; }
+header .wrap { padding-block: 40px 30px; display: grid; gap: 10px; }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: #e2b56d; }
+h1 { margin: 0; font: 800 clamp(30px, 7vw, 44px)/1.15 var(--display); text-wrap: balance; }
+.lede { margin: 0; color: #c9c7d9; max-width: 34em; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.facts span { font: 500 12px/1 var(--mono); padding: 7px 10px; border: 1px solid #3b4066; border-radius: 4px; color: #e6e3f2; }
+
+h2 { font: 800 22px/1.3 var(--display); margin: 44px 0 6px; text-wrap: balance; }
+h2 + .sub { margin: 0 0 16px; color: var(--muted); font-size: 14px; }
+
+.flights { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 24px; }
+.flight { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: grid; gap: 4px; }
+.flight .code { font: 500 13px/1 var(--mono); color: var(--candle); letter-spacing: .06em; }
+.flight .route { font: 700 18px/1.3 var(--body); font-variant-numeric: tabular-nums; }
+.flight .note { font-size: 13px; color: var(--muted); }
+
+.day { margin-top: 40px; }
+.day-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.day-head .date { font: 500 13px/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.day-head h3 { margin: 0; font: 800 20px/1.3 var(--display); }
+.day.bday .day-head h3 { color: var(--candle); }
+
+ol.tl { list-style: none; margin: 0; padding: 0; }
+ol.tl li { display: grid; grid-template-columns: 58px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+ol.tl li:last-child { border-bottom: 0; }
+.t { font: 500 13px/1.6 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 1px; }
+.what strong { display: block; font-weight: 700; }
+.what p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+.floor { display: inline-block; font: 500 11px/1 var(--mono); padding: 3px 6px; margin-left: 6px; border-radius: 3px; background: var(--candle-soft); color: var(--candle); vertical-align: 2px; }
+.ja { color: var(--muted); font-weight: 400; font-size: 13px; margin-left: 4px; }
+
+.callout { margin-top: 14px; padding: 12px 14px; border-radius: 6px; font-size: 14px; }
+.callout.secret { background: var(--secret-soft); color: var(--ink); border-left: 3px solid var(--secret); }
+.callout.secret b { color: var(--secret); }
+.callout.alt { background: var(--surface); border: 1px solid var(--line); }
+.callout.alt b { color: var(--candle); }
+
+.todo { display: grid; gap: 18px; }
+.todo section { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px 6px; }
+.todo h4 { margin: 0 0 6px; font: 500 12px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--candle); }
+.todo label { display: grid; grid-template-columns: 22px 1fr; gap: 8px; padding: 8px 0; border-top: 1px solid var(--line); cursor: pointer; font-size: 14px; }
+.todo section label:first-of-type { border-top: 0; }
+.todo input { width: 17px; height: 17px; margin: 3px 0 0; accent-color: var(--candle); }
+.todo input:checked + span { color: var(--muted); text-decoration: line-through; }
+.todo input:focus-visible { outline: 2px solid var(--candle); outline-offset: 2px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 12px/1.4 var(--mono); color: var(--muted); letter-spacing: .06em; }
+tr:last-child td { border-bottom: 0; }
+td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+footer { margin-top: 40px; font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="back" href="../../">← Journey Album</a>
+    <div class="eyebrow">Secret trip · 2026.12.10 – 12.13</div>
+    <h1>大阪，生日快樂</h1>
+    <p class="lede">四天三夜，住在阿倍野 HARUKAS 頂層的大阪萬豪都酒店。生日當晚在 57 樓看大阪夜景吃晚餐。之後兩天都待在大阪，看紅葉和冬季燈飾，下午留時間回飯店休息。</p>
+    <div class="facts">
+      <span>12/10 四 → 12/13 日</span>
+      <span>Osaka Marriott Miyako</span>
+      <span>CI156 / CI153</span>
+      <span>白天約 11°C，夜晚約 4°C</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="flights">
+    <div class="flight">
+      <span class="code">CI156 · 12/10 四</span>
+      <span class="route">TPE 08:05 → KIX 11:35</span>
+      <span class="note">桃園 T2 → 關西 T1。不同來源寫 08:05 或 08:15，請以訂位紀錄為準。</span>
+    </div>
+    <div class="flight">
+      <span class="code">CI153 · 12/13 日</span>
+      <span class="route">KIX 14:00 → TPE 16:00</span>
+      <span class="note">關西 T1 → 桃園 T2。飛行約 3 小時，請以訂位紀錄為準。</span>
+    </div>
+  </div>
+
+  <h2>行程</h2>
+  <p class="sub">飯店就在 JR 天王寺站和近鐵大阪阿部野橋站上方，大廳在 19 樓，往返機場和市區都很方便，隨時可以回房間休息。</p>
+
+  <article class="day bday">
+    <div class="day-head"><span class="date">12/10 THU</span><h3>生日・抵達與 57 樓晚餐</h3></div>
+    <ol class="tl">
+      <li><span class="t">05:30</span><div class="what"><strong>出發去桃園機場</strong><p>06:05 前到 T2 報到。在這之前她都不必知道要去哪裡。</p></div></li>
+      <li><span class="t">08:05</span><div class="what"><strong>CI156 起飛</strong><p>11:35 抵達關西。入境用 Visit Japan Web 的 QR code。</p></div></li>
+      <li><span class="t">12:30</span><div class="what"><strong>特急 Haruka 到天王寺<span class="ja">はるか</span></strong><p>約 35 分鐘。用「ICOCA &amp; HARUKA」優惠票最划算，出站後直接上飯店。</p></div></li>
+      <li><span class="t">13:30</span><div class="what"><strong>寄放行李、午餐<span class="floor">19F</span></strong><p>行李交給櫃檯，午餐在樓下近鐵百貨本店的餐廳樓層吃，選擇很多。</p></div></li>
+      <li><span class="t">15:00</span><div class="what"><strong>入住</strong><p>房間裡事先請飯店準備好花或蛋糕，讓她進門就看到第一個驚喜。</p></div></li>
+      <li><span class="t">16:20</span><div class="what"><strong>HARUKAS 300 展望台看夕陽<span class="floor">58–60F</span></strong><p>12 月大阪約 16:50 日落。從亮天看到夜景，晴天可以看到大阪灣與明石海峽大橋方向。</p></div></li>
+      <li><span class="t">18:30</span><div class="what"><strong>生日晚餐 RESTAURANT ZK<span class="floor">57F</span></strong><p>離地約 270 公尺，窗外是通天閣與大阪夜景。訂位時指定靠窗並註明生日，請餐廳準備生日甜點盤。每人約 ¥10,000 起。</p></div></li>
+      <li><span class="t">20:30</span><div class="what"><strong>回房間</strong><p>拿出事先準備的禮物或卡片。房間在 38 樓以上，夜景就是背景。</p></div></li>
+    </ol>
+    <div class="callout secret"><b>揭曉時機：</b>建議 12/10 早上出門前把登機證交給她，或在桃園報到櫃檯前才說「我們要去大阪」。行李可以前一晚由你偷偷打包。</div>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><span class="date">12/11 FRI</span><h3>飯店旁賞楓、午後休息、中之島點燈</h3></div>
+    <ol class="tl">
+      <li><span class="t">09:00</span><div class="what"><strong>睡飽、慢慢吃早餐<span class="floor">19F</span></strong><p>前一晚過生日，早上不排行程。</p></div></li>
+      <li><span class="t">10:00</span><div class="what"><strong>慶澤園賞楓<span class="ja">慶沢園</span></strong><p>就在天王寺公園裡，從飯店走路約 5 分鐘。池泉迴遊式日本庭園，例年紅葉見頃 11 月上旬至 12 月上旬。開園 9:30–17:00，週一休園。</p></div></li>
+      <li><span class="t">11:00</span><div class="what"><strong>長居植物園<span class="ja">長居植物園</span></strong><p>天王寺搭地鐵御堂筋線到長居站約 10 分鐘。例年見頃 11 月中旬至 12 月上旬，大池邊的「逆さ紅葉」倒影是重點。週一休園。</p></div></li>
+      <li><span class="t">12:30</span><div class="what"><strong>午餐 阿倍野或天王寺</strong><p>回程在 Q's Mall 或 HARUKAS 一帶吃，吃完直接上樓。</p></div></li>
+      <li><span class="t">13:30</span><div class="what"><strong>飯店時間</strong><p>回房間午睡、泡澡、從高樓看白天的大阪。下午可到 19F 甜點店 M-Boutique 買蛋糕回房間配茶。</p></div></li>
+      <li><span class="t">17:00</span><div class="what"><strong>大阪光之文藝復興<span class="ja">OSAKA 光のルネサンス</span></strong><p>御堂筋線到淀屋橋站約 15 分鐘。中之島大阪市政府到中之島公園一帶，預計 12/11 至 12/25 點燈，約 16:00–22:00。週五晚上比週六人少。</p></div></li>
+      <li><span class="t">18:00</span><div class="what"><strong>御堂筋燈飾散步<span class="ja">御堂筋イルミネーション</span></strong><p>11/3 至 12/31，約 17:00 至 1:00，免費。從淀屋橋沿御堂筋往南走到心齋橋，兩旁銀杏若還沒落葉會是金黃色的。</p></div></li>
+      <li><span class="t">19:30</span><div class="what"><strong>晚餐 心齋橋或道頓堀</strong><p>燒肉、壽司或串炸，建議先訂位。之後搭御堂筋線回天王寺約 10 分鐘。</p></div></li>
+    </ol>
+  </article>
+
+  <article class="day">
+    <div class="day-head"><span class="date">12/12 SAT</span><h3>大阪城紅葉、北濱、輕鬆的晚上</h3></div>
+    <ol class="tl">
+      <li><span class="t">09:30</span><div class="what"><strong>大阪城公園賞楓<span class="ja">大阪城公園</span></strong><p>天王寺搭 JR 環狀線到大阪城公園站約 15 分鐘。平地紅葉例年 11 月下旬至 12 月上旬最美，看點是西之丸庭園一帶的楓樹與銀杏，以及護城河邊的石牆。天守閣建議 10 點前進場。</p></div></li>
+      <li><span class="t">12:00</span><div class="what"><strong>中之島、北濱午餐與咖啡</strong><p>沿河岸散步，北濱一帶有不少河景咖啡廳，例如北浜レトロ紅茶館。</p></div></li>
+      <li><span class="t">14:00</span><div class="what"><strong>回飯店休息</strong><p>週六下午市區人最多，正好回房間休息。想逛街的話，這段改去梅田（梅田藍天大廈下方往年有德國聖誕市集，2026 年日期尚未公布）。</p></div></li>
+      <li><span class="t">16:30</span><div class="what"><strong>天王寺公園黃昏散步</strong><p>從飯店走下樓即到，看 HARUKAS 和通天閣亮燈。</p></div></li>
+      <li><span class="t">18:00</span><div class="what"><strong>晚餐 新世界或阿倍野</strong><p>新世界在飯店步行約 10 分鐘，可以吃串炸、看通天閣夜景。最後一晚不用再搭車，吃完散步回飯店。</p></div></li>
+    </ol>
+  </article>
+
+  <div class="callout alt"><b>紅葉時間提醒：</b>12/10–12/12 是大阪平地紅葉的尾聲。慶澤園、長居植物園、大阪城公園例年都還看得到，但要看當年天氣。12 月初到 tenki.jp 大阪紅葉頁看最新狀況；如果已經落葉，週五早上改成睡晚一點、只去慶澤園。箕面公園例年 11 月中下旬見頃，到 12 月中多半已過，所以沒有排進去。</div>
+
+  <article class="day">
+    <div class="day-head"><span class="date">12/13 SUN</span><h3>回台北</h3></div>
+    <ol class="tl">
+      <li><span class="t">08:30</span><div class="what"><strong>早餐<span class="floor">19F</span></strong><p>飯店自助餐廳 COOKA。有萬豪白金卡以上通常含早餐，記得確認。</p></div></li>
+      <li><span class="t">10:30</span><div class="what"><strong>退房，搭 Haruka 到關西機場</strong><p>天王寺到關西機場約 35 分鐘。目標 11:45 前到 T1，國際線起飛前 2 小時。</p></div></li>
+      <li><span class="t">14:00</span><div class="what"><strong>CI153 起飛</strong><p>16:00 抵達桃園 T2。</p></div></li>
+    </ol>
+  </article>
+
+  <h2>準備清單</h2>
+  <p class="sub">今天是 10/14，距離出發約 8 週。勾選狀態只存在你這台裝置上。</p>
+  <div class="todo">
+    <section>
+      <h4>現在就訂</h4>
+      <label><input type="checkbox" id="t-zk"><span>訂 RESTAURANT ZK 12/10 18:30 晚餐，指定靠窗，註明生日、需要生日甜點盤</span></label>
+      <label><input type="checkbox" id="t-room"><span>Email 飯店：說明是驚喜生日旅行，詢問高樓層房、房內蛋糕或花的方案與價錢</span></label>
+      <label><input type="checkbox" id="t-kyoto"><span>訂 12/11 心齋橋晚餐（燈飾散步後約 19:30）、12/12 新世界或阿倍野晚餐</span></label>
+      <label><input type="checkbox" id="t-pass"><span>確認她的護照效期（到 12/13 仍有效即可，但最好六個月以上）</span></label>
+    </section>
+    <section>
+      <h4>11 月</h4>
+      <label><input type="checkbox" id="t-leave"><span>用其他理由請她 12/10、12/11（週四、週五）請假，或請她主管或同事幫忙</span></label>
+      <label><input type="checkbox" id="t-h300"><span>網路預購 12/10 HARUKAS 300 指定時段門票（約 16:20）</span></label>
+      <label><input type="checkbox" id="t-gift"><span>準備生日禮物與手寫卡片，裝進你的行李</span></label>
+      <label><input type="checkbox" id="t-esim"><span>買兩人份日本 eSIM，或確認漫遊</span></label>
+    </section>
+    <section>
+      <h4>出發前一週</h4>
+      <label><input type="checkbox" id="t-vjw"><span>Visit Japan Web 填好兩人資料（需要她的護照資料）</span></label>
+      <label><input type="checkbox" id="t-icoca"><span>購買 ICOCA &amp; HARUKA，或在 iPhone 錢包加入 ICOCA</span></label>
+      <label><input type="checkbox" id="t-yen"><span>準備日幣現金，部分寺社和小店只收現金</span></label>
+      <label><input type="checkbox" id="t-pack"><span>12/9 晚上偷偷幫她打包：保暖外套、圍巾、好走的鞋，以及一套生日晚餐的衣服</span></label>
+    </section>
+  </div>
+
+  <div class="callout secret" style="margin-top:18px"><b>保密注意：</b>訂位確認信寄到只有你看得到的信箱；關掉共用行事曆提醒和信用卡消費通知；手機上的華航 App 和飯店 App 先移到不顯眼的地方。</div>
+
+  <h2>交通速查</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>路線</th><th>方式</th><th>時間</th></tr></thead>
+      <tbody>
+        <tr><td>關西機場 ↔ 天王寺</td><td>JR 特急 Haruka</td><td class="n">約 35 分</td></tr>
+        <tr><td>飯店 → 慶澤園</td><td>步行（天王寺公園內）</td><td class="n">約 5 分</td></tr>
+        <tr><td>天王寺 → 長居植物園</td><td>地鐵御堂筋線到長居站</td><td class="n">約 10 分</td></tr>
+        <tr><td>天王寺 → 中之島（淀屋橋）</td><td>地鐵御堂筋線</td><td class="n">約 15 分</td></tr>
+        <tr><td>天王寺 → 大阪城公園</td><td>JR 大阪環狀線</td><td class="n">約 15 分</td></tr>
+        <tr><td>天王寺 ↔ 心齋橋、難波</td><td>地鐵御堂筋線</td><td class="n">約 10 分</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>航班時刻、餐廳營業時間、紅葉見頃與燈飾日期來自公開資料，出發前請再向華航、飯店與官方網站確認。</footer>
+</main>
+
+<script>
+(function () {
+  var KEY = "osaka-bday-todo";
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+  document.querySelectorAll(".todo input").forEach(function (box) {
+    if (state[box.id]) box.checked = true;
+    box.addEventListener("change", function () {
+      state[box.id] = box.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    });
+  });
+})();
+</script>
+</body>
+</html>
