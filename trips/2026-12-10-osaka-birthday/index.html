@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#1f2340">
-<meta name="description" content="2026 大阪生日旅行，12月10日至12月13日，住大阪萬豪都酒店，大阪紅葉、冬季燈飾與 57 樓生日晚餐。">
+<meta name="description" content="2026 大阪生日旅行，12月10日至12月13日，住大阪萬豪都酒店，每天三個紅葉方案任選、冬季燈飾與生日晚餐。">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <title>2026 · 大阪生日密旅</title>
 <style>
@@ -179,6 +179,25 @@ main { padding:14px 10px 36px; }
 .box { width:17px; height:17px; margin-top:2px; border:2px solid var(--night); border-radius:4px; }
 .legend { display:flex; flex-wrap:wrap; gap:12px; margin:0 3px 12px; color:var(--muted); font-size:11px; font-weight:800; }
 .legend i { display:inline-block; width:10px; height:10px; margin-right:5px; border-radius:50%; vertical-align:-1px; }
+.pick { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:6px 0 9px; }
+.pick h3 { color:var(--maple); font-size:14px; font-weight:950; }
+.dice { flex:0 0 auto; min-height:38px; padding:8px 12px; border:1px solid var(--maple); border-radius:6px; color:var(--maple); background:#fff4ef; font:inherit; font-size:12px; font-weight:950; cursor:pointer; }
+.dice:focus-visible,.opt:focus-visible { outline:3px solid rgba(181,70,42,.45); outline-offset:2px; }
+.opts { display:grid; gap:9px; margin-bottom:16px; }
+.opt { position:relative; padding:11px 12px; border:1px solid var(--line); border-left:4px solid var(--maple); border-radius:7px; background:#fff; cursor:pointer; transition:box-shadow .2s ease, background .2s ease, opacity .2s ease; }
+.opt.chosen { background:#fff5f0; box-shadow:0 0 0 2px var(--maple),0 10px 22px rgba(181,70,42,.16); }
+.opt.chosen::after { content:"✔ 就這個"; position:absolute; top:10px; right:10px; padding:2px 6px; border-radius:3px; color:#fff; background:var(--maple); font-size:10px; font-weight:900; }
+.opts.rolling .opt { opacity:.45; }
+.opts.rolling .opt.flash { opacity:1; box-shadow:0 0 0 2px var(--gold); }
+.opt-name { display:flex; gap:8px; align-items:center; padding-right:64px; color:var(--night); font-size:15px; font-weight:950; line-height:1.35; }
+.opt-letter { flex:0 0 auto; display:grid; width:23px; height:23px; place-items:center; border-radius:50%; color:#fff; background:var(--maple); font:900 12px/1 Georgia,serif; }
+.opt ul { display:grid; gap:4px; margin-top:8px; list-style:none; }
+.opt li { display:grid; grid-template-columns:44px minmax(0,1fr); gap:6px; color:#5a5e72; font-size:13px; line-height:1.62; }
+.opt li b { padding-top:2px; color:#9a6620; font-size:11px; font-weight:950; }
+.opt .ja { color:var(--muted); font-size:12px; font-weight:700; }
+.opt-note { margin-top:6px; color:var(--plum); font-size:12px; font-weight:800; line-height:1.55; }
+.readable.focus .opt li { font-size:17px; line-height:1.7; }
+.readable.focus .opt-name { font-size:19px; }
 footer { padding:0 14px 28px; color:#70748a; font:10px/1.5 Georgia,serif; text-align:center; letter-spacing:.08em; text-transform:uppercase; }
 @media (min-width:680px) {
   .hero { padding:26px 28px 34px; }
@@ -223,13 +242,13 @@ footer { padding:0 14px 28px; color:#70748a; font:10px/1.5 Georgia,serif; text-a
   <div class="grid two">
     <article class="card">
       <h2 class="title">🗺 行程骨架</h2>
-      <div class="stay-strip" aria-hidden="true"><span>12/10<br>生日</span><span>12/11<br>紅葉・燈飾</span><span>12/12<br>大阪城</span></div>
+      <div class="stay-strip" aria-hidden="true"><span>12/10<br>生日</span><span>12/11<br>🎲 三選一</span><span>12/12<br>🎲 三選一</span></div>
       <div class="row"><span class="label">12/5 六</span><span class="value"><b>揭曉</b><br>女兒 18 歲生日當天告訴她這趟旅行</span></div>
-      <div class="row"><span class="label">12/10 四</span><span class="value"><b>生日 · 抵達大阪</b><br>HARUKAS 300 看夕陽，57F RESTAURANT ZK 生日晚餐</span></div>
-      <div class="row"><span class="label">12/11 五</span><span class="value"><b>飯店旁賞楓 · 中之島點燈</b><br>慶澤園、長居植物園，下午回飯店休息，晚上光之文藝復興與御堂筋燈飾</span></div>
-      <div class="row"><span class="label">12/12 六</span><span class="value"><b>大阪城紅葉 · 北濱</b><br>下午回飯店，晚上新世界晚餐</span></div>
-      <div class="row"><span class="label">12/13 日</span><span class="value"><b>回台北</b><br>11:15 退房，CI153 14:30 起飛</span></div>
-      <div class="note">不去京都，三晚都住天王寺。每天只排上午與晚上，下午留給飯店時間。</div>
+      <div class="row"><span class="label">12/10 四</span><span class="value"><b>生日 · 抵達大阪</b><br>下午紅葉三選一，晚上生日晚餐</span></div>
+      <div class="row"><span class="label">12/11 五</span><span class="value"><b>紅葉三選一 · 夜晚燈飾</b><br>長居植物園、萬博日本庭園或堺大仙公園，晚上看燈飾</span></div>
+      <div class="row"><span class="label">12/12 六</span><span class="value"><b>紅葉三選一 · 最後一晚</b><br>大阪城、補去前一天沒去的，或天王寺周邊慢慢走</span></div>
+      <div class="row"><span class="label">12/13 日</span><span class="value"><b>回台北</b><br>早上飯店旁紅葉三選一，11:15 退房，CI153 14:30 起飛</span></div>
+      <div class="note">不去京都，三晚都住天王寺。每天三個方案，每個都有紅葉，當天抽一個當驚喜。每天早上先去健身房，再吃早餐。</div>
     </article>
 
     <article class="card">
@@ -247,8 +266,12 @@ footer { padding:0 14px 28px; color:#70748a; font:10px/1.5 Georgia,serif; text-a
       <h2 class="title">🍁 大阪紅葉</h2>
       <div class="row"><span class="label">慶澤園</span><span class="value">例年 11 月上旬 – 12 月上旬<br>天王寺公園內，飯店步行 5 分 · 週一休園</span></div>
       <div class="row"><span class="label">長居植物園</span><span class="value">例年 11 月中旬 – 12 月上旬<br>大池「逆さ紅葉」倒影 · 週一休園</span></div>
-      <div class="row"><span class="label">大阪城公園</span><span class="value">平地例年 11 月下旬 – 12 月上旬<br>西之丸庭園的楓樹與銀杏</span></div>
-      <div class="note">12/10–12/12 是大阪平地紅葉的尾聲。12 月初到 tenki.jp 大阪紅葉頁看最新狀況；已落葉就只去慶澤園，早上多睡一點。箕面公園例年 11 月中下旬見頃，所以沒有排。</div>
+      <div class="row"><span class="label">大阪城公園</span><span class="value">平地例年 11 月下旬 – 12 月上旬<br>西之丸庭園的楓樹與銀杏 · 週一休</span></div>
+      <div class="row"><span class="label">四天王寺</span><span class="value">本坊庭園 ¥300 · 10–3 月 8:30 – 16:00<br>飯店走路約 15 分</span></div>
+      <div class="row"><span class="label">茶臼山</span><span class="value">天王寺公園內河底池 · 免費、隨時可去</span></div>
+      <div class="row"><span class="label">萬博日本庭園</span><span class="value">千里，約 55 分 · 9:30 – 17:00 · 週三休</span></div>
+      <div class="row"><span class="label">大仙公園</span><span class="value">堺，JR 約 20 分 · 例年 11 月下旬 – 12 月上旬<br>9:00 – 17:00 · 週一休</span></div>
+      <div class="note">12/10–12/13 是大阪平地紅葉的尾聲。12 月初到 tenki.jp 大阪紅葉頁看最新狀況；抽到的地方已落葉就換同一天的另一個方案。箕面公園例年 11 月中下旬見頃，所以沒有排。</div>
       <div class="links"><a class="btn" href="https://tenki.jp/kouyou/6/30/" target="_blank" rel="noopener">🍁 tenki.jp 紅葉情報</a></div>
     </article>
 
@@ -264,52 +287,116 @@ footer { padding:0 14px 28px; color:#70748a; font:10px/1.5 Georgia,serif; text-a
 
 <section class="section" id="daily">
   <div class="legend"><span><i style="background:var(--night)"></i>已訂／固定</span><span><i style="background:var(--maple)"></i>紅葉</span><span><i style="background:#fff;border:2px solid var(--candle)"></i>建議</span></div>
-  <div class="split-intro">排程原則：只在大阪，不搭長途車。上午出門，下午回飯店休息，晚上看燈飾或吃晚餐。</div>
+  <div class="split-intro maple">每天三個方案，每個都有紅葉。當天早上按 🎲 抽一個，或點方案自己選。早上先去健身房，再吃含在房價裡的早餐。餐廳自己挑，這裡只標時間和地區。</div>
   <div class="timeline">
     <article class="day bday">
-      <button class="day-head open" type="button" aria-expanded="true"><span class="num">1</span><span><strong>12/10 星期四 · 生日 · 抵達大阪</strong><small>CI156 08:05 · HARUKAS 300 夕陽 · 57F 生日晚餐</small></span><span class="arrow">▼</span></button>
+      <button class="day-head open" type="button" aria-expanded="true"><span class="num">1</span><span><strong>12/10 星期四 · 生日 · 抵達大阪</strong><small>CI156 08:05 · 下午三選一紅葉 · 生日晚餐</small></span><span class="arrow">▼</span></button>
       <div class="day-body open">
-        <div class="item"><div class="time">05:30</div><div class="item-name">出發去桃園機場</div><div class="detail">06:05 前到 T2 報到，走商務艙優先櫃檯與快速通關，之後在華航貴賓室吃早餐。</div></div>
+        <div class="item"><div class="time">05:30</div><div class="item-name">出發去桃園機場</div><div class="detail">06:05 前到 T2 報到，走商務艙優先櫃檯與快速通關，之後在華航貴賓室吃早餐。這天太早，不排健身房。</div></div>
         <div class="item"><div class="time">08:05 – 11:35 <span class="tag fixed">已訂</span></div><div class="item-name">CI156 桃園 → 關西 · 商務艙</div><div class="detail">機上有商務艙餐。入境用 Visit Japan Web 的 QR code。</div></div>
         <div class="item idea"><div class="time">12:30 <span class="tag">建議</span></div><div class="item-name">特急 Haruka 到天王寺 <span class="ja">はるか</span></div><div class="detail">約 35 分鐘，出站後直接上飯店。</div></div>
-        <div class="item"><div class="time">13:15 <span class="tag bday">驚喜</span></div><div class="item-name">抵達飯店 · 提早入住<span class="floor">19F</span></div><div class="detail">萬豪 Gold 可以要求提早入住，但要看當天空房，不保證。事先 Email 告知 13:15 左右抵達，請飯店把房間和花或蛋糕在這之前準備好，進門就是第一個驚喜。房間還沒好就先寄放行李，最晚 15:00 入住。</div></div>
-        <div class="item idea"><div class="time">13:45 <span class="tag">建議</span></div><div class="item-name">回房間休息</div><div class="detail">機上已經吃過，不用另外吃午餐。想吃點心就到樓下近鐵百貨本店的地下食品樓層或 19F M-Boutique 買回房間。16:20 再上展望台。</div></div>
-        <div class="item idea"><div class="time">16:20 <span class="tag">建議</span></div><div class="item-name">HARUKAS 300 展望台看夕陽<span class="floor">58–60F</span></div><div class="detail">12 月大阪約 16:50 日落，從亮天看到夜景。晴天可以看到大阪灣方向。</div></div>
-        <div class="item"><div class="time">18:30 <span class="tag bday">生日</span></div><div class="item-name">生日晚餐 RESTAURANT ZK<span class="floor">57F</span></div><div class="detail">離地約 270 公尺，窗外是通天閣與大阪夜景。每人約 ¥10,000 起。</div></div>
+        <div class="item"><div class="time">13:15 <span class="tag bday">驚喜</span></div><div class="item-name">抵達飯店 · 提早入住<span class="floor">19F</span></div><div class="detail">萬豪 Gold 可以要求提早入住，但要看當天空房，不保證。事先 Email 告知 13:15 左右抵達，請飯店把房間和花或蛋糕在這之前準備好，進門就是第一個驚喜。房間還沒好就先寄放行李，最晚 15:00 入住。休息到 14:30 再出門。</div></div>
+
+        <div class="pick"><h3>🎲 下午三選一 · 14:30 – 18:00</h3><button class="dice" type="button" data-day="d1">🎲 抽一個</button></div>
+        <div class="opts" data-day="d1">
+          <div class="opt" data-opt="A"><div class="opt-name"><span class="opt-letter">A</span><span>慶澤園 ＋ HARUKAS 300 夕陽</span></div><ul>
+            <li><b>14:30</b><span>🍁 慶澤園 <span class="ja">慶沢園</span>，飯店走路 5 分，9:30 – 17:00，週一休</span></li>
+            <li><b>16:20</b><span>HARUKAS 300 展望台 58–60F，16:50 左右日落，看到夜景再下樓</span></li>
+          </ul><div class="opt-note">最經典。展望台門票可以先買 16:20 時段。</div></div>
+          <div class="opt" data-opt="B"><div class="opt-name"><span class="opt-letter">B</span><span>四天王寺本坊庭園 ＋ 房間看夕陽</span></div><ul>
+            <li><b>14:30</b><span>🍁 四天王寺本坊庭園「極樂淨土之庭」，走路約 15 分或谷町線一站，¥300，10–3 月開到 16:00</span></li>
+            <li><b>16:30</b><span>回房間，從高樓房間看日落與通天閣亮燈</span></li>
+          </ul><div class="opt-note">日本最古老的官寺，人比較少，安靜。</div></div>
+          <div class="opt" data-opt="C"><div class="opt-name"><span class="opt-letter">C</span><span>茶臼山・河底池 ＋ 一心寺散步</span></div><ul>
+            <li><b>15:00</b><span>🍁 天王寺公園裡的茶臼山與河底池，池邊楓樹、紅色和氣橋，免費、隨時可去</span></li>
+            <li><b>16:00</b><span>走到一心寺，再慢慢晃回飯店</span></li>
+          </ul><div class="opt-note">最輕鬆，不用門票不用趕時間，多睡一點也可以。</div></div>
+        </div>
+
+        <div class="item"><div class="time">18:30 <span class="tag bday">生日</span></div><div class="item-name">生日晚餐 · 餐廳自己挑</div><div class="detail">訂位時註明生日、靠窗、生日甜點盤。</div></div>
         <div class="item idea"><div class="time">20:30</div><div class="item-name">回房間送禮物</div><div class="detail">拿出事先準備的禮物和卡片，夜景就是背景。</div></div>
       </div>
     </article>
 
     <article class="day maple">
-      <button class="day-head" type="button" aria-expanded="false"><span class="num">2</span><span><strong>12/11 星期五 · 飯店旁賞楓 · 中之島點燈</strong><small>慶澤園 · 長居植物園 · 下午飯店時間 · 光之文藝復興</small></span><span class="arrow">▼</span></button>
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">2</span><span><strong>12/11 星期五 · 三選一紅葉 · 夜晚燈飾</strong><small>長居植物園／萬博日本庭園／堺大仙公園</small></span><span class="arrow">▼</span></button>
       <div class="day-body">
-        <div class="item idea"><div class="time">09:00</div><div class="item-name">睡飽、慢慢吃早餐<span class="floor">19F</span></div><div class="detail">訂房含早餐，在 19F 自助餐廳 COOKA 吃。前一晚過生日，早上不排行程。</div></div>
-        <div class="item leaf"><div class="time">10:00 <span class="tag leaf">紅葉</span></div><div class="item-name">慶澤園 <span class="ja">慶沢園</span></div><div class="detail">天王寺公園裡的池泉迴遊式日本庭園，從飯店走路約 5 分鐘。開園 9:30 – 17:00。</div></div>
-        <div class="item leaf"><div class="time">11:00 <span class="tag leaf">紅葉</span></div><div class="item-name">長居植物園 <span class="ja">長居植物園</span></div><div class="detail">御堂筋線到長居站約 10 分鐘。大池邊的倒影紅葉是重點。</div></div>
-        <div class="item idea"><div class="time">12:30 <span class="tag">建議</span></div><div class="item-name">午餐 阿倍野或天王寺</div><div class="detail">在 Q's Mall 或 HARUKAS 一帶吃，吃完直接上樓。</div></div>
-        <div class="item idea"><div class="time">13:30 – 17:00</div><div class="item-name">飯店時間</div><div class="detail">午睡、泡澡、從高樓看白天的大阪。可到 19F 甜點店 M-Boutique 買蛋糕回房間配茶。</div></div>
-        <div class="item idea"><div class="time">17:00 <span class="tag">建議</span></div><div class="item-name">大阪光之文藝復興 <span class="ja">OSAKA 光のルネサンス</span></div><div class="detail">御堂筋線到淀屋橋約 15 分鐘。大阪市政府到中之島公園一帶，週五晚上比週六人少。</div></div>
-        <div class="item idea"><div class="time">18:00 <span class="tag">建議</span></div><div class="item-name">御堂筋燈飾散步 <span class="ja">御堂筋イルミネーション</span></div><div class="detail">從淀屋橋沿御堂筋往南走到心齋橋，兩旁銀杏若還沒落葉會是金黃色的。</div></div>
-        <div class="item idea"><div class="time">19:30 <span class="tag">建議</span></div><div class="item-name">晚餐 心齋橋或道頓堀</div><div class="detail">燒肉、壽司或串炸，建議先訂位。之後御堂筋線回天王寺約 10 分鐘。</div></div>
+        <div class="item"><div class="time">07:30 – 08:15</div><div class="item-name">💪 健身房</div><div class="detail">24 小時開放，用房卡進入。前一晚過生日，這天晚一點開始。</div></div>
+        <div class="item"><div class="time">08:30</div><div class="item-name">早餐<span class="floor">19F</span></div><div class="detail">訂房含早餐，在 19F 自助餐廳 COOKA 吃。</div></div>
+
+        <div class="pick"><h3>🎲 今天三選一 · 09:30 – 晚上</h3><button class="dice" type="button" data-day="d2">🎲 抽一個</button></div>
+        <div class="opts" data-day="d2">
+          <div class="opt" data-opt="A"><div class="opt-name"><span class="opt-letter">A</span><span>長居植物園 ＋ 中之島光之文藝復興</span></div><ul>
+            <li><b>10:00</b><span>🍁 長居植物園，御堂筋線到長居約 10 分，大池「逆さ紅葉」倒影，9:30 – 17:00，週一休</span></li>
+            <li><b>13:30</b><span>回飯店午睡、泡澡</span></li>
+            <li><b>17:00</b><span>光之文藝復興 <span class="ja">OSAKA 光のルネサンス</span>，御堂筋線到淀屋橋約 15 分，預計 12/11 開幕</span></li>
+            <li><b>19:00</b><span>晚餐：淀屋橋、北濱一帶自己挑</span></li>
+          </ul><div class="opt-note">離飯店最近的大片紅葉，晚上剛好看燈飾開幕。</div></div>
+          <div class="opt" data-opt="B"><div class="opt-name"><span class="opt-letter">B</span><span>萬博紀念公園日本庭園 ＋ 梅田聖誕市集</span></div><ul>
+            <li><b>09:30</b><span>御堂筋線到千里中央，轉單軌電車到萬博紀念公園，約 55 分</span></li>
+            <li><b>10:30</b><span>🍁 日本庭園的楓樹與太陽之塔，9:30 – 17:00，週三休</span></li>
+            <li><b>14:00</b><span>回飯店休息</span></li>
+            <li><b>17:30</b><span>梅田藍天大廈聖誕市集（2026 日期待確認），晚餐在梅田自己挑</span></li>
+          </ul><div class="opt-note">比較遠，但園區大、人少，像郊外半日遊。</div></div>
+          <div class="opt" data-opt="C"><div class="opt-name"><span class="opt-letter">C</span><span>堺・大仙公園日本庭園 ＋ 御堂筋燈飾</span></div><ul>
+            <li><b>09:30</b><span>JR 阪和線天王寺 → 百舌鳥約 20 分，下車走路 5 分</span></li>
+            <li><b>10:00</b><span>🍁 大仙公園日本庭園，例年 11 月下旬 – 12 月上旬見頃，9:00 – 17:00，週一休。旁邊是仁德天皇陵（世界遺產）</span></li>
+            <li><b>13:30</b><span>回飯店休息</span></li>
+            <li><b>17:30</b><span>御堂筋燈飾，淀屋橋往南走到心齋橋，晚餐在心齋橋自己挑</span></li>
+          </ul><div class="opt-note">從飯店去最方便的郊外紅葉，順便看古墳。</div></div>
+        </div>
       </div>
     </article>
 
     <article class="day maple">
-      <button class="day-head" type="button" aria-expanded="false"><span class="num">3</span><span><strong>12/12 星期六 · 大阪城紅葉 · 北濱</strong><small>上午出門 · 下午回飯店 · 新世界晚餐</small></span><span class="arrow">▼</span></button>
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">3</span><span><strong>12/12 星期六 · 三選一紅葉 · 最後一晚</strong><small>大阪城／補抽昨天的／天王寺周邊慢慢走</small></span><span class="arrow">▼</span></button>
       <div class="day-body">
-        <div class="item idea"><div class="time">08:30</div><div class="item-name">早餐<span class="floor">19F</span></div><div class="detail">訂房含早餐，吃完直接出門。</div></div>
-        <div class="item leaf"><div class="time">09:30 <span class="tag leaf">紅葉</span></div><div class="item-name">大阪城公園 <span class="ja">大阪城公園</span></div><div class="detail">JR 環狀線到大阪城公園站約 15 分鐘。看西之丸庭園一帶的楓樹與銀杏和護城河石牆。天守閣建議 10 點前進場。</div></div>
-        <div class="item idea"><div class="time">12:00 <span class="tag">建議</span></div><div class="item-name">中之島、北濱午餐與咖啡</div><div class="detail">沿河岸散步，北濱一帶有不少河景咖啡廳，例如北浜レトロ紅茶館。</div></div>
-        <div class="item idea"><div class="time">14:00</div><div class="item-name">回飯店休息</div><div class="detail">週六下午市區人最多，正好回房間。想逛街就改去梅田（梅田藍天大廈聖誕市集）。</div></div>
+        <div class="item"><div class="time">07:00 – 07:45</div><div class="item-name">💪 健身房</div><div class="detail">24 小時開放，用房卡進入。</div></div>
+        <div class="item"><div class="time">08:00</div><div class="item-name">早餐<span class="floor">19F</span></div><div class="detail">訂房含早餐，在 19F 自助餐廳 COOKA 吃。週六人多，早點出門。</div></div>
+
+        <div class="pick"><h3>🎲 今天三選一 · 09:00 – 晚上</h3><button class="dice" type="button" data-day="d3">🎲 抽一個</button></div>
+        <div class="opts" data-day="d3">
+          <div class="opt" data-opt="A"><div class="opt-name"><span class="opt-letter">A</span><span>大阪城西之丸庭園 ＋ 北濱河岸</span></div><ul>
+            <li><b>09:00</b><span>JR 環狀線到大阪城公園約 15 分</span></li>
+            <li><b>09:30</b><span>🍁 西之丸庭園的楓樹與銀杏，天守閣當背景，11 – 2 月約 9:00 – 16:30，週一休</span></li>
+            <li><b>12:00</b><span>走到北濱、中之島，沿河散步，午餐自己挑</span></li>
+            <li><b>14:00</b><span>回飯店休息</span></li>
+          </ul><div class="opt-note">最有大阪代表性的一天。</div></div>
+          <div class="opt" data-opt="B"><div class="opt-name"><span class="opt-letter">B</span><span>補抽：去 12/11 沒去的紅葉點</span></div><ul>
+            <li><b>09:30</b><span>🍁 長居植物園、萬博日本庭園、大仙公園，從昨天沒抽到的兩個再選一個</span></li>
+            <li><b>13:30</b><span>回飯店休息，或順路去梅田、心齋橋逛街</span></li>
+          </ul><div class="opt-note">昨天看到喜歡的方案沒抽到，今天補回來。</div></div>
+          <div class="opt" data-opt="C"><div class="opt-name"><span class="opt-letter">C</span><span>天王寺周邊慢慢走，不搭車</span></div><ul>
+            <li><b>09:30</b><span>🍁 慶澤園、四天王寺本坊庭園、茶臼山，12/10 沒去的都可以排</span></li>
+            <li><b>12:00</b><span>阿倍野、天王寺一帶吃午餐、逛街</span></li>
+            <li><b>14:00</b><span>回飯店休息</span></li>
+          </ul><div class="opt-note">最慵懶的一天，整天走路就到。</div></div>
+        </div>
+
         <div class="item idea"><div class="time">16:30 <span class="tag">建議</span></div><div class="item-name">天王寺公園黃昏散步</div><div class="detail">下樓即到，看 HARUKAS 和通天閣亮燈。</div></div>
-        <div class="item idea"><div class="time">18:00 <span class="tag">建議</span></div><div class="item-name">晚餐 新世界或阿倍野</div><div class="detail">新世界步行約 10 分鐘，串炸配通天閣夜景。最後一晚不用搭車，吃完散步回飯店。</div></div>
+        <div class="item idea"><div class="time">18:00</div><div class="item-name">最後一晚晚餐 · 自己挑</div><div class="detail">新世界、阿倍野都走路就到，吃完散步回飯店。</div></div>
       </div>
     </article>
 
     <article class="day">
-      <button class="day-head" type="button" aria-expanded="false"><span class="num">4</span><span><strong>12/13 星期日 · 回台北</strong><small>11:15 退房 · CI153 14:30</small></span><span class="arrow">▼</span></button>
+      <button class="day-head" type="button" aria-expanded="false"><span class="num">4</span><span><strong>12/13 星期日 · 回台北</strong><small>早上三選一紅葉 · 11:15 退房 · CI153 14:30</small></span><span class="arrow">▼</span></button>
       <div class="day-body">
-        <div class="item idea"><div class="time">09:00</div><div class="item-name">早餐<span class="floor">19F</span></div><div class="detail">訂房含早餐，在 19F 自助餐廳 COOKA 吃。吃完回房間收行李。</div></div>
+        <div class="item"><div class="time">06:45 – 07:30</div><div class="item-name">💪 健身房</div><div class="detail">24 小時開放，用房卡進入。</div></div>
+        <div class="item"><div class="time">07:45</div><div class="item-name">早餐<span class="floor">19F</span></div><div class="detail">訂房含早餐，在 19F 自助餐廳 COOKA 吃。吃完先把行李收好，再出門。</div></div>
+
+        <div class="pick"><h3>🎲 早上三選一 · 09:00 – 10:30</h3><button class="dice" type="button" data-day="d4">🎲 抽一個</button></div>
+        <div class="opts" data-day="d4">
+          <div class="opt" data-opt="A"><div class="opt-name"><span class="opt-letter">A</span><span>四天王寺本坊庭園</span></div><ul>
+            <li><b>09:00</b><span>🍁 8:30 開門，早上最安靜，看完走回飯店</span></li>
+          </ul></div>
+          <div class="opt" data-opt="B"><div class="opt-name"><span class="opt-letter">B</span><span>慶澤園開園第一批</span></div><ul>
+            <li><b>09:30</b><span>🍁 9:30 開園，走路 5 分，逛 45 分鐘剛好</span></li>
+          </ul></div>
+          <div class="opt" data-opt="C"><div class="opt-name"><span class="opt-letter">C</span><span>茶臼山・河底池晨間散步</span></div><ul>
+            <li><b>09:00</b><span>🍁 免費、隨時可去，最後再看一次楓樹</span></li>
+          </ul></div>
+        </div>
+
         <div class="item"><div class="time">11:15</div><div class="item-name">退房，搭 Haruka 到關西機場</div><div class="detail">Gold 可申請延遲退房到 14:00（視空房），但 CI153 14:30 起飛，最晚 11:15 就要出發，所以延遲退房只能讓早上更從容。Haruka 約 35 分鐘，目標 12:15 前到 T1，起飛前 2 小時。商務艙優先報到、快速通關後，在機場貴賓室吃午餐。</div></div>
         <div class="item"><div class="time">14:30 <span class="tag fixed">已訂</span></div><div class="item-name">CI153 關西 → 桃園 · 商務艙</div><div class="detail">機上有商務艙餐。約 16:45 抵達桃園 T2。</div></div>
       </div>
@@ -322,10 +409,10 @@ footer { padding:0 14px 28px; color:#70748a; font:10px/1.5 Georgia,serif; text-a
     <article class="card bday">
       <h2 class="title">🎂 生日當天安排</h2>
       <div class="row"><span class="label">揭曉</span><span class="value"><b>12/5 六 · 女兒 18 歲生日當天</b><br>慶生後拿出一個信封，裝行程表、航班與飯店資訊，可以請女兒一起交給她</span></div>
-      <div class="row"><span class="label">行李</span><span class="value">12/5 揭曉後她可以自己準備：保暖外套、圍巾、好走的鞋，以及一套生日晚餐的衣服</span></div>
+      <div class="row"><span class="label">行李</span><span class="value">12/5 揭曉後她可以自己準備：保暖外套、圍巾、好走的鞋、運動服，以及一套生日晚餐的衣服</span></div>
       <div class="row"><span class="label">房間</span><span class="value">約 13:15 提早入住時，房內已擺好花或蛋糕（事先 Email 飯店安排）</span></div>
-      <div class="row"><span class="label">夕陽</span><span class="value">HARUKAS 300 · 16:20 時段門票</span></div>
-      <div class="row"><span class="label">晚餐</span><span class="value">RESTAURANT ZK 57F · 18:30 · 靠窗 · 生日甜點盤</span></div>
+      <div class="row"><span class="label">下午</span><span class="value">紅葉三選一：慶澤園＋HARUKAS 300 夕陽、四天王寺、茶臼山</span></div>
+      <div class="row"><span class="label">晚餐</span><span class="value">18:30 · 餐廳自己挑 · 註明生日、靠窗、生日甜點盤</span></div>
       <div class="row"><span class="label">禮物</span><span class="value">晚餐後回房間送禮物與手寫卡片</span></div>
     </article>
 
@@ -351,7 +438,7 @@ footer { padding:0 14px 28px; color:#70748a; font:10px/1.5 Georgia,serif; text-a
       <div class="row"><span class="label">入住／退房</span><span class="value">標準時間請以訂房確認為準<br>行程以 12/10 約 13:15 提早入住、12/13 11:15 退房安排</span></div>
       <div class="row"><span class="label">萬豪 Gold</span><span class="value">提早入住：可要求，視空房<br>延遲退房：最晚 14:00，視空房<br>房型升等：可升等到較好的房型（不含套房），視空房</span></div>
       <div class="row"><span class="label">大廳</span><span class="value">19F · 自助餐廳 COOKA、甜點店 M-Boutique 同層</span></div>
-      <div class="row"><span class="label">餐廳</span><span class="value">57F RESTAURANT ZK · 歐式、日式與鐵板燒 · 晚餐約 17:00 – 21:00</span></div>
+      <div class="row"><span class="label">健身房</span><span class="value">24 小時開放，用房卡進入 · 樓層入住時問櫃台<br>12/11 – 12/13 每天早餐前去</span></div>
       <div class="row"><span class="label">展望台</span><span class="value">58 – 60F HARUKAS 300（另購門票）</span></div>
       <div class="note">訂房時備註：萬豪 Gold 會員、生日驚喜旅行，希望升等到高樓層、可看通天閣方向的房間。提早入住與延遲退房都要看當天空房，入住前一天再用萬豪 App 聊天功能確認一次。</div>
       <div class="links">
@@ -366,16 +453,16 @@ footer { padding:0 14px 28px; color:#70748a; font:10px/1.5 Georgia,serif; text-a
   <div class="grid two">
     <article class="card">
       <h2 class="title">📅 現在就訂</h2>
-      <div class="check"><span class="box"></span><div><b>RESTAURANT ZK</b>：12/10 18:30，靠窗，註明生日、需要生日甜點盤。</div></div>
+      <div class="check"><span class="box"></span><div><b>生日晚餐</b>：自己挑餐廳，12/10 18:30，靠窗，註明生日、需要生日甜點盤。</div></div>
       <div class="check"><span class="box"></span><div><b>Email 飯店</b>：註明萬豪 Gold 會員號碼、生日驚喜旅行、12/10 約 13:15 抵達請求提早入住；希望高樓層、通天閣方向；詢問房內蛋糕或花的方案與價錢。</div></div>
-      <div class="check"><span class="box"></span><div><b>晚餐</b>：12/11 心齋橋（約 19:30）、12/12 新世界或阿倍野。</div></div>
-      <div class="check"><span class="box"></span><div><b>護照</b>：確認她的護照效期。</div></div>
+            <div class="check"><span class="box"></span><div><b>護照</b>：確認她的護照效期。</div></div>
       <h2 class="title" style="margin-top:16px">🗓 11 月</h2>
       <div class="check"><span class="box"></span><div>私下安排她 12/10、12/11 的假（請她主管或同事幫忙）。12/5 才揭曉，等到那時再請假可能來不及。</div></div>
       <div class="check"><span class="box"></span><div>準備 12/5 揭曉用的信封：行程表、航班與飯店資訊。</div></div>
-      <div class="check"><span class="box"></span><div>網路預購 12/10 HARUKAS 300 16:20 時段門票。</div></div>
+      <div class="check"><span class="box"></span><div>想確保 12/10 夕陽，可先預購 HARUKAS 300 16:20 時段門票（抽到 B、C 就改天再上去）。</div></div>
       <div class="check"><span class="box"></span><div>準備生日禮物與手寫卡片。</div></div>
       <div class="check"><span class="box"></span><div>買兩人份日本 eSIM，或確認漫遊。</div></div>
+      <div class="check"><span class="box"></span><div>帶運動服和運動鞋，每天早上去健身房。</div></div>
     </article>
 
     <article class="card">
@@ -383,7 +470,7 @@ footer { padding:0 14px 28px; color:#70748a; font:10px/1.5 Georgia,serif; text-a
       <div class="check"><span class="box"></span><div>12/5 揭曉後，和她一起填好 Visit Japan Web。</div></div>
       <div class="check"><span class="box"></span><div>購買 ICOCA &amp; HARUKA，或在 iPhone 錢包加入 ICOCA。</div></div>
       <div class="check"><span class="box"></span><div>準備日幣現金，部分寺社和小店只收現金。</div></div>
-      <div class="check"><span class="box"></span><div>12 月初看 tenki.jp 紅葉狀況，決定 12/11 要不要去長居植物園。</div></div>
+      <div class="check"><span class="box"></span><div>12 月初看 tenki.jp 紅葉狀況，已落葉的方案先劃掉再抽。</div></div>
       <div class="check"><span class="box"></span><div>12/9 晚上一起收好行李，隔天 05:30 出門。</div></div>
       <div class="note">日本緊急電話：警察 110，消防、救護 119。12 月大阪白天約 11°C，夜晚約 4°C。</div>
     </article>
@@ -430,7 +517,7 @@ document.querySelectorAll('.card,.day-body').forEach(block => {
   block.setAttribute('tabindex', '0');
   block.setAttribute('aria-pressed', 'false');
   block.addEventListener('click', event => {
-    if (!event.target.closest('a,button')) toggleRead(block);
+    if (!event.target.closest('a,button,.opt')) toggleRead(block);
   });
   block.addEventListener('keydown', event => {
     if (event.target === block && (event.key === 'Enter' || event.key === ' ')) {
@@ -439,6 +526,57 @@ document.querySelectorAll('.card,.day-body').forEach(block => {
     }
   });
 });
+
+const PICK_KEY = 'osaka-2026-picks';
+let picks = {};
+try { picks = JSON.parse(localStorage.getItem(PICK_KEY)) || {}; } catch (e) { picks = {}; }
+function savePicks() { try { localStorage.setItem(PICK_KEY, JSON.stringify(picks)); } catch (e) {} }
+function renderPick(day) {
+  document.querySelectorAll(`.opts[data-day="${day}"] .opt`).forEach(opt => {
+    const on = opt.dataset.opt === picks[day];
+    opt.classList.toggle('chosen', on);
+    opt.setAttribute('aria-pressed', String(on));
+  });
+}
+document.querySelectorAll('.opts').forEach(group => {
+  const day = group.dataset.day;
+  group.querySelectorAll('.opt').forEach(opt => {
+    opt.setAttribute('tabindex', '0');
+    opt.setAttribute('role', 'button');
+    const choose = () => {
+      picks[day] = picks[day] === opt.dataset.opt ? undefined : opt.dataset.opt;
+      savePicks();
+      renderPick(day);
+    };
+    opt.addEventListener('click', choose);
+    opt.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(); } });
+  });
+  renderPick(day);
+});
+const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('.dice').forEach(btn => btn.addEventListener('click', () => {
+  const day = btn.dataset.day;
+  const group = document.querySelector(`.opts[data-day="${day}"]`);
+  const opts = [...group.querySelectorAll('.opt')];
+  const final = opts[Math.floor(Math.random() * opts.length)];
+  const land = () => {
+    group.classList.remove('rolling');
+    opts.forEach(o => o.classList.remove('flash'));
+    picks[day] = final.dataset.opt;
+    savePicks();
+    renderPick(day);
+    final.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'nearest' });
+  };
+  if (calm) return land();
+  group.classList.add('rolling');
+  let i = 0;
+  const steps = 9 + opts.indexOf(final);
+  const tick = () => {
+    opts.forEach((o, n) => o.classList.toggle('flash', n === i % opts.length));
+    if (i++ < steps) setTimeout(tick, 70 + i * 12); else land();
+  };
+  tick();
+}));
 </script>
 </body>
 </html>
